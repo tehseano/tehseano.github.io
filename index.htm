@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Grid with Totals</title>
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* 5 columns */
+      gap: 10px;
+    }
+    .grid-item {
+      text-align: center;
+    }
+    .totals {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="grid-container">
+  <!-- Floor 1 -->
+  
+  <div> <!-- Blank Space -->
+  </div>
+  
+  <div class="grid-item blue" data-id="2" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Green Beads turn Blue by +" data-end1="%" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
+    <img src="path_to_image2.jpg" alt="Image 2">
+    <p id="description2_1">Lottery Green Beads turn Blue by 0%</p>
+    <p id="description2_2" data-show-second-text="false"></p>
+    <div>
+      <button onclick="decreaseValue(2)">-</button>
+      <span id="value2">0</span>
+      <button onclick="increaseValue(2)">+</button>
+    </div>
+  </div>
+
+  <div class="grid-item blue" data-id="3" data-point-cost="1" data-base-value1="100" data-increment1="10" data-label1="Snail ATK +" data-end1="" data-base-value2="100" data-increment2="10" data-label2="Snail DEF +" data-end2="">
+    <img src="path_to_image3.jpg" alt="Image 3">
+    <p id="description3_1">Snail ATK +100</p>
+    <p id="description3_2" data-show-second-text="true">Snail DEF +100</p>
+    <div>
+      <button onclick="decreaseValue(3)">-</button>
+      <span id="value3">0</span>
+      <button onclick="increaseValue(3)">+</button>
+    </div>
+  </div>
+
+  <div class="grid-item blue" data-id="4" data-point-cost="1" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <img src="path_to_image4.jpg" alt="Image 4">
+    <p id="description4_1">Snail Leadership +0</p>
+    <p id="description4_2" data-show-second-text="false"></p>
+    <div>
+      <button onclick="decreaseValue(4)">-</button>
+      <span id="value4">0</span>
+      <button onclick="increaseValue(4)">+</button>
+    </div>
+  </div>
+  
+  <div> <!-- Blank Space -->
+  </div>
+
+  <!-- Floor 2 -->
+
+  <div class="grid-item orange" data-id="5" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Purple Beads turn Orange by +" data-end1="%" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <img src="path_to_image5.jpg" alt="Image 5">
+    <p id="description5_1">Lottery Purple Beads turn Orange by +0%</p>
+    <p id="description5_2" data-show-second-text="false"></p>
+    <div>
+      <button onclick="decreaseValue(5)">-</button>
+      <span id="value5">0</span>
+      <button onclick="increaseValue(5)">+</button>
+    </div>
+  </div>  
+
+  <div class="grid-item purple" data-id="6" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Blue Beads turn Purple by +" data-end1="%" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <img src="path_to_image6.jpg" alt="Image 6">
+    <p id="description6_1">Lottery Blue Beads turn Purple by +0%</p>
+    <p id="description6_2" data-show-second-text="false"></p>
+    <div>
+      <button onclick="decreaseValue(6)">-</button>
+      <span id="value6">0</span>
+      <button onclick="increaseValue(6)">+</button>
+    </div>
+  </div>
+
+  <div class="grid-item blue" data-id="7" data-point-cost="1" data-base-value1="1000" data-increment1="100" data-label1="Snail HP +" data-end1="" data-base-value2="100" data-increment2="10" data-label2="Snail RUSH +" data-end2="">
+    <img src="path_to_image7.jpg" alt="Image 7">
+    <p id="description7_1">Snail HP +1000</p>
+    <p id="description7_2" data-show-second-text="true">Snail RUSH +100</p>
+    <div>
+      <button onclick="decreaseValue(7)">-</button>
+      <span id="value7">0</span>
+      <button onclick="increaseValue(7)">+</button>
+    </div>
+  </div>
+
+  <div class="grid-item purple" data-id="8" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="All Minion HP +" data-end1="" data-base-value2="0" data-increment2="1" data-label2="All Minion DEF +" data-end2="">
+    <img src="path_to_image8.jpg" alt="Image 8">
+    <p id="description8_1">All Minion HP +0</p>
+    <p id="description8_2" data-show-second-text="true">All Minion DEF +0</p>
+    <div>
+      <button onclick="decreaseValue(8)">-</button>
+      <span id="value8">0</span>
+      <button onclick="increaseValue(8)">+</button>
+    </div>
+  </div>
+
+  <div class="grid-item orange" data-id="9" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <img src="path_to_image9.jpg" alt="Image 9">
+    <p id="description9_1"></p>
+    <p id="description9_2" data-show-second-text="false"></p>
+    <div>
+      <button onclick="decreaseValue(9)">-</button>
+      <span id="value9">0</span>
+      <button onclick="increaseValue(9)">+</button>
+    </div>
+  </div>
+
+  <!-- Floor 3 -->
+
+  <div class="grid-item orange" data-id="10" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <img src="path_to_image10.jpg" alt="Image 10">
+    <p id="description10_1"></p>
+    <p id="description10_2" data-show-second-text="false"></p>
+    <div>
+      <button onclick="decreaseValue(10)">-</button>
+      <span id="value10">0</span>
+      <button onclick="increaseValue(10)">+</button>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+<div class="totals">
+  <p>Total Points Blue: <span id="totalBlue">0</span></p>
+  <p>Total Points Purple: <span id="totalPurple">0</span></p>
+  <p>Total Points Orange: <span id="totalOrange">0</span></p>
+</div>
+
+<script>
+const maxLevel = 5; // Maximum level for each image
+
+function calculateTotals() {
+  let totalBlue = 0;
+  let totalPurple = 0;
+  let totalOrange = 0;
+
+  // Iterate through each grid item to calculate totals
+  const gridItems = document.querySelectorAll('.grid-item'); // Get all grid items
+  gridItems.forEach((gridItem) => {
+    const colorClass = gridItem.classList[1]; // Get the color class
+    const pointCost = parseInt(gridItem.getAttribute('data-point-cost')); // Get point cost from the data attribute
+    const valueElement = gridItem.querySelector('span[id^="value"]');
+    const value = valueElement ? parseInt(valueElement.textContent) : 0; // Get the current value
+
+    // Calculate total points for each color based on level and point cost
+    const totalPoints = value * pointCost;
+
+    if (colorClass === 'blue') {
+      totalBlue += totalPoints;
+    } else if (colorClass === 'purple') {
+      totalPurple += totalPoints;
+    } else if (colorClass === 'orange') {
+      totalOrange += totalPoints;
+    }
+  });
+
+  document.getElementById('totalBlue').textContent = totalBlue;
+  document.getElementById('totalPurple').textContent = totalPurple;
+  document.getElementById('totalOrange').textContent = totalOrange;
+}
+
+function updateDescription(id) {
+  let gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
+  if (!gridItem) return; // Skip if the grid item doesn't exist
+  
+  let level = parseInt(gridItem.querySelector(`span[id="value${id}"]`).textContent);
+  
+  // First dynamic value
+  let baseValue1 = parseInt(gridItem.getAttribute('data-base-value1'));
+  let increment1 = parseInt(gridItem.getAttribute('data-increment1'));
+  let label1 = gridItem.getAttribute('data-label1');
+  let end1 = gridItem.getAttribute('data-end1');
+  let newValue1 = baseValue1 + (increment1 * level);
+  
+  // Second dynamic value
+  let baseValue2 = parseInt(gridItem.getAttribute('data-base-value2'));
+  let increment2 = parseInt(gridItem.getAttribute('data-increment2'));
+  let label2 = gridItem.getAttribute('data-label2');
+  let end2 = gridItem.getAttribute('data-end2');
+  let newValue2 = baseValue2 + (increment2 * level);
+  
+  // Update the first dynamic text
+  let description1 = gridItem.querySelector(`#description${id}_1`);
+  if (description1) {
+    description1.textContent = `${label1}${newValue1}${end1}`;
+  }
+  
+  // Check if the second dynamic text should be shown
+  let description2 = gridItem.querySelector(`#description${id}_2`);
+  if (description2) {
+    const showSecondText = description2.getAttribute('data-show-second-text') === "true";
+    if (showSecondText) {
+      description2.textContent = `${label2}${newValue2}${end2}`;
+    } else {
+      description2.textContent = ''; // Clear if not shown
+    }
+  }
+}
+
+function changeValue(id, increment) {
+  let gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
+  if (!gridItem) return; // Skip if the grid item doesn't exist
+  
+  let valueElement = gridItem.querySelector(`span[id="value${id}"]`);
+  let currentValue = parseInt(valueElement.textContent);
+  
+  if (increment && currentValue < maxLevel) {
+    currentValue += 1;
+  } else if (!increment && currentValue > 0) {
+    currentValue -= 1;
+  }
+  
+  valueElement.textContent = currentValue;
+  updateDescription(id);
+  calculateTotals();
+}
+
+function increaseValue(id) {
+  changeValue(id, true);
+}
+
+function decreaseValue(id) {
+  changeValue(id, false);
+}
+
+// Initial update for all descriptions
+document.querySelectorAll('.grid-item').forEach((gridItem) => {
+  const id = gridItem.getAttribute('data-id');
+  if (id) {
+    updateDescription(id);
+  }
+});
+
+// Initial calculation of totals
+calculateTotals();
+</script>
+
+</body>
+</html>
