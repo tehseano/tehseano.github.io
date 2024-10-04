@@ -23,20 +23,21 @@
       }
 
       /* Make the grid full width on smaller screens */
-      @media (max-width: 768px) { /* Adjust the breakpoint as needed */
+      @media (max-width: 1200px) { /* Adjust the breakpoint as needed */
         .grid-container {
-          grid-template-columns: repeat(2, 1fr); /* Change to 2 columns on small screens */
+          grid-template-columns: repeat(5, 1fr); /* Change to 2 columns on small screens */
           width: 100%; /* Take full width on mobile */
         }
       }
 
-      @media (max-width: 480px) { /* Adjust for even smaller screens */
-        .grid-container {
-          grid-template-columns: 1fr; /* Single column on very small screens */
-          width: 100%; /* Take full width on small mobile */
-        }
-      }
 
+      /* @media (max-width: 480px) { /* Adjust for even smaller screens */ */
+        /* .grid-container { */
+          /* grid-template-columns: 1fr; /* Single column on very small screens */ */
+          /* width: 100%; /* Take full width on small mobile */ */
+        /* } */
+      /* } */
+	  
       .grid-item {
         display: flex;
         flex-direction: column;
