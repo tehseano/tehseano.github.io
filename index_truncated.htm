@@ -97,7 +97,7 @@ body {
 .bullet {
   width: 0.3em;
   height: 0.3em;
-  border: 0.1em solid black; /* Bullet border */
+  border: 0.05em solid black; /* Bullet border */
   border-radius: 50%;
   display: inline-block;
   background-color: #A9A9A9; /* Inactive state */
@@ -1121,18 +1121,18 @@ p {
     </div> <!-- End of Main Grid Container -->
 
     <script>
-    window.addEventListener('load', () => {
-  const fixedContainer = document.querySelector('.fixed-container');
-  const gridContainer = document.querySelector('.grid-container');
+      window.addEventListener('load', () => {
+        const fixedContainer = document.querySelector('.fixed-container');
+        const gridContainer = document.querySelector('.grid-container');
 
-  const updateGridMargin = () => {
-    const height = fixedContainer.offsetHeight;
-    gridContainer.style.marginTop = `${height}px`;
-  };
+        const updateGridMargin = () => {
+          const height = fixedContainer.offsetHeight;
+          gridContainer.style.marginTop = `${height}px`;
+        };
 
-  updateGridMargin();
-  window.addEventListener('resize', updateGridMargin); // Update on window resize
-});
+        updateGridMargin();
+        window.addEventListener('resize', updateGridMargin); // Update on window resize
+      });
 
       const maxLevel = 5; // Maximum level for each image
 
