@@ -7,11 +7,22 @@
     <style>
       body {
         font-family: Verdana, sans-serif;
-        font-size: .8em;
-        color: #333;
-        line-height: 1;
+        font-size: .7em;
+        color: #000000;
+        line-height: .8em;
         margin: 0;
         padding: .5em;
+      }
+
+      .fixed-container {
+        position: fixed; /* Fixes the div at the top left */
+        top: 10px; /* Adjust as needed */
+        left: 10px; /* Adjust as needed */
+        background-color: white; /* Set background color for visibility */
+        padding: 10px; /* Add padding for spacing */
+        border: 1px solid #ccc; /* Optional: Add a border */
+        z-index: 1000; /* Ensures it stays above other elements */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
       }
 
       .grid-container {
@@ -29,14 +40,6 @@
           width: 100%; /* Take full width on mobile */
         }
       }
-
-
-      /* @media (max-width: 480px) { /* Adjust for even smaller screens */ */
-        /* .grid-container { */
-          /* grid-template-columns: 1fr; /* Single column on very small screens */ */
-          /* width: 100%; /* Take full width on small mobile */ */
-        /* } */
-      /* } */
 	  
       .grid-item {
         display: flex;
@@ -93,6 +96,9 @@
       .bullet-container {
         display: flex;
         gap: 0px; /* Slightly reduce spacing between bullets */
+        align-items: center;
+        justify-content: center; /* Center the image horizontally */
+
         margin-top: 0px;
       }
 
@@ -114,11 +120,19 @@
     </style>
   </head>
   <body>
-    <div class="mode-toggle">
-      <label>
-        <input type="checkbox" id="minusMode"> Minus Mode
-      </label>
-    </div>
+<div class="fixed-container">
+  <div class="mode-toggle">
+    <label>
+      <input type="checkbox" id="minusMode"> Minus Mode
+    </label>
+  </div>
+
+  <div class="totals">
+    <p>Total Points Blue: <span id="totalBlue">0</span></p>
+    <p>Total Points Purple: <span id="totalPurple">0</span></p>
+    <p>Total Points Orange: <span id="totalOrange">0</span></p>
+  </div>
+</div>
 
     <div class="grid-container">
       <!-- Floor 1 -->
@@ -1081,12 +1095,6 @@
       </div>
 
     </div> <!-- End of Main Grid Container -->
-
-    <div class="totals">
-      <p>Total Points Blue: <span id="totalBlue">0</span></p>
-      <p>Total Points Purple: <span id="totalPurple">0</span></p>
-      <p>Total Points Orange: <span id="totalOrange">0</span></p>
-    </div>
 
     <script>
       const maxLevel = 5; // Maximum level for each image
