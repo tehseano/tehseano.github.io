@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snelp.com - Collector Talent Planner</title>
+    <style>
+      body {
+        font-family: Verdana, sans-serif;
+        font-size: 16px;
+        color: #333;
+        line-height: 1.4;
+        margin: 0;
+        padding: 1rem;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+      }
+
+      .grid-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center; /* Center horizontally */
+          justify-content: center; /* Center vertically */
+          text-align: center; /* Center text within paragraphs */
+          background-color: #f0f0f0;
+          padding: 0.0rem;
+          border-radius: 8px;
+          height: 100%; /* Ensures the item expands to fill available height */
+      }
+
+      .totals {
+        margin-top: 20px;
+        font-weight: bold;
+      }
+
+      .talent-image {
+        cursor: pointer;
+        transition: transform 0.1s;
+      }
+
+      .talent-image:active {
+        transform: scale(0.95);
+      }
+
+      .mode-toggle {
+        margin-bottom: 1rem;
+      }
+
+      .minus-mode .talent-image {
+        opacity: 0.7;
+      }
+
+      .image-small {
+        max-width: 30px;
+      }
+
+      p {
+        font-size: 0.9rem;
+        margin: 3px 0;
+      }
+
+      .image-button-container {
+          display: flex;
+          align-items: center;
+          justify-content: center; /* Center the image horizontally */
+          margin-bottom: 5px;
+          margin-top: 5px;
+          width: 100%;
+      }
+
+      /* Bullet container for showing levels */
+      .bullet-container {
+        display: flex;
+        gap: 0px; /* Slightly reduce spacing between bullets */
+        margin-top: 0px;
+      }
+
+      /* Bullet style */
+      .bullet {
+        width: 0.3em; /* Slightly increased size for better visual consistency */
+        height: 0.3em;
+        border: 1px solid black; /* Thinner border */
+        border-radius: 50%;
+        display: inline-block;
+        color: gray; /* Inactive state with a softer gray */
+      }
+
+      /* Active bullet (level reached) */
+      .bullet.active {
+        background-color: yellow; /* Active state */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mode-toggle">
+      <label>
+        <input type="checkbox" id="minusMode"> Minus Mode
+      </label>
+    </div>
+
+    <div class="grid-container">
+      <!-- Floor 1 -->
+      
+      <div> <!-- Blank Space -->
+      </div>
+      
+      <div class="grid-item blue" data-id="1" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Green Beads turn Blue by +" data-end1="%" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
+        <div class="image-button-container">
+          <img src="ct_b_l.png" alt="Image 1" class="talent-image image-small" onclick="toggleValue(1)">
+        </div>
+        <div id="level1" class="level-bullets bullet-container">
+          <span class="bullet"></span>
+          <span class="bullet"></span>
+          <span class="bullet"></span>
+          <span class="bullet"></span>
+          <span class="bullet"></span>
+        </div>
+        <p id="description1_1"></p>
+        <p id="description1_2" data-show-second-text="false"></p>
+      </div>
+
+      <div class="grid-item blue" data-id="2" data-point-cost="1" data-base-value1="0" data-increment1="30" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
+        <div class="image-button-container">
+          <img src="ct_b_m.png" alt="Image 2" class="talent-image image-small" onclick="toggleValue(2)">
+        </div>
+        <div id="level2" class="level-bullets bullet-container">
+          <span class="bullet"></span>
+          <span class="bullet"></span>
+          <span class="bullet"></span>
+          <span class="bullet"></span>
+          <span class="bullet"></span>
+        </div>
+        <p id="description2_1"></p>
+        <p id="description2_2" data-show-second-text="false"></p>
+      </div>
+
+      <div> <!-- Blank Space -->
+      </div>
+
+    </div> <!-- End of Main Grid Container -->
+
+    <div class="totals">
+      <p>Total Points Blue: <span id="totalBlue">0</span></p>
+      <p>Total Points Purple: <span id="totalPurple">0</span></p>
+      <p>Total Points Orange: <span id="totalOrange">0</span></p>
+    </div>
+
+    <script>
+      const maxLevel = 5; // Maximum level for each image
+
+      function calculateTotals() {
+        let totalBlue = 0;
+        let totalPurple = 0;
+        let totalOrange = 0;
+
+        // Iterate through each grid item to calculate totals
+        const gridItems = document.querySelectorAll('.grid-item'); // Get all grid items
+        gridItems.forEach((gridItem) => {
+          const colorClass = gridItem.classList[1]; // Get the color class
+          const pointCost = parseInt(gridItem.getAttribute('data-point-cost')); // Get point cost from the data attribute
+          const currentValue = gridItem.querySelector('.bullet.active') ? gridItem.querySelectorAll('.bullet.active').length : 0; // Count active bullets
+
+          // Calculate total points for each color based on level and point cost
+          const totalPoints = currentValue * pointCost;
+
+          if (colorClass === 'blue') {
+            totalBlue += totalPoints;
+          } else if (colorClass === 'purple') {
+            totalPurple += totalPoints;
+          } else if (colorClass === 'orange') {
+            totalOrange += totalPoints;
+          }
+        });
+
+        document.getElementById('totalBlue').textContent = totalBlue;
+        document.getElementById('totalPurple').textContent = totalPurple;
+        document.getElementById('totalOrange').textContent = totalOrange;
+      }
+
+      function toggleValue(id) {
+        const gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
+        if (!gridItem) return; // Skip if the grid item doesn't exist
+
+        const bullets = gridItem.querySelectorAll(`#level${id} .bullet`);
+        let currentLevel = Array.from(bullets).filter(bullet => bullet.classList.contains('active')).length;
+        const minusMode = document.getElementById('minusMode').checked;
+
+        if (!minusMode && currentLevel < maxLevel) {
+          currentLevel += 1;
+        } else if (minusMode && currentLevel > 0) {
+          currentLevel -= 1;
+        }
+
+        // Update bullets after calculating the current level
+        updateBullets(id, currentLevel);
+        updateDescription(id);
+        calculateTotals();
+      }
+
+      function updateBullets(id, level) {
+        let bullets = document.querySelectorAll(`#level${id} .bullet`);
+        bullets.forEach((bullet, index) => {
+          if (index < level) {
+            bullet.classList.add('active');
+          } else {
+            bullet.classList.remove('active');
+          }
+        });
+      }
+
+      function updateDescription(id) {
+        const gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
+        const currentLevel = gridItem.querySelectorAll(`#level${id} .bullet.active`).length;
+
+        // First dynamic value
+        const baseValue1 = parseFloat(gridItem.getAttribute('data-base-value1')) || 0;
+        const increment1 = parseFloat(gridItem.getAttribute('data-increment1')) || 0;
+        const label1 = gridItem.getAttribute('data-label1') || '';
+        const end1 = gridItem.getAttribute('data-end1') || '';
+        const newValue1 = baseValue1 + (increment1 * currentLevel);
+
+        const description1 = gridItem.querySelector(`#description${id}_1`);
+        if (description1) {
+          description1.textContent = `${label1}${newValue1}${end1}`;
+        }
+      }
+
+      // Initial update for all descriptions and calculations
+      document.querySelectorAll('.grid-item').forEach((gridItem) => {
+        const id = gridItem.getAttribute('data-id');
+        if (id) {
+          updateDescription(id);
+        }
+      });
+      calculateTotals();
+    </script>
+  </body>
+</html>
