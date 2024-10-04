@@ -107,7 +107,7 @@
 
       <div class="grid-item blue" data-id="3" data-point-cost="1" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
         <div class="image-button-container">
-          <img src="ct_b_r.png" alt="Image 3" class="talent-image image-small">
+          <img src="ct_b_r.png" alt="Image 3" class="talent-image image-small" onclick="toggleValue(3)">
         </div>
         <span id="value3">0</span>
         <p id="description3_1"></p>
@@ -122,12 +122,8 @@
       <div class="grid-item orange" data-id="4" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Purple Beads turn Orange by +" data-end1="%" data-base-value2="" data-increment2="" data-label2="" data-end2="">
         <div class="image-button-container">
           <img src="ct_o_l.png" alt="Image 4" class="talent-image image-small">
-          <div class="button-container">
-            <button onclick="decreaseValue(4)">-</button>
-            <span id="value4">0</span>
-            <button onclick="increaseValue(4)">+</button>
-          </div>
         </div>
+		<span id="value4">0</span>
         <p id="description4_1"></p>
         <p id="description4_2" data-show-second-text="false"></p>
       </div>  
@@ -135,12 +131,8 @@
       <div class="grid-item purple" data-id="5" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Blue Beads turn Purple by +" data-end1="%" data-base-value2="" data-increment2="" data-label2="" data-end2="">
         <div class="image-button-container">
           <img src="ct_p_l.png" alt="Image 5" class="talent-image image-small">
-          <div class="button-container">
-            <button onclick="decreaseValue(5)">-</button>
-            <span id="value5">0</span>
-            <button onclick="increaseValue(5)">+</button>
-          </div>
         </div>
+		<span id="value5">0</span>
         <p id="description5_1"></p>
         <p id="description5_2" data-show-second-text="false"></p>
       </div>
@@ -148,12 +140,8 @@
       <div class="grid-item blue" data-id="6" data-point-cost="1" data-base-value1="0" data-increment1="300" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="30" data-label2="Snail RUSH +" data-end2="">
         <div class="image-button-container">
           <img src="ct_b_m.png" alt="Image 6" class="talent-image image-small">
-          <div class="button-container">
-            <button onclick="decreaseValue(6)">-</button>
-            <span id="value6">0</span>
-            <button onclick="increaseValue(6)">+</button>
-          </div>
         </div>
+		<span id="value6">0</span>
         <p id="description6_1"></p>
         <p id="description6_2" data-show-second-text="true"></p>
       </div>
