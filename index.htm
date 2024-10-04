@@ -11,11 +11,46 @@
       gap: 10px;
     }
     .grid-item {
-      text-align: center;
+      display: flex;                /* Use Flexbox for alignment */
+      flex-direction: column;       /* Arrange items in a column */
+      align-items: flex-start;      /* Align items to the start */
+      text-align: left;             /* Align text to the left */
     }
     .totals {
       margin-top: 20px;
       font-weight: bold;
+    }
+    .talent-image {
+      width: 100px;  /* Default width */
+      height: auto;  /* Maintain aspect ratio */
+    }
+    /* Image size classes */
+    .image-small {
+      width: 40px;
+    }
+    .image-medium {
+      width: 75px;
+    }
+    .image-large {
+      width: 100px;
+    }
+    p {
+      font-family: Verdana, sans-serif; /* Font style */
+      font-size: 12px; /* Font size */
+      color: #333; /* Text color */
+      line-height: 1.4; /* Line spacing */
+      margin: 5px 0; /* Space around the paragraph */
+    }
+    /* New class for image and button container */
+    .image-button-container {        
+      display: flex;                 /* Arrange image and buttons in a row */
+      align-items: center;           /* Center them vertically */
+      margin-bottom: 5px;            /* Space between image-buttons and dynamic text */
+    }
+    /* Button container styling */
+    .grid-item > div {               
+      display: flex;                 /* Use Flexbox for buttons */
+      align-items: center;          /* Center buttons vertically */
     }
   </style>
 </head>
@@ -27,110 +62,806 @@
   <div> <!-- Blank Space -->
   </div>
   
-  <div class="grid-item blue" data-id="2" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Green Beads turn Blue by +" data-end1="%" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
-    <img src="ct_b_l.png" alt="Image 2">
-    <p id="description2_1">Lottery Green Beads turn Blue by 0%</p>
+  <div class="grid-item blue" data-id="1" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Green Beads turn Blue by +" data-end1="%" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_l.png" alt="Image 1" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(1)">-</button>
+        <span id="value1">0</span>
+        <button onclick="increaseValue(1)">+</button>
+      </div>
+    </div>
+    <p id="description1_1"></p>
+    <p id="description1_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="2" data-point-cost="1" data-base-value1="0" data-increment1="30" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 2" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(2)">-</button>
+        <span id="value2">0</span>
+        <button onclick="increaseValue(2)">+</button>
+      </div>
+    </div>
+    <p id="description2_1"></p>
     <p id="description2_2" data-show-second-text="false"></p>
-    <div>
-      <button onclick="decreaseValue(2)">-</button>
-      <span id="value2">0</span>
-      <button onclick="increaseValue(2)">+</button>
-    </div>
   </div>
 
-  <div class="grid-item blue" data-id="3" data-point-cost="1" data-base-value1="100" data-increment1="10" data-label1="Snail ATK +" data-end1="" data-base-value2="100" data-increment2="10" data-label2="Snail DEF +" data-end2="">
-    <img src="ct_b_m.png" alt="Image 3">
-    <p id="description3_1">Snail ATK +100</p>
-    <p id="description3_2" data-show-second-text="true">Snail DEF +100</p>
-    <div>
-      <button onclick="decreaseValue(3)">-</button>
-      <span id="value3">0</span>
-      <button onclick="increaseValue(3)">+</button>
+  <div class="grid-item blue" data-id="3" data-point-cost="1" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_r.png" alt="Image 3" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(3)">-</button>
+        <span id="value3">0</span>
+        <button onclick="increaseValue(3)">+</button>
+      </div>
     </div>
+    <p id="description3_1"></p>
+    <p id="description3_2" data-show-second-text="false"></p>
   </div>
 
-  <div class="grid-item blue" data-id="4" data-point-cost="1" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
-    <img src="ct_b_r.png" alt="Image 4">
-    <p id="description4_1">Snail Leadership +0</p>
-    <p id="description4_2" data-show-second-text="false"></p>
-    <div>
-      <button onclick="decreaseValue(4)">-</button>
-      <span id="value4">0</span>
-      <button onclick="increaseValue(4)">+</button>
-    </div>
-  </div>
-  
   <div> <!-- Blank Space -->
   </div>
 
   <!-- Floor 2 -->
 
-  <div class="grid-item orange" data-id="5" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Purple Beads turn Orange by +" data-end1="%" data-base-value2="" data-increment2="" data-label2="" data-end2="">
-    <img src="path_to_image5.jpg" alt="Image 5">
-    <p id="description5_1">Lottery Purple Beads turn Orange by +0%</p>
-    <p id="description5_2" data-show-second-text="false"></p>
-    <div>
-      <button onclick="decreaseValue(5)">-</button>
-      <span id="value5">0</span>
-      <button onclick="increaseValue(5)">+</button>
+  <div class="grid-item orange" data-id="4" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Purple Beads turn Orange by +" data-end1="%" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_o_l.png" alt="Image 4" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(4)">-</button>
+        <span id="value4">0</span>
+        <button onclick="increaseValue(4)">+</button>
+      </div>
     </div>
+    <p id="description4_1"></p>
+    <p id="description4_2" data-show-second-text="false"></p>
   </div>  
 
-  <div class="grid-item purple" data-id="6" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Blue Beads turn Purple by +" data-end1="%" data-base-value2="" data-increment2="" data-label2="" data-end2="">
-    <img src="path_to_image6.jpg" alt="Image 6">
-    <p id="description6_1">Lottery Blue Beads turn Purple by +0%</p>
-    <p id="description6_2" data-show-second-text="false"></p>
-    <div>
-      <button onclick="decreaseValue(6)">-</button>
-      <span id="value6">0</span>
-      <button onclick="increaseValue(6)">+</button>
+  <div class="grid-item purple" data-id="5" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Blue Beads turn Purple by +" data-end1="%" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_p_l.png" alt="Image 5" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(5)">-</button>
+        <span id="value5">0</span>
+        <button onclick="increaseValue(5)">+</button>
+      </div>
     </div>
+    <p id="description5_1"></p>
+    <p id="description5_2" data-show-second-text="false"></p>
   </div>
 
-  <div class="grid-item blue" data-id="7" data-point-cost="1" data-base-value1="1000" data-increment1="100" data-label1="Snail HP +" data-end1="" data-base-value2="100" data-increment2="10" data-label2="Snail RUSH +" data-end2="">
-    <img src="path_to_image7.jpg" alt="Image 7">
-    <p id="description7_1">Snail HP +1000</p>
-    <p id="description7_2" data-show-second-text="true">Snail RUSH +100</p>
-    <div>
-      <button onclick="decreaseValue(7)">-</button>
-      <span id="value7">0</span>
-      <button onclick="increaseValue(7)">+</button>
+  <div class="grid-item blue" data-id="6" data-point-cost="1" data-base-value1="0" data-increment1="300" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="30" data-label2="Snail RUSH +" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 6" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(6)">-</button>
+        <span id="value6">0</span>
+        <button onclick="increaseValue(6)">+</button>
+      </div>
     </div>
+    <p id="description6_1"></p>
+    <p id="description6_2" data-show-second-text="true">Snail RUSH +100</p>
   </div>
 
-  <div class="grid-item purple" data-id="8" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="All Minion HP +" data-end1="" data-base-value2="0" data-increment2="1" data-label2="All Minion DEF +" data-end2="">
-    <img src="path_to_image8.jpg" alt="Image 8">
-    <p id="description8_1">All Minion HP +0</p>
-    <p id="description8_2" data-show-second-text="true">All Minion DEF +0</p>
-    <div>
-      <button onclick="decreaseValue(8)">-</button>
-      <span id="value8">0</span>
-      <button onclick="increaseValue(8)">+</button>
+  <div class="grid-item purple" data-id="7" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="All Minion HP/DEF +" data-end1="" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_p_r.png" alt="Image 7" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(7)">-</button>
+        <span id="value7">0</span>
+        <button onclick="increaseValue(7)">+</button>
+      </div>
     </div>
+    <p id="description7_1"></p>
+    <p id="description7_2" data-show-second-text="false"></p>
   </div>
 
-  <div class="grid-item orange" data-id="9" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
-    <img src="path_to_image9.jpg" alt="Image 9">
-    <p id="description9_1"></p>
-    <p id="description9_2" data-show-second-text="false"></p>
-    <div>
-      <button onclick="decreaseValue(9)">-</button>
-      <span id="value9">0</span>
-      <button onclick="increaseValue(9)">+</button>
+  <div class="grid-item orange" data-id="8" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="All Minion ATK/RUSH +" data-end1="" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_o_r.png" alt="Image 8" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(8)">-</button>
+        <span id="value8">0</span>
+        <button onclick="increaseValue(8)">+</button>
+      </div>
     </div>
+    <p id="description8_1"></p>
+    <p id="description8_2" data-show-second-text="false"></p>
   </div>
+
 
   <!-- Floor 3 -->
 
-  <div class="grid-item orange" data-id="10" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
-    <img src="path_to_image10.jpg" alt="Image 10">
-    <p id="description10_1"></p>
-    <p id="description10_2" data-show-second-text="false"></p>
-    <div>
-      <button onclick="decreaseValue(10)">-</button>
-      <span id="value10">0</span>
-      <button onclick="increaseValue(10)">+</button>
+  <div> <!-- Blank Space -->
+  </div>
+
+  <div class="grid-item blue" data-id="9" data-point-cost="2" data-base-value1="0" data-increment1="5" data-label1="Fungus Farm Max Cap/Output +" data-end1="%" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_l.png" alt="Image 9" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(9)">-</button>
+        <span id="value9">0</span>
+        <button onclick="increaseValue(9)">+</button>
+      </div>
     </div>
+    <p id="description9_1"></p>
+    <p id="description9_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="10" data-point-cost="2" data-base-value1="0" data-increment1="36" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2=".5" data-label2="In explorations, DMG +" data-end2="%">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 10" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(10)">-</button>
+        <span id="value10">0</span>
+        <button onclick="increaseValue(10)">+</button>
+      </div>
+    </div>
+    <p id="description10_1"></p>
+    <p id="description10_2" data-show-second-text="true"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="11" data-point-cost="2" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_r.png" alt="Image 11" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(11)">-</button>
+        <span id="value11">0</span>
+        <button onclick="increaseValue(11)">+</button>
+      </div>
+    </div>
+    <p id="description11_1"></p>
+    <p id="description11_2" data-show-second-text="false"></p>
+  </div>
+
+  <div> <!-- Blank Space -->
+  </div>
+
+  <!-- Floor 4 -->
+
+  <div class="grid-item orange" data-id="12" data-point-cost="2" data-base-value1="0" data-increment1="5" data-label1="Time Machine Max Cap/Output +" data-end1="%" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_o_l.png" alt="Image 12" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(12)">-</button>
+        <span id="value12">0</span>
+        <button onclick="increaseValue(12)">+</button>
+      </div>
+    </div>
+    <p id="description12_1"></p>
+    <p id="description12_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item purple" data-id="13" data-point-cost="2" data-base-value1="0" data-increment1="5" data-label1="Tadpole Pond Max Cap/Output +" data-end1="%" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_p_l.png" alt="Image 13" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(13)">-</button>
+        <span id="value13">0</span>
+        <button onclick="increaseValue(13)">+</button>
+      </div>
+    </div>
+    <p id="description13_1"></p>
+    <p id="description13_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="14" data-point-cost="2" data-base-value1="0" data-increment1="360" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="36" data-label2="Snail RUSH +" data-end2="" data-base-value3="0" data-increment3=".5" data-label3="In explorations, DMG +" data-end3="%">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 14" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(14)">-</button>
+        <span id="value14">0</span>
+        <button onclick="increaseValue(14)">+</button>
+      </div>
+    </div>
+    <p id="description14_1"></p>
+    <p id="description14_2" data-show-second-text="true"></p>
+    <p id="description14_3" data-show-third-text="true"></p>
+  </div>
+
+  <div class="grid-item purple" data-id="15" data-point-cost="2" data-base-value1="0" data-increment1="1" data-label1="All Minion HP/DEF +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_p_r.png" alt="Image 15" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(15)">-</button>
+        <span id="value15">0</span>
+        <button onclick="increaseValue(15)">+</button>
+      </div>
+    </div>
+    <p id="description15_1"></p>
+    <p id="description15_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item orange" data-id="16" data-point-cost="2" data-base-value1="0" data-increment1="1" data-label1="All Minion ATK/RUSH +" data-end1="" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_o_r.png" alt="Image 16" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(16)">-</button>
+        <span id="value16">0</span>
+        <button onclick="increaseValue(16)">+</button>
+      </div>
+    </div>
+    <p id="description16_1"></p>
+    <p id="description16_2" data-show-second-text="false"></p>
+  </div>
+
+  <!-- Floor 5 -->
+
+  <div> <!-- Blank Space -->
+  </div>
+
+  <div class="grid-item blue" data-id="17" data-point-cost="3" data-base-value1="0" data-increment1="5" data-label1="Lumber Camp Max Cap/Output +" data-end1="%" data-base-value2="0" data-increment2="5" data-label2="Quarry Max Cap/Output +" data-end2="%">
+    <div class="image-button-container">
+      <img src="ct_b_l.png" alt="Image 17" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(17)">-</button>
+        <span id="value17">0</span>
+        <button onclick="increaseValue(17)">+</button>
+      </div>
+    </div>
+    <p id="description17_1"></p>
+    <p id="description17_2" data-show-second-text="true"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="18" data-point-cost="3" data-base-value1="0" data-increment1="42" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2=".5" data-label2="In Gene Simulations, DMG +" data-end2="%">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 18" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(18)">-</button>
+        <span id="value18">0</span>
+        <button onclick="increaseValue(18)">+</button>
+      </div>
+    </div>
+    <p id="description18_1"></p>
+    <p id="description18_2" data-show-second-text="true"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="19" data-point-cost="3" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_r.png" alt="Image 19" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(19)">-</button>
+        <span id="value19">0</span>
+        <button onclick="increaseValue(19)">+</button>
+      </div>
+    </div>
+    <p id="description19_1"></p>
+    <p id="description19_2" data-show-second-text="false"></p>
+  </div>
+
+  <div> <!-- Blank Space -->
+  </div>
+
+  <!-- Floor 6 -->
+
+  <div class="grid-item orange" data-id="20" data-point-cost="3" data-base-value1="0" data-increment1="3" data-label1="All Gene Research SPD +" data-end1="%" data-base-value2="0" data-increment2=".5" data-label2="Gene Research Free Speedup +" data-end2="h">
+    <div class="image-button-container">
+      <img src="ct_o_l.png" alt="Image 20" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(20)">-</button>
+        <span id="value20">0</span>
+        <button onclick="increaseValue(20)">+</button>
+      </div>
+    </div>
+    <p id="description20_1"></p>
+    <p id="description20_2" data-show-second-text="true"></p>
+  </div>
+
+  <div class="grid-item purple" data-id="21" data-point-cost="3" data-base-value1="0" data-increment1="3" data-label1="All Gene Research SPD +" data-end1="%" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_p_l.png" alt="Image 21" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(21)">-</button>
+        <span id="value21">0</span>
+        <button onclick="increaseValue(21)">+</button>
+      </div>
+    </div>
+    <p id="description21_1"></p>
+    <p id="description21_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="22" data-point-cost="3" data-base-value1="0" data-increment1="420" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="42" data-label2="Snail RUSH +" data-end2="" data-base-value3="0" data-increment3=".5" data-label3="In Gene Simulations, DMG +" data-end3="%">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 22" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(22)">-</button>
+        <span id="value22">0</span>
+        <button onclick="increaseValue(22)">+</button>
+      </div>
+    </div>
+    <p id="description22_1"></p>
+    <p id="description22_2" data-show-second-text="true"></p>
+    <p id="description22_3" data-show-third-text="true"></p>
+  </div>
+
+  <div class="grid-item purple" data-id="23" data-point-cost="3" data-base-value1="0" data-increment1="1" data-label1="All Minion HP/DEF +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_p_r.png" alt="Image 23" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(23)">-</button>
+        <span id="value23">0</span>
+        <button onclick="increaseValue(23)">+</button>
+      </div>
+    </div>
+    <p id="description23_1"></p>
+    <p id="description23_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item orange" data-id="24" data-point-cost="3" data-base-value1="0" data-increment1="1" data-label1="All Minion ATK/RUSH +" data-end1="" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_o_r.png" alt="Image 24" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(24)">-</button>
+        <span id="value24">0</span>
+        <button onclick="increaseValue(24)">+</button>
+      </div>
+    </div>
+    <p id="description24_1"></p>
+    <p id="description24_2" data-show-second-text="false"></p>
+  </div>
+
+  <!-- Floor 7 -->
+
+  <div> <!-- Blank Space -->
+  </div>
+
+  <div class="grid-item blue" data-id="25" data-point-cost="4" data-base-value1="0" data-increment1="3" data-label1="Museum Medal/B-tad Output +" data-end1="%" data-base-value2="0" data-increment2="" data-label2="" data-end2="%">
+    <div class="image-button-container">
+      <img src="ct_b_l.png" alt="Image 25" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(25)">-</button>
+        <span id="value25">0</span>
+        <button onclick="increaseValue(25)">+</button>
+      </div>
+    </div>
+    <p id="description25_1"></p>
+    <p id="description25_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="26" data-point-cost="4" data-base-value1="0" data-increment1="48" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2=".5" data-label2="In Domain Duels, DMG +" data-end2="%">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 26" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(26)">-</button>
+        <span id="value26">0</span>
+        <button onclick="increaseValue(26)">+</button>
+      </div>
+    </div>
+    <p id="description26_1"></p>
+    <p id="description26_2" data-show-second-text="true"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="27" data-point-cost="4" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_r.png" alt="Image 27" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(27)">-</button>
+        <span id="value27">0</span>
+        <button onclick="increaseValue(27)">+</button>
+      </div>
+    </div>
+    <p id="description27_1"></p>
+    <p id="description27_2" data-show-second-text="false"></p>
+  </div>
+
+  <div> <!-- Blank Space -->
+  </div>
+
+  <!-- Floor 8 -->
+
+  <div class="grid-item orange" data-id="28" data-point-cost="4" data-base-value1="0" data-increment1="1" data-label1="Soul Offering SPD +" data-end1="%" data-base-value2="0" data-increment2="3" data-label2="Food/Stone/Wood rewards from offerings +" data-end2="%">
+    <div class="image-button-container">
+      <img src="ct_o_l.png" alt="Image 28" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(28)">-</button>
+        <span id="value28">0</span>
+        <button onclick="increaseValue(28)">+</button>
+      </div>
+    </div>
+    <p id="description28_1"></p>
+    <p id="description28_2" data-show-second-text="true"></p>
+  </div>
+
+  <div class="grid-item purple" data-id="29" data-point-cost="4" data-base-value1="0" data-increment1="1" data-label1="Soul Offering SPD +" data-end1="%" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_p_l.png" alt="Image 29" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(29)">-</button>
+        <span id="value29">0</span>
+        <button onclick="increaseValue(29)">+</button>
+      </div>
+    </div>
+    <p id="description29_1"></p>
+    <p id="description29_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="30" data-point-cost="4" data-base-value1="0" data-increment1="480" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="48" data-label2="Snail RUSH +" data-end2="" data-base-value3="0" data-increment3=".5" data-label3="In Domain Duels, DMG +" data-end3="%">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 30" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(30)">-</button>
+        <span id="value30">0</span>
+        <button onclick="increaseValue(30)">+</button>
+      </div>
+    </div>
+    <p id="description30_1"></p>
+    <p id="description30_2" data-show-second-text="true"></p>
+    <p id="description30_3" data-show-third-text="true"></p>
+  </div>
+
+  <div class="grid-item purple" data-id="31" data-point-cost="4" data-base-value1="0" data-increment1="1" data-label1="All Minion HP/DEF +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_p_r.png" alt="Image 31" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(31)">-</button>
+        <span id="value31">0</span>
+        <button onclick="increaseValue(31)">+</button>
+      </div>
+    </div>
+    <p id="description31_1"></p>
+    <p id="description31_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item orange" data-id="32" data-point-cost="4" data-base-value1="0" data-increment1="1" data-label1="All Minion ATK/RUSH +" data-end1="" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_o_r.png" alt="Image 32" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(32)">-</button>
+        <span id="value32">0</span>
+        <button onclick="increaseValue(32)">+</button>
+      </div>
+    </div>
+    <p id="description32_1"></p>
+    <p id="description32_2" data-show-second-text="false"></p>
+  </div>
+
+  <!-- Floor 9 -->
+
+  <div> <!-- Blank Space -->
+  </div>
+
+  <div class="grid-item blue" data-id="33" data-point-cost="5" data-base-value1="0" data-increment1="2" data-label1="Wormhole Refinement SPD +" data-end1="%" data-base-value2="0" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_l.png" alt="Image 33" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(33)">-</button>
+        <span id="value33">0</span>
+        <button onclick="increaseValue(33)">+</button>
+      </div>
+    </div>
+    <p id="description33_1"></p>
+    <p id="description33_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="34" data-point-cost="5" data-base-value1="0" data-increment1="54" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2=".5" data-label2="In Snail Arena, DMG +" data-end2="%">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 34" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(34)">-</button>
+        <span id="value34">0</span>
+        <button onclick="increaseValue(34)">+</button>
+      </div>
+    </div>
+    <p id="description34_1"></p>
+    <p id="description34_2" data-show-second-text="true"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="35" data-point-cost="5" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_r.png" alt="Image 35" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(35)">-</button>
+        <span id="value35">0</span>
+        <button onclick="increaseValue(35)">+</button>
+      </div>
+    </div>
+    <p id="description35_1"></p>
+    <p id="description35_2" data-show-second-text="false"></p>
+  </div>
+
+  <div> <!-- Blank Space -->
+  </div>
+
+  <!-- Floor 10 -->
+
+  <div class="grid-item orange" data-id="36" data-point-cost="5" data-base-value1="0" data-increment1="3" data-label1="Minion Cloning SPD +" data-end1="%" data-base-value2="0" data-increment2="2" data-label2="Minion Cloning B-tad Cost +" data-end2="%" data-base-value3="0" data-increment3="1" data-label3="Minion Recovery SPD/B-tad Cost +" data-end3="%">
+    <div class="image-button-container">
+      <img src="ct_o_l.png" alt="Image 36" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(36)">-</button>
+        <span id="value36">0</span>
+        <button onclick="increaseValue(36)">+</button>
+      </div>
+    </div>
+    <p id="description36_1"></p>
+    <p id="description36_2" data-show-second-text="true"></p>
+    <p id="description36_3" data-show-third-text="true"></p>
+  </div>
+
+  <div class="grid-item purple" data-id="37" data-point-cost="5" data-base-value1="0" data-increment1="3" data-label1="Minion Cloning SPD +" data-end1="%" data-base-value2="0" data-increment2="1" data-label2="Minion Recovery SPD +" data-end2="%">
+    <div class="image-button-container">
+      <img src="ct_p_l.png" alt="Image 37" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(37)">-</button>
+        <span id="value37">0</span>
+        <button onclick="increaseValue(37)">+</button>
+      </div>
+    </div>
+    <p id="description37_1"></p>
+    <p id="description37_2" data-show-second-text="true"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="38" data-point-cost="5" data-base-value1="0" data-increment1="540" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="54" data-label2="Snail RUSH +" data-end2="" data-base-value3="0" data-increment3=".5" data-label3="In Snail Arena, DMG +" data-end3="%">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 38" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(38)">-</button>
+        <span id="value38">0</span>
+        <button onclick="increaseValue(38)">+</button>
+      </div>
+    </div>
+    <p id="description38_1"></p>
+    <p id="description38_2" data-show-second-text="true"></p>
+    <p id="description38_3" data-show-third-text="true"></p>
+  </div>
+
+  <div class="grid-item purple" data-id="39" data-point-cost="5" data-base-value1="0" data-increment1="1" data-label1="All Minion HP/DEF +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_p_r.png" alt="Image 39" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(39)">-</button>
+        <span id="value39">0</span>
+        <button onclick="increaseValue(39)">+</button>
+      </div>
+    </div>
+    <p id="description39_1"></p>
+    <p id="description39_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item orange" data-id="40" data-point-cost="5" data-base-value1="0" data-increment1="1" data-label1="All Minion ATK/RUSH +" data-end1="" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_o_r.png" alt="Image 40" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(40)">-</button>
+        <span id="value40">0</span>
+        <button onclick="increaseValue(40)">+</button>
+      </div>
+    </div>
+    <p id="description40_1"></p>
+    <p id="description40_2" data-show-second-text="false"></p>
+  </div>
+
+
+  <!-- Floor 11 -->
+
+  <div> <!-- Blank Space -->
+  </div>
+
+  <div class="grid-item blue" data-id="41" data-point-cost="6" data-base-value1="0" data-increment1="100" data-label1="W-tads collected from Drill Rig +" data-end1="%" data-base-value2="0" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_l.png" alt="Image 41" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(41)">-</button>
+        <span id="value41">0</span>
+        <button onclick="increaseValue(41)">+</button>
+      </div>
+    </div>
+    <p id="description41_1"></p>
+    <p id="description41_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="42" data-point-cost="6" data-base-value1="0" data-increment1="60" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2=".5" data-label2="TBD, DMG +" data-end2="%">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 42" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(42)">-</button>
+        <span id="value42">0</span>
+        <button onclick="increaseValue(42)">+</button>
+      </div>
+    </div>
+    <p id="description42_1"></p>
+    <p id="description42_2" data-show-second-text="true"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="43" data-point-cost="6" data-base-value1="0" data-increment1="4" data-label1="Snail Leadership +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_r.png" alt="Image 43" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(43)">-</button>
+        <span id="value43">0</span>
+        <button onclick="increaseValue(43)">+</button>
+      </div>
+    </div>
+    <p id="description43_1"></p>
+    <p id="description43_2" data-show-second-text="false"></p>
+  </div>
+
+  <div> <!-- Blank Space -->
+  </div>
+
+  <!-- Floor 12 -->
+
+  <div class="grid-item orange" data-id="44" data-point-cost="6" data-base-value1="0" data-increment1="4" data-label1="All Gene Research SPD +" data-end1="%" data-base-value2="0" data-increment2="1" data-label2="Gene Research Free Speedup +" data-end2="h">
+    <div class="image-button-container">
+      <img src="ct_o_l.png" alt="Image 44" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(44)">-</button>
+        <span id="value44">0</span>
+        <button onclick="increaseValue(44)">+</button>
+      </div>
+    </div>
+    <p id="description44_1"></p>
+    <p id="description44_2" data-show-second-text="true"></p>
+  </div>
+
+  <div class="grid-item purple" data-id="45" data-point-cost="6" data-base-value1="0" data-increment1="4" data-label1="All Gene Research SPD +" data-end1="%" data-base-value2="0" data-increment2="2" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_p_l.png" alt="Image 45" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(45)">-</button>
+        <span id="value45">0</span>
+        <button onclick="increaseValue(45)">+</button>
+      </div>
+    </div>
+    <p id="description45_1"></p>
+    <p id="description45_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="46" data-point-cost="6" data-base-value1="0" data-increment1="600" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="60" data-label2="Snail RUSH +" data-end2="" data-base-value3="0" data-increment3=".5" data-label3="TBD, DMG +" data-end3="%">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 46" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(46)">-</button>
+        <span id="value46">0</span>
+        <button onclick="increaseValue(46)">+</button>
+      </div>
+    </div>
+    <p id="description46_1"></p>
+    <p id="description46_2" data-show-second-text="true"></p>
+    <p id="description46_3" data-show-third-text="true"></p>
+  </div>
+
+  <div class="grid-item purple" data-id="47" data-point-cost="6" data-base-value1="0" data-increment1="2" data-label1="All Minion HP/DEF +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_p_r.png" alt="Image 47" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(47)">-</button>
+        <span id="value47">0</span>
+        <button onclick="increaseValue(47)">+</button>
+      </div>
+    </div>
+    <p id="description47_1"></p>
+    <p id="description47_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item orange" data-id="48" data-point-cost="6" data-base-value1="0" data-increment1="2" data-label1="All Minion ATK/RUSH +" data-end1="" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_o_r.png" alt="Image 48" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(48)">-</button>
+        <span id="value48">0</span>
+        <button onclick="increaseValue(48)">+</button>
+      </div>
+    </div>
+    <p id="description48_1"></p>
+    <p id="description48_2" data-show-second-text="false"></p>
+  </div>
+
+  <!-- Floor 13 -->
+
+  <div> <!-- Blank Space -->
+  </div>
+
+  <div class="grid-item blue" data-id="49" data-point-cost="7" data-base-value1="0" data-increment1="1" data-label1="Refining Green Materials turn Blue by +" data-end1="%" data-base-value2="0" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_l.png" alt="Image 49" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(49)">-</button>
+        <span id="value49">0</span>
+        <button onclick="increaseValue(49)">+</button>
+      </div>
+    </div>
+    <p id="description49_1"></p>
+    <p id="description49_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="50" data-point-cost="7" data-base-value1="0" data-increment1="70" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2=".6" data-label2="TBD, DMG +" data-end2="%">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 50" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(50)">-</button>
+        <span id="value50">0</span>
+        <button onclick="increaseValue(50)">+</button>
+      </div>
+    </div>
+    <p id="description50_1"></p>
+    <p id="description50_2" data-show-second-text="true"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="51" data-point-cost="7" data-base-value1="0" data-increment1="5" data-label1="Snail Leadership +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_b_r.png" alt="Image 51" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(51)">-</button>
+        <span id="value51">0</span>
+        <button onclick="increaseValue(51)">+</button>
+      </div>
+    </div>
+    <p id="description51_1"></p>
+    <p id="description51_2" data-show-second-text="false"></p>
+  </div>
+
+  <div> <!-- Blank Space -->
+  </div>
+
+  <!-- Floor 14 -->
+
+  <div class="grid-item orange" data-id="52" data-point-cost="7" data-base-value1="0" data-increment1="5" data-label1="All Gene Research SPD +" data-end1="%" data-base-value2="0" data-increment2="1.5" data-label2="Gene Research Free Speedup +" data-end2="h">
+    <div class="image-button-container">
+      <img src="ct_o_l.png" alt="Image 52" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(52)">-</button>
+        <span id="value52">0</span>
+        <button onclick="increaseValue(52)">+</button>
+      </div>
+    </div>
+    <p id="description52_1"></p>
+    <p id="description52_2" data-show-second-text="true"></p>
+  </div>
+
+  <div class="grid-item purple" data-id="53" data-point-cost="7" data-base-value1="0" data-increment1="5" data-label1="All Gene Research SPD +" data-end1="%" data-base-value2="0" data-increment2="2.5" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_p_l.png" alt="Image 53" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(53)">-</button>
+        <span id="value53">0</span>
+        <button onclick="increaseValue(53)">+</button>
+      </div>
+    </div>
+    <p id="description53_1"></p>
+    <p id="description53_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item blue" data-id="54" data-point-cost="7" data-base-value1="0" data-increment1="700" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="70" data-label2="Snail RUSH +" data-end2="" data-base-value3="0" data-increment3=".6" data-label3="TBD, DMG +" data-end3="%">
+    <div class="image-button-container">
+      <img src="ct_b_m.png" alt="Image 54" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(54)">-</button>
+        <span id="value54">0</span>
+        <button onclick="increaseValue(54)">+</button>
+      </div>
+    </div>
+    <p id="description54_1"></p>
+    <p id="description54_2" data-show-second-text="true"></p>
+    <p id="description54_3" data-show-third-text="true"></p>
+  </div>
+
+  <div class="grid-item purple" data-id="55" data-point-cost="7" data-base-value1="0" data-increment1="3" data-label1="All Minion HP/DEF +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_p_r.png" alt="Image 55" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(55)">-</button>
+        <span id="value55">0</span>
+        <button onclick="increaseValue(55)">+</button>
+      </div>
+    </div>
+    <p id="description55_1"></p>
+    <p id="description55_2" data-show-second-text="false"></p>
+  </div>
+
+  <div class="grid-item orange" data-id="56" data-point-cost="7" data-base-value1="0" data-increment1="3" data-label1="All Minion ATK/RUSH +" data-end1="" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
+    <div class="image-button-container">
+      <img src="ct_o_r.png" alt="Image 56" class="talent-image image-small">
+      <div>
+        <button onclick="decreaseValue(56)">-</button>
+        <span id="value56">0</span>
+        <button onclick="increaseValue(56)">+</button>
+      </div>
+    </div>
+    <p id="description56_1"></p>
+    <p id="description56_2" data-show-second-text="false"></p>
   </div>
 
 
@@ -139,10 +870,7 @@
 
 
 
-
-
-  
-</div>
+</div> <!-- End of Main Grid Container -->
 
 <div class="totals">
   <p>Total Points Blue: <span id="totalBlue">0</span></p>
@@ -187,21 +915,29 @@ function updateDescription(id) {
   let gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
   if (!gridItem) return; // Skip if the grid item doesn't exist
   
-  let level = parseInt(gridItem.querySelector(`span[id="value${id}"]`).textContent);
+  // Initially read the base value as the starting value
+  let level = parseFloat(gridItem.querySelector(`span[id="value${id}"]`).textContent);
   
   // First dynamic value
-  let baseValue1 = parseInt(gridItem.getAttribute('data-base-value1'));
-  let increment1 = parseInt(gridItem.getAttribute('data-increment1'));
-  let label1 = gridItem.getAttribute('data-label1');
-  let end1 = gridItem.getAttribute('data-end1');
+  let baseValue1 = parseFloat(gridItem.getAttribute('data-base-value1')) || 0;
+  let increment1 = parseFloat(gridItem.getAttribute('data-increment1')) || 0;
+  let label1 = gridItem.getAttribute('data-label1') || '';
+  let end1 = gridItem.getAttribute('data-end1') || '';
   let newValue1 = baseValue1 + (increment1 * level);
   
   // Second dynamic value
-  let baseValue2 = parseInt(gridItem.getAttribute('data-base-value2'));
-  let increment2 = parseInt(gridItem.getAttribute('data-increment2'));
-  let label2 = gridItem.getAttribute('data-label2');
-  let end2 = gridItem.getAttribute('data-end2');
+  let baseValue2 = parseFloat(gridItem.getAttribute('data-base-value2')) || 0;
+  let increment2 = parseFloat(gridItem.getAttribute('data-increment2')) || 0;
+  let label2 = gridItem.getAttribute('data-label2') || '';
+  let end2 = gridItem.getAttribute('data-end2') || '';
   let newValue2 = baseValue2 + (increment2 * level);
+  
+  // Third dynamic value
+  let baseValue3 = parseFloat(gridItem.getAttribute('data-base-value3')) || 0;
+  let increment3 = parseFloat(gridItem.getAttribute('data-increment3')) || 0;
+  let label3 = gridItem.getAttribute('data-label3') || '';
+  let end3 = gridItem.getAttribute('data-end3') || '';
+  let newValue3 = baseValue3 + (increment3 * level);
   
   // Update the first dynamic text
   let description1 = gridItem.querySelector(`#description${id}_1`);
@@ -219,7 +955,21 @@ function updateDescription(id) {
       description2.textContent = ''; // Clear if not shown
     }
   }
+  
+  // Check if the third dynamic text should be shown
+  let description3 = gridItem.querySelector(`#description${id}_3`);
+  if (description3) {
+    const showThirdText = description3.getAttribute('data-show-third-text') === "true";
+    if (showThirdText) {
+      description3.textContent = `${label3}${newValue3}${end3}`;
+    } else {
+      description3.textContent = ''; // Clear if not shown
+    }
+  }
 }
+
+
+
 
 function changeValue(id, increment) {
   let gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
@@ -245,6 +995,14 @@ function increaseValue(id) {
 
 function decreaseValue(id) {
   changeValue(id, false);
+}
+
+function changeImageSize(size) {
+  const images = document.querySelectorAll('.talent-image');
+  images.forEach(img => {
+    img.classList.remove('image-small', 'image-medium', 'image-large');
+    img.classList.add(`image-${size}`);
+  });
 }
 
 // Initial update for all descriptions
