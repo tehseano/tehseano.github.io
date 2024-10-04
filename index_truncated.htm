@@ -5,131 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snelp.com - Collector Talent Planner</title>
     <style>
-body {
-  font-family: Verdana, sans-serif;
-  font-size: .7em;
-  color: #000000;
-  line-height: 1em;
-  margin: 0;
-  padding: .5em;
-}
+    
+      body {
+        font-family: Verdana, sans-serif;
+        font-size: .7em;
+        color: #000000;
+        line-height: 1em;
+        margin: 0;
+        padding: .5em;
+      }
 
-.fixed-container {
-  position: fixed; /* Fixes the div at the top left */
-  top: 0px; /* Adjust as needed */
-  left: 0; /* Align to the left */
-  width: 100%; /* Span full width */
-  background-color: white; /* Set background color for visibility */
-  padding: 5px; /* Add padding for spacing */
-  border: 1px solid #ccc; /* Optional: Add a border */
-  z-index: 1000; /* Ensures it stays above other elements */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
-  display: flex; /* Enable flexbox for alignment */
-  align-items: center; /* Align items vertically in the center */
-}
+      .fixed-container {
+        position: fixed; /* Fixes the div at the top left */
+        top: 0px; /* Adjust as needed */
+        left: 0; /* Align to the left */
+        width: 100%; /* Span full width */
+        background-color: white; /* Set background color for visibility */
+        padding: 5px; /* Add padding for spacing */
+        border: 1px solid #ccc; /* Optional: Add a border */
+        z-index: 1000; /* Ensures it stays above other elements */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+        display: flex; /* Enable flexbox for alignment */
+        align-items: center; /* Align items vertically in the center */
+      }
 
-.mode-toggle {
-  margin-right: 20px; /* Space between toggle and totals */
-}
+      .mode-toggle {
+        margin-right: 20px; /* Space between toggle and totals */
+      }
 
-.totals-container {
-  display: flex; /* Use flexbox for the totals */
-  justify-content: center; /* Center the totals together */
-  flex-grow: 1; /* Allow the totals to grow and take remaining space */
-}
+      .totals-container {
+        display: flex; /* Use flexbox for the totals */
+        justify-content: center; /* Center the totals together */
+        flex-grow: 1; /* Allow the totals to grow and take remaining space */
+      }
 
-.total {
-  margin: 0 10px; /* Space between the total divs */
-  text-align: center; /* Center text within each total */
-}
+      .total {
+        margin: 0 10px; /* Space between the total divs */
+        text-align: center; /* Center text within each total */
+      }
 
-.totals {
-  font-weight: bold;
-}
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+        max-width: 1200px; /* Set a max width for larger screens */
+        margin: 0 auto; /* Center the grid container */
+      }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  max-width: 1200px; /* Set a max width for larger screens */
-  margin: 0 auto; /* Center the grid container */
-}
+      /* Make the grid full width on smaller screens */
+      @media (max-width: 1200px) { /* Adjust the breakpoint as needed */
+        .grid-container {
+          grid-template-columns: repeat(5, 1fr); /* Change to 2 columns on small screens */
+          width: 100%; /* Take full width on mobile */
+        }
+      }
 
-/* Make the grid full width on smaller screens */
-@media (max-width: 1200px) { /* Adjust the breakpoint as needed */
-  .grid-container {
-    grid-template-columns: repeat(5, 1fr); /* Change to 2 columns on small screens */
-    width: 100%; /* Take full width on mobile */
-  }
-}
+      .grid-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center horizontally */
+        justify-content: top; /* Center vertically */
+        text-align: center; /* Center text within paragraphs */
+        background-color: #f0f0f0;
+        padding: 0.0rem;
+        border-radius: 8px;
+        height: 100%; /* Ensures the item expands to fill available height */
+      }
 
-.grid-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center horizontally */
-  justify-content: top; /* Center vertically */
-  text-align: center; /* Center text within paragraphs */
-  background-color: #f0f0f0;
-  padding: 0.0rem;
-  border-radius: 8px;
-  height: 100%; /* Ensures the item expands to fill available height */
-}
+      .image-button-container {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Center the image horizontally */
+        margin-bottom: 5px;
+        margin-top: 5px;
+        width: 100%;
+      }
 
-.image-button-container {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Center the image horizontally */
-  margin-bottom: 5px;
-  margin-top: 5px;
-  width: 100%;
-}
+      /* Bullet container for showing levels */
+      .bullet-container {
+        display: flex;
+        gap: 0px; /* Slightly reduce spacing between bullets */
+        align-items: center;
+        justify-content: center; /* Center the image horizontally */
+        margin-top: 0px;
+      }
 
-/* Bullet container for showing levels */
-.bullet-container {
-  display: flex;
-  gap: 0px; /* Slightly reduce spacing between bullets */
-  align-items: center;
-  justify-content: center; /* Center the image horizontally */
-  margin-top: 0px;
-}
+      /* Bullet style */
+      .bullet {
+        width: 0.3em;
+        height: 0.3em;
+        border: 0.05em solid black; /* Bullet border */
+        border-radius: 50%;
+        display: inline-block;
+        background-color: #A9A9A9; /* Inactive state */
+      }
 
-/* Bullet style */
-.bullet {
-  width: 0.3em;
-  height: 0.3em;
-  border: 0.05em solid black; /* Bullet border */
-  border-radius: 50%;
-  display: inline-block;
-  background-color: #A9A9A9; /* Inactive state */
-}
+      /* Active bullet (level reached) */
+      .bullet.active {
+        background-color: gold; /* Active state */
+      }
 
-/* Active bullet (level reached) */
-.bullet.active {
-  background-color: gold; /* Active state */
-}
+      .talent-image {
+        cursor: pointer;
+        transition: transform 0.1s;
+      }
 
-.talent-image {
-  cursor: pointer;
-  transition: transform 0.1s;
-}
+      .talent-image:active {
+        transform: scale(0.95);
+      }
 
-.talent-image:active {
-  transform: scale(0.95);
-}
+      .minus-mode .talent-image {
+        opacity: 0.7;
+      }
 
-.minus-mode .talent-image {
-  opacity: 0.7;
-}
+      .image-small {
+        max-width: 30px;
+      }
 
-.image-small {
-  max-width: 30px;
-}
-
-p {
-  margin: 3px 0;
-}
-
-
+      p {
+        margin: 3px 0;
+      }
 
     </style>
   </head>
