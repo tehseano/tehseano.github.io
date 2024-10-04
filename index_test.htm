@@ -7,7 +7,7 @@
     <style>
       body {
         font-family: Verdana, sans-serif;
-        font-size: 16px;
+        font-size: .8em;
         color: #333;
         line-height: 1.4;
         margin: 0;
@@ -18,18 +18,35 @@
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 10px;
+        max-width: 1200px; /* Set a max width for larger screens */
+        margin: 0 auto; /* Center the grid container */
+      }
+
+      /* Make the grid full width on smaller screens */
+      @media (max-width: 768px) { /* Adjust the breakpoint as needed */
+        .grid-container {
+          grid-template-columns: repeat(2, 1fr); /* Change to 2 columns on small screens */
+          width: 100%; /* Take full width on mobile */
+        }
+      }
+
+      @media (max-width: 480px) { /* Adjust for even smaller screens */
+        .grid-container {
+          grid-template-columns: 1fr; /* Single column on very small screens */
+          width: 100%; /* Take full width on small mobile */
+        }
       }
 
       .grid-item {
-          display: flex;
-          flex-direction: column;
-          align-items: center; /* Center horizontally */
-          justify-content: center; /* Center vertically */
-          text-align: center; /* Center text within paragraphs */
-          background-color: #f0f0f0;
-          padding: 0.0rem;
-          border-radius: 8px;
-          height: 100%; /* Ensures the item expands to fill available height */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center horizontally */
+        justify-content: top; /* Center vertically */
+        text-align: center; /* Center text within paragraphs */
+        background-color: #f0f0f0;
+        padding: 0.0rem;
+        border-radius: 8px;
+        height: 100%; /* Ensures the item expands to fill available height */
       }
 
       .totals {
@@ -59,17 +76,16 @@
       }
 
       p {
-        font-size: 0.9rem;
         margin: 3px 0;
       }
 
       .image-button-container {
-          display: flex;
-          align-items: center;
-          justify-content: center; /* Center the image horizontally */
-          margin-bottom: 5px;
-          margin-top: 5px;
-          width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Center the image horizontally */
+        margin-bottom: 5px;
+        margin-top: 5px;
+        width: 100%;
       }
 
       /* Bullet container for showing levels */
@@ -81,18 +97,19 @@
 
       /* Bullet style */
       .bullet {
-        width: 0.3em; /* Slightly increased size for better visual consistency */
+        width: 0.3em;
         height: 0.3em;
-        border: 1px solid black; /* Thinner border */
+        border: 0.1em solid black; /* Bullet border */
         border-radius: 50%;
         display: inline-block;
-        color: gray; /* Inactive state with a softer gray */
+        background-color: #A9A9A9; /* Inactive state */
       }
 
       /* Active bullet (level reached) */
       .bullet.active {
-        background-color: yellow; /* Active state */
+        background-color: gold; /* Active state */
       }
+
     </style>
   </head>
   <body>
@@ -105,8 +122,7 @@
     <div class="grid-container">
       <!-- Floor 1 -->
       
-      <div> <!-- Blank Space -->
-      </div>
+      <div> <!-- Blank Space --></div>
       
       <div class="grid-item blue" data-id="1" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Green Beads turn Blue by +" data-end1="%" data-base-value2="0" data-increment2="0" data-label2="" data-end2="">
         <div class="image-button-container">
@@ -137,10 +153,24 @@
         <p id="description2_1"></p>
         <p id="description2_2" data-show-second-text="false"></p>
       </div>
-
-      <div> <!-- Blank Space -->
+      
+      <div class="grid-item blue" data-id="3" data-point-cost="1" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="" data-base-value2="" data-increment2="" data-label2="" data-end2="">
+        <div class="image-button-container">
+          <img src="ct_b_r.png" alt="Image 3" class="talent-image image-small" onclick="toggleValue(3)">
+        </div>
+		<div id="level3" class="level-bullets bullet-container">
+          <span class="bullet"></span>
+          <span class="bullet"></span>
+          <span class="bullet"></span>
+          <span class="bullet"></span>
+          <span class="bullet"></span>
+        </div>
+        <p id="description3_1"></p>
+        <p id="description3_2" data-show-second-text="false"></p>
       </div>
 
+      <div> <!-- Blank Space --></div>
+      
     </div> <!-- End of Main Grid Container -->
 
     <div class="totals">
@@ -149,7 +179,7 @@
       <p>Total Points Orange: <span id="totalOrange">0</span></p>
     </div>
 
-    <script>
+        <script>
       const maxLevel = 5; // Maximum level for each image
 
       function calculateTotals() {
@@ -213,22 +243,61 @@
       }
 
       function updateDescription(id) {
-        const gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
-        const currentLevel = gridItem.querySelectorAll(`#level${id} .bullet.active`).length;
+          let gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
+          if (!gridItem) return; // Skip if the grid item doesn't exist
 
-        // First dynamic value
-        const baseValue1 = parseFloat(gridItem.getAttribute('data-base-value1')) || 0;
-        const increment1 = parseFloat(gridItem.getAttribute('data-increment1')) || 0;
-        const label1 = gridItem.getAttribute('data-label1') || '';
-        const end1 = gridItem.getAttribute('data-end1') || '';
-        const newValue1 = baseValue1 + (increment1 * currentLevel);
+          // Get the level based on active bullets
+          let level = gridItem.querySelectorAll('.bullet.active').length;
 
-        const description1 = gridItem.querySelector(`#description${id}_1`);
-        if (description1) {
-          description1.textContent = `${label1}${newValue1}${end1}`;
-        }
+          // First dynamic value
+          let baseValue1 = parseFloat(gridItem.getAttribute('data-base-value1')) || 0;
+          let increment1 = parseFloat(gridItem.getAttribute('data-increment1')) || 0;
+          let label1 = gridItem.getAttribute('data-label1') || '';
+          let end1 = gridItem.getAttribute('data-end1') || '';
+          let newValue1 = baseValue1 + (increment1 * level);
+
+          // Update the first dynamic text
+          let description1 = gridItem.querySelector(`#description${id}_1`);
+          if (description1) {
+              description1.textContent = `${label1}${newValue1}${end1}`;
+          }
+
+          // Second dynamic value
+          let baseValue2 = parseFloat(gridItem.getAttribute('data-base-value2')) || 0;
+          let increment2 = parseFloat(gridItem.getAttribute('data-increment2')) || 0;
+          let label2 = gridItem.getAttribute('data-label2') || '';
+          let end2 = gridItem.getAttribute('data-end2') || '';
+          let newValue2 = baseValue2 + (increment2 * level);
+
+          // Update the second dynamic text if it should be shown
+          let description2 = gridItem.querySelector(`#description${id}_2`);
+          if (description2) {
+              const showSecondText = description2.getAttribute('data-show-second-text') === "true";
+              if (showSecondText) {
+                  description2.textContent = `${label2}${newValue2}${end2}`;
+              } else {
+                  description2.textContent = ''; // Clear if not shown
+              }
+          }
+
+          // Check for third dynamic values
+          let baseValue3 = parseFloat(gridItem.getAttribute('data-base-value3')) || 0;
+          let increment3 = parseFloat(gridItem.getAttribute('data-increment3')) || 0;
+          let label3 = gridItem.getAttribute('data-label3') || '';
+          let end3 = gridItem.getAttribute('data-end3') || '';
+          let newValue3 = baseValue3 + (increment3 * level);
+
+          // Update the third dynamic text if it should be shown
+          let description3 = gridItem.querySelector(`#description${id}_3`);
+          if (description3) {
+              const showThirdText = description3.getAttribute('data-show-third-text') === "true";
+              if (showThirdText) {
+                  description3.textContent = `${label3}${newValue3}${end3}`;
+              } else {
+                  description3.textContent = ''; // Clear if not shown
+              }
+          }
       }
-
       // Initial update for all descriptions and calculations
       document.querySelectorAll('.grid-item').forEach((gridItem) => {
         const id = gridItem.getAttribute('data-id');
@@ -238,5 +307,6 @@
       });
       calculateTotals();
     </script>
+
   </body>
 </html>
