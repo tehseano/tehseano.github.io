@@ -22,6 +22,15 @@ body {
   justify-content: center;
 }
 
+.version-display {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  font-size: 0.8em;
+  color: #666;
+  padding: 5px;
+}
+
 .mode-toggle {
   position: absolute;
   left: 5px;
