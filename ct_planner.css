@@ -1,0 +1,134 @@
+body {
+  font-family: Verdana, sans-serif;
+  font-size: .7em;
+  color: #000000;
+  line-height: 1em;
+  margin: 0;
+  padding: .5em;
+}
+
+.fixed-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding: 5px;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mode-toggle {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid black;
+}
+
+.totals-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.total {
+  margin: 0 10px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.total-icon {
+  width: 30px;  /* Adjust this value to control the image size */
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  max-width: 1200px; /* Set a max width for larger screens */
+  margin: 0 auto; /* Center the grid container */
+}
+
+/* Make the grid full width on smaller screens */
+@media (max-width: 1200px) { /* Adjust the breakpoint as needed */
+  .grid-container {
+    grid-template-columns: repeat(5, 1fr); /* Change to 2 columns on small screens */
+    width: 100%; /* Take full width on mobile */
+  }
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: top; /* Center vertically */
+  text-align: center; /* Center text within paragraphs */
+  background-color: #f0f0f0;
+  padding: 0.0rem;
+  border-radius: 8px;
+  height: 100%; /* Ensures the item expands to fill available height */
+}
+
+.image-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the image horizontally */
+  margin-bottom: 5px;
+  margin-top: 5px;
+  width: 100%;
+}
+
+/* Bullet container for showing levels */
+.bullet-container {
+  display: flex;
+  gap: 0px; /* Slightly reduce spacing between bullets */
+  align-items: center;
+  justify-content: center; /* Center the image horizontally */
+  margin-top: 0px;
+}
+
+/* Bullet style */
+.bullet {
+  width: 0.3em;
+  height: 0.3em;
+  border: 0.05em solid black; /* Bullet border */
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #A9A9A9; /* Inactive state */
+}
+
+/* Active bullet (level reached) */
+.bullet.active {
+  background-color: gold; /* Active state */
+}
+
+.talent-image {
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.talent-image:active {
+  transform: scale(0.95);
+}
+
+.minus-mode .talent-image {
+  opacity: 0.7;
+}
+
+.image-small {
+  max-width: 30px;
+}
+
+p {
+  margin: 3px 0;
+}
