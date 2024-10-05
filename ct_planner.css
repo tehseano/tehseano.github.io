@@ -27,7 +27,18 @@ body {
   left: 5px;
   top: 50%;
   transform: translateY(-50%);
-  /* border: 1px solid black; */
+  z-index: 1001;
+  background-color: white;
+  padding: 5px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+}
+
+.mode-toggle label {
+  display: block;
+  margin-bottom: 5px;
+  white-space: nowrap;
 }
 
 .totals-container {
@@ -140,4 +151,29 @@ body {
 
 p {
   margin: 3px 0;
+}
+
+/* New styles for the popup */
+.popup-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  display: none;
+  z-index: 2000;
+  border: 1px solid black;
+}
+
+.popup-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Add this class to hide descriptions when popup mode is active */
+.hide-description {
+  display: none;
 }

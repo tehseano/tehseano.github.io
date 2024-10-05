@@ -1,6 +1,12 @@
+// New variables for popup functionality
+let popupMode = true; // Set to true for popup as default
+let lastClickedId = null;
+
 window.addEventListener('load', () => {
   const fixedContainer = document.querySelector('.fixed-container');
   const gridContainer = document.querySelector('.grid-container');
+  const popupContainer = document.getElementById('popup-container');
+  const popupDescription = document.getElementById('popup-description');
 
   const updateGridMargin = () => {
     const height = fixedContainer.offsetHeight;
@@ -9,6 +15,9 @@ window.addEventListener('load', () => {
 
   updateGridMargin();
   window.addEventListener('resize', updateGridMargin); // Update on window resize
+
+  // Initialize description mode
+  initializeDescriptionMode();
 });
 
 const maxLevel = 5; // Maximum level for each image
@@ -74,66 +83,127 @@ function updateBullets(id, level) {
 }
 
 function updateDescription(id) {
-    let gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
-    if (!gridItem) return; // Skip if the grid item doesn't exist
+  lastClickedId = id;
+  let gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
+  if (!gridItem) return; // Skip if the grid item doesn't exist
 
-    // Get the level based on active bullets
-    let level = gridItem.querySelectorAll('.bullet.active').length;
+  // Get the level based on active bullets
+  let level = gridItem.querySelectorAll('.bullet.active').length;
 
-    // First dynamic value
-    let baseValue1 = parseFloat(gridItem.getAttribute('data-base-value1')) || 0;
-    let increment1 = parseFloat(gridItem.getAttribute('data-increment1')) || 0;
-    let label1 = gridItem.getAttribute('data-label1') || '';
-    let end1 = gridItem.getAttribute('data-end1') || '';
-    let newValue1 = baseValue1 + (increment1 * level);
+  let descriptions = [];
 
-    // Update the first dynamic text
-    let description1 = gridItem.querySelector(`#description${id}_1`);
-    if (description1) {
-        description1.textContent = `${label1}${newValue1}${end1}`;
-    }
+  // First dynamic value
+  let baseValue1 = parseFloat(gridItem.getAttribute('data-base-value1')) || 0;
+  let increment1 = parseFloat(gridItem.getAttribute('data-increment1')) || 0;
+  let label1 = gridItem.getAttribute('data-label1') || '';
+  let end1 = gridItem.getAttribute('data-end1') || '';
+  let newValue1 = baseValue1 + (increment1 * level);
 
-    // Second dynamic value
-    let baseValue2 = parseFloat(gridItem.getAttribute('data-base-value2')) || 0;
-    let increment2 = parseFloat(gridItem.getAttribute('data-increment2')) || 0;
-    let label2 = gridItem.getAttribute('data-label2') || '';
-    let end2 = gridItem.getAttribute('data-end2') || '';
-    let newValue2 = baseValue2 + (increment2 * level);
+  let description1 = `${label1}${newValue1}${end1}`;
+  descriptions.push(description1);
 
-    // Update the second dynamic text if it should be shown
-    let description2 = gridItem.querySelector(`#description${id}_2`);
-    if (description2) {
-        const showSecondText = description2.getAttribute('data-show-second-text') === "true";
-        if (showSecondText) {
-            description2.textContent = `${label2}${newValue2}${end2}`;
-        } else {
-            description2.textContent = ''; // Clear if not shown
-        }
-    }
-
-    // Check for third dynamic values
-    let baseValue3 = parseFloat(gridItem.getAttribute('data-base-value3')) || 0;
-    let increment3 = parseFloat(gridItem.getAttribute('data-increment3')) || 0;
-    let label3 = gridItem.getAttribute('data-label3') || '';
-    let end3 = gridItem.getAttribute('data-end3') || '';
-    let newValue3 = baseValue3 + (increment3 * level);
-
-    // Update the third dynamic text if it should be shown
-    let description3 = gridItem.querySelector(`#description${id}_3`);
-    if (description3) {
-        const showThirdText = description3.getAttribute('data-show-third-text') === "true";
-        if (showThirdText) {
-            description3.textContent = `${label3}${newValue3}${end3}`;
-        } else {
-            description3.textContent = ''; // Clear if not shown
-        }
-    }
-}
-// Initial update for all descriptions and calculations
-document.querySelectorAll('.grid-item').forEach((gridItem) => {
-  const id = gridItem.getAttribute('data-id');
-  if (id) {
-    updateDescription(id);
+  // Update the first dynamic text
+  let description1Element = gridItem.querySelector(`#description${id}_1`);
+  if (description1Element) {
+    description1Element.textContent = description1;
   }
+
+  // Second dynamic value
+  let baseValue2 = parseFloat(gridItem.getAttribute('data-base-value2')) || 0;
+  let increment2 = parseFloat(gridItem.getAttribute('data-increment2')) || 0;
+  let label2 = gridItem.getAttribute('data-label2') || '';
+  let end2 = gridItem.getAttribute('data-end2') || '';
+  let newValue2 = baseValue2 + (increment2 * level);
+
+  // Update the second dynamic text if it should be shown
+  let description2Element = gridItem.querySelector(`#description${id}_2`);
+  if (description2Element) {
+    const showSecondText = description2Element.getAttribute('data-show-second-text') === "true";
+    if (showSecondText) {
+      let description2 = `${label2}${newValue2}${end2}`;
+      description2Element.textContent = description2;
+      descriptions.push(description2);
+    } else {
+      description2Element.textContent = ''; // Clear if not shown
+    }
+  }
+
+  // Third dynamic value
+  let baseValue3 = parseFloat(gridItem.getAttribute('data-base-value3')) || 0;
+  let increment3 = parseFloat(gridItem.getAttribute('data-base-value3')) || 0;
+  let label3 = gridItem.getAttribute('data-label3') || '';
+  let end3 = gridItem.getAttribute('data-end3') || '';
+  let newValue3 = baseValue3 + (increment3 * level);
+
+  // Update the third dynamic text if it should be shown
+  let description3Element = gridItem.querySelector(`#description${id}_3`);
+  if (description3Element) {
+    const showThirdText = description3Element.getAttribute('data-show-third-text') === "true";
+    if (showThirdText) {
+      let description3 = `${label3}${newValue3}${end3}`;
+      description3Element.textContent = description3;
+      descriptions.push(description3);
+    } else {
+      description3Element.textContent = ''; // Clear if not shown
+    }
+  }
+
+  // Update popup description with separator
+  const popupDescription = document.getElementById('popup-description');
+  popupDescription.textContent = descriptions.join(' | ');
+
+  // Show/hide based on mode
+  const popupContainer = document.getElementById('popup-container');
+  if (popupMode) {
+    popupContainer.style.display = 'block';
+    gridItem.querySelectorAll('[id^="description"]').forEach(desc => {
+      desc.classList.add('hide-description');
+    });
+  } else {
+    popupContainer.style.display = 'none';
+    gridItem.querySelectorAll('[id^="description"]').forEach(desc => {
+      desc.classList.remove('hide-description');
+    });
+  }
+}
+
+// New function to toggle between popup and inline modes
+function toggleDescriptionMode() {
+  popupMode = !popupMode;
+  const descriptions = document.querySelectorAll('[id^="description"]');
+  const popupContainer = document.getElementById('popup-container');
+  
+  descriptions.forEach(desc => {
+    desc.classList.toggle('hide-description', popupMode);
+  });
+  
+  if (popupContainer) {
+    popupContainer.style.display = popupMode ? 'block' : 'none';
+  }
+  
+  // Update the current description
+  if (lastClickedId) {
+    updateDescription(lastClickedId);
+  }
+}
+
+// New function to initialize description mode
+function initializeDescriptionMode() {
+  const descriptions = document.querySelectorAll('[id^="description"]');
+  descriptions.forEach(desc => {
+    desc.classList.toggle('hide-description', popupMode);
+  });
+  const popupContainer = document.getElementById('popup-container');
+  popupContainer.style.display = popupMode ? 'block' : 'none';
+}
+
+// Initial update for all descriptions and calculations
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.grid-item').forEach((gridItem) => {
+    const id = gridItem.getAttribute('data-id');
+    if (id) {
+      updateDescription(id);
+    }
+  });
+  calculateTotals();
 });
-calculateTotals();
