@@ -37,17 +37,31 @@ body {
   top: 50%;
   transform: translateY(-50%);
   z-index: 1001;
-  background-color: white;
-  padding: 5px;
-  border: 1px solid #ccc;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 10px; /* Space between buttons */
 }
 
-.mode-toggle label {
-  display: block;
-  margin-bottom: 5px;
-  white-space: nowrap;
+.toggle-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.toggle-image {
+  width: 30px; /* Adjust as needed */
+  height: 30px; /* Adjust as needed */
+}
+
+/* Styles for active state */
+.toggle-button.active .toggle-image {
+  content: url('minus_mode_on.png'); /* Replace with your "on" state image */
+}
+
+#popupMode.active .toggle-image {
+  content: url('show_all_text_on.png'); /* Replace with your "on" state image */
 }
 
 .totals-container {

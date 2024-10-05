@@ -11,12 +11,12 @@
   <div class="fixed-container">
     <!-- Add/Remove Mode Toggle -->
     <div class="mode-toggle">
-      <label>
-        <input type="checkbox" id="minusMode"> Minus Mode
-      </label>
-      <label>
-        <input type="checkbox" id="popupMode" onclick="toggleDescriptionMode()"> Show All Text
-      </label>
+      <button id="minusMode" class="toggle-button" aria-label="Toggle Minus Mode">
+        <img src="minus_mode_off.png" alt="Minus Mode Off" class="toggle-image">
+      </button>
+      <button id="popupMode" class="toggle-button" aria-label="Toggle Show All Text">
+        <img src="show_all_text_off.png" alt="Show All Text Off" class="toggle-image">
+      </button>
     </div>
     <!-- Display total points used -->
     <div class="totals-container">
@@ -35,7 +35,7 @@
     </div>
     <!-- Version display -->
     <div class="version-display">
-      v2024.10.05.001
+      v2024.10.05.002
     </div>
   </div>
 

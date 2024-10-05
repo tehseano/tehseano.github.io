@@ -3,6 +3,19 @@ let popupMode = true; // Set to true for popup as default
 let lastClickedId = null;
 let firstItemClicked = false; // New variable to track if an item has been clicked
 
+// Debounce function
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
 window.addEventListener('load', () => {
   const fixedContainer = document.querySelector('.fixed-container');
   const gridContainer = document.querySelector('.grid-container');
@@ -15,41 +28,46 @@ window.addEventListener('load', () => {
   };
 
   updateGridMargin();
-  window.addEventListener('resize', updateGridMargin); // Update on window resize
+  window.addEventListener('resize', updateGridMargin);
 
   // Initialize description mode
   initializeDescriptionMode();
 
- // Add touch event listeners to grid items
+  // Add event listeners to grid items
   const gridItems = document.querySelectorAll('.grid-item');
   gridItems.forEach(item => {
-    let touchStartY;
-    let touchStartX;
-    const moveThreshold = 10; // pixels
-
-    item.addEventListener('touchstart', (e) => {
-      touchStartY = e.touches[0].clientY;
-      touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-
-    item.addEventListener('touchend', (e) => {
-      const touchEndY = e.changedTouches[0].clientY;
-      const touchEndX = e.changedTouches[0].clientX;
-      const deltaY = Math.abs(touchEndY - touchStartY);
-      const deltaX = Math.abs(touchEndX - touchStartX);
-
-      if (deltaY < moveThreshold && deltaX < moveThreshold) {
-        e.preventDefault();
-        const id = item.getAttribute('data-id');
+    let isProcessing = false;
+    
+    const debouncedToggleValue = debounce((id) => {
+      if (!isProcessing) {
+        isProcessing = true;
         toggleValue(id);
+        setTimeout(() => { isProcessing = false; }, 500); // Reset after 500ms
       }
-    }, { passive: false });
+    }, 50); // Reduced debounce time
 
-    item.addEventListener('click', (e) => {
+    const handleInteraction = (e) => {
       e.preventDefault();
+      e.stopPropagation();
       const id = item.getAttribute('data-id');
-      toggleValue(id);
-    });
+      debouncedToggleValue(id);
+    };
+
+    item.addEventListener('mousedown', handleInteraction);
+    item.addEventListener('touchstart', handleInteraction, { passive: false });
+  });
+
+  // New code for handling image button toggles
+  const minusModeButton = document.getElementById('minusMode');
+  const popupModeButton = document.getElementById('popupMode');
+
+  minusModeButton.addEventListener('click', () => {
+    minusModeButton.classList.toggle('active');
+  });
+
+  popupModeButton.addEventListener('click', () => {
+    popupModeButton.classList.toggle('active');
+    toggleDescriptionMode();
   });
 });
 
@@ -90,7 +108,7 @@ function toggleValue(id) {
 
   const bullets = gridItem.querySelectorAll(`#level${id} .bullet`);
   let currentLevel = Array.from(bullets).filter(bullet => bullet.classList.contains('active')).length;
-  const minusMode = document.getElementById('minusMode').checked;
+  const minusMode = document.getElementById('minusMode').classList.contains('active');
 
   if (!minusMode && currentLevel < maxLevel) {
     currentLevel += 1;
@@ -117,13 +135,11 @@ function updateBullets(id, level) {
 
 function updateDescription(id) {
   lastClickedId = id;
-  firstItemClicked = true; // Set this to true when the first item is clicked
+  firstItemClicked = true;
   let gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
-  if (!gridItem) return; // Skip if the grid item doesn't exist
+  if (!gridItem) return;
 
-  // Get the level based on active bullets
   let level = gridItem.querySelectorAll('.bullet.active').length;
-
   let descriptions = [];
 
   // First dynamic value
@@ -189,7 +205,7 @@ function updateDescription(id) {
   // Show/hide based on mode
   const popupContainer = document.getElementById('popup-container');
   if (popupMode) {
-    popupContainer.style.display = 'block'; // Always show popup when in popup mode and an item has been clicked
+    popupContainer.style.display = 'block';
     gridItem.querySelectorAll('[id^="description"]').forEach(desc => {
       desc.classList.add('hide-description');
     });
@@ -200,17 +216,19 @@ function updateDescription(id) {
     });
   }
 
-  // Toggle hide-description class for all descriptions in this grid item
-  gridItem.querySelectorAll('[id^="description"]').forEach(desc => {
-    desc.classList.toggle('hide-description', popupMode);
+  // Update all grid items' descriptions visibility
+  document.querySelectorAll('.grid-item').forEach(item => {
+    item.querySelectorAll('[id^="description"]').forEach(desc => {
+      desc.classList.toggle('hide-description', popupMode);
+    });
   });
 }
 
-// Function to toggle between popup and inline modes
 function toggleDescriptionMode() {
   popupMode = !popupMode;
   const descriptions = document.querySelectorAll('[id^="description"]');
   const popupContainer = document.getElementById('popup-container');
+  const popupModeButton = document.getElementById('popupMode');
   
   descriptions.forEach(desc => {
     desc.classList.toggle('hide-description', popupMode);
@@ -224,13 +242,15 @@ function toggleDescriptionMode() {
     }
   }
   
+  // Toggle the active class on the button
+  popupModeButton.classList.toggle('active', !popupMode);
+  
   // Update the current description
   if (lastClickedId) {
     updateDescription(lastClickedId);
   }
 }
 
-// Function to initialize description mode
 function initializeDescriptionMode() {
   const descriptions = document.querySelectorAll('[id^="description"]');
   descriptions.forEach(desc => {
