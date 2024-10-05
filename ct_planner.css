@@ -98,6 +98,9 @@ body {
   height: 100%; /* Ensures the item expands to fill available height */
   cursor: pointer;
   position: relative;
+  -webkit-user-select: none;  /* Safari */
+  -ms-user-select: none;      /* IE 10 and IE 11 */
+  user-select: none;          /* Standard syntax */
 }
 
 .grid-item:active .talent-image {

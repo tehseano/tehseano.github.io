@@ -19,6 +19,24 @@ window.addEventListener('load', () => {
 
   // Initialize description mode
   initializeDescriptionMode();
+
+  // Add touch event listeners to grid items
+  const gridItems = document.querySelectorAll('.grid-item');
+  gridItems.forEach(item => {
+    item.addEventListener('touchstart', (e) => {
+      e.preventDefault(); // Prevents the default touch behavior
+    }, { passive: false });
+
+    item.addEventListener('touchmove', (e) => {
+      e.preventDefault(); // Prevents dragging
+    }, { passive: false });
+
+    item.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      const id = item.getAttribute('data-id');
+      toggleValue(id);
+    });
+  });
 });
 
 const maxLevel = 5; // Maximum level for each image
