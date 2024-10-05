@@ -89,19 +89,22 @@ body {
 .grid-item {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center horizontally */
-  justify-content: top; /* Center vertically */
-  text-align: center; /* Center text within paragraphs */
+  align-items: center;
+  justify-content: top;
+  text-align: center;
   background-color: #f0f0f0;
   padding: 0.0rem;
   border-radius: 8px;
-  height: 100%; /* Ensures the item expands to fill available height */
+  height: 100%;
   cursor: pointer;
   position: relative;
-  -webkit-user-select: none;  /* Safari */
-  -ms-user-select: none;      /* IE 10 and IE 11 */
-  user-select: none;          /* Standard syntax */
-  touch-action: manipulation; /* Disables zoom and other browser actions */
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  /* Add these properties to prevent double-tap zoom */
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 .grid-item:active .talent-image {
@@ -111,11 +114,14 @@ body {
 .image-button-container {
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the image horizontally */
+  justify-content: center;
   margin-bottom: 5px;
   margin-top: 5px;
   width: 100%;
-  pointer-events: none; /* This allows clicks to pass through to the parent */
+  pointer-events: none;
+  /* Add these properties to prevent double-tap zoom on the container */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Bullet container for showing levels */
@@ -145,8 +151,14 @@ body {
 
 .talent-image {
   cursor: pointer;
-  pointer-events: auto; /* This re-enables pointer events for the image */
+  pointer-events: auto;
   transition: transform 0.1s;
+  /* Add these properties to prevent double-tap zoom on the image */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* .talent-image:active { */
