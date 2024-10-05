@@ -27,28 +27,36 @@ body {
   left: 5px;
   top: 50%;
   transform: translateY(-50%);
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .totals-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
   margin: 0 auto;
   padding: 5px;
+  /* border: 1px solid black; */
 }
 
 .total {
-  margin: 0 10px;
+  display: flex;
+  align-items: center; /* This will vertically center the children */
+  margin: 0 20px;
   text-align: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .total-icon {
-  width: 30px;  /* Adjust this value to control the image size */
+  width: 20px;  /* Adjust this value to control the image size */
   height: auto;
-  margin-bottom: 5px;
+  margin-right: 3px; /* Add some space between the icon and the number */
+}
+
+/* Optional: Style for the span to ensure it's vertically centered */
+.total span {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .grid-container {

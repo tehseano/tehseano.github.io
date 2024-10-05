@@ -7,25 +7,34 @@
   <link rel="stylesheet" href="ct_planner.css">
 </head>
 <body>
+  <!-- Main Top DIV -->
   <div class="fixed-container">
+    <!-- Add/Remove Mode Toggle -->
     <div class="mode-toggle">
       <label>
         <input type="checkbox" id="minusMode"> Minus Mode
       </label>
     </div>
-
+    <!-- Display total points used -->
     <div class="totals-container">
       <div class="total">
-        <p>Total Points Blue: <span id="totalBlue">0</span></p>
+        <img src="ctt_o.png" alt="Orange Total" class="total-icon">
+        <span id="totalOrange">0</span>
       </div>
       <div class="total">
-        <p>Total Points Purple: <span id="totalPurple">0</span></p>
+        <img src="ctt_p.png" alt="Purple Total" class="total-icon">
+        <span id="totalPurple">0</span>
       </div>
       <div class="total">
-        <p>Total Points Orange: <span id="totalOrange">0</span></p>
+        <img src="ctt_b.png" alt="Blue Total" class="total-icon">
+        <span id="totalBlue">0</span>
       </div>
     </div>
   </div>
+
+
+
+
 
   <div class="grid-container">
     <!-- Floor 1 -->
