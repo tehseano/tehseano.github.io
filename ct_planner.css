@@ -62,8 +62,8 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  max-width: 1200px; /* Set a max width for larger screens */
+  gap: 7px;
+  max-width: 1100px; /* Set a max width for larger screens */
   margin: 0 auto; /* Center the grid container */
 }
 
@@ -102,13 +102,14 @@ body {
   gap: 0px; /* Slightly reduce spacing between bullets */
   align-items: center;
   justify-content: center; /* Center the image horizontally */
-  margin-top: 0px;
+  margin-top: -7px;
+  z-index: 1000;
 }
 
 /* Bullet style */
 .bullet {
-  width: 0.3em;
-  height: 0.3em;
+  width: 0.45em;
+  height: 0.45em;
   border: 0.05em solid black; /* Bullet border */
   border-radius: 50%;
   display: inline-block;
