@@ -20,18 +20,32 @@ window.addEventListener('load', () => {
   // Initialize description mode
   initializeDescriptionMode();
 
-  // Add touch event listeners to grid items
+ // Add touch event listeners to grid items
   const gridItems = document.querySelectorAll('.grid-item');
   gridItems.forEach(item => {
+    let touchStartY;
+    let touchStartX;
+    const moveThreshold = 10; // pixels
+
     item.addEventListener('touchstart', (e) => {
-      e.preventDefault(); // Prevents the default touch behavior
+      touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    item.addEventListener('touchend', (e) => {
+      const touchEndY = e.changedTouches[0].clientY;
+      const touchEndX = e.changedTouches[0].clientX;
+      const deltaY = Math.abs(touchEndY - touchStartY);
+      const deltaX = Math.abs(touchEndX - touchStartX);
+
+      if (deltaY < moveThreshold && deltaX < moveThreshold) {
+        e.preventDefault();
+        const id = item.getAttribute('data-id');
+        toggleValue(id);
+      }
     }, { passive: false });
 
-    item.addEventListener('touchmove', (e) => {
-      e.preventDefault(); // Prevents dragging
-    }, { passive: false });
-
-    item.addEventListener('pointerdown', (e) => {
+    item.addEventListener('click', (e) => {
       e.preventDefault();
       const id = item.getAttribute('data-id');
       toggleValue(id);

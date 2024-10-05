@@ -101,7 +101,6 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  touch-action: manipulation;
   /* Add these properties to prevent double-tap zoom */
   -webkit-tap-highlight-color: transparent;
   outline: none;
@@ -120,8 +119,6 @@ body {
   width: 100%;
   pointer-events: none;
   /* Add these properties to prevent double-tap zoom on the container */
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
 }
 
 /* Bullet container for showing levels */
@@ -154,7 +151,6 @@ body {
   pointer-events: auto;
   transition: transform 0.1s;
   /* Add these properties to prevent double-tap zoom on the image */
-  touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   -ms-user-select: none;
