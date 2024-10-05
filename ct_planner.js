@@ -1,6 +1,7 @@
 // New variables for popup functionality
 let popupMode = true; // Set to true for popup as default
 let lastClickedId = null;
+let firstItemClicked = false; // New variable to track if an item has been clicked
 
 window.addEventListener('load', () => {
   const fixedContainer = document.querySelector('.fixed-container');
@@ -84,6 +85,7 @@ function updateBullets(id, level) {
 
 function updateDescription(id) {
   lastClickedId = id;
+  firstItemClicked = true; // Set this to true when the first item is clicked
   let gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
   if (!gridItem) return; // Skip if the grid item doesn't exist
 
@@ -155,7 +157,7 @@ function updateDescription(id) {
   // Show/hide based on mode
   const popupContainer = document.getElementById('popup-container');
   if (popupMode) {
-    popupContainer.style.display = 'block';
+    popupContainer.style.display = 'block'; // Always show popup when in popup mode and an item has been clicked
     gridItem.querySelectorAll('[id^="description"]').forEach(desc => {
       desc.classList.add('hide-description');
     });
@@ -165,9 +167,14 @@ function updateDescription(id) {
       desc.classList.remove('hide-description');
     });
   }
+
+  // Toggle hide-description class for all descriptions in this grid item
+  gridItem.querySelectorAll('[id^="description"]').forEach(desc => {
+    desc.classList.toggle('hide-description', popupMode);
+  });
 }
 
-// New function to toggle between popup and inline modes
+// Function to toggle between popup and inline modes
 function toggleDescriptionMode() {
   popupMode = !popupMode;
   const descriptions = document.querySelectorAll('[id^="description"]');
@@ -178,7 +185,11 @@ function toggleDescriptionMode() {
   });
   
   if (popupContainer) {
-    popupContainer.style.display = popupMode ? 'block' : 'none';
+    if (popupMode && firstItemClicked) {
+      popupContainer.style.display = 'block';
+    } else {
+      popupContainer.style.display = 'none';
+    }
   }
   
   // Update the current description
@@ -187,18 +198,21 @@ function toggleDescriptionMode() {
   }
 }
 
-// New function to initialize description mode
+// Function to initialize description mode
 function initializeDescriptionMode() {
   const descriptions = document.querySelectorAll('[id^="description"]');
   descriptions.forEach(desc => {
     desc.classList.toggle('hide-description', popupMode);
   });
   const popupContainer = document.getElementById('popup-container');
-  popupContainer.style.display = popupMode ? 'block' : 'none';
+  if (popupContainer) {
+    popupContainer.style.display = 'none'; // Start with popup hidden
+  }
 }
 
 // Initial update for all descriptions and calculations
 document.addEventListener('DOMContentLoaded', () => {
+  initializeDescriptionMode();
   document.querySelectorAll('.grid-item').forEach((gridItem) => {
     const id = gridItem.getAttribute('data-id');
     if (id) {

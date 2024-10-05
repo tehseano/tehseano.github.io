@@ -96,6 +96,12 @@ body {
   padding: 0.0rem;
   border-radius: 8px;
   height: 100%; /* Ensures the item expands to fill available height */
+  cursor: pointer;
+  position: relative;
+}
+
+.grid-item:active .talent-image {
+  transform: scale(0.95);
 }
 
 .image-button-container {
@@ -105,6 +111,7 @@ body {
   margin-bottom: 5px;
   margin-top: 5px;
   width: 100%;
+  pointer-events: none; /* This allows clicks to pass through to the parent */
 }
 
 /* Bullet container for showing levels */
@@ -134,12 +141,13 @@ body {
 
 .talent-image {
   cursor: pointer;
+  pointer-events: auto; /* This re-enables pointer events for the image */
   transition: transform 0.1s;
 }
 
-.talent-image:active {
-  transform: scale(0.95);
-}
+/* .talent-image:active { */
+  /* transform: scale(0.95); */
+/* } */
 
 .minus-mode .talent-image {
   opacity: 0.7;
