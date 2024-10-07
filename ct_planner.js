@@ -245,12 +245,11 @@ function initializeDescriptionMode() {
 // Initial update for all descriptions and calculations when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   initializeDescriptionMode();
+  document.querySelectorAll('.grid-item').forEach((gridItem) => {
+    const id = gridItem.getAttribute('data-id');
+    if (id) {
+      updateDescription(id);
+    }
+  });
   calculateTotals();
-  // Remove the following loop:
-  // document.querySelectorAll('.grid-item').forEach((gridItem) => {
-  //   const id = gridItem.getAttribute('data-id');
-  //   if (id) {
-  //     updateDescription(id);
-  //   }
-  // });
 });
