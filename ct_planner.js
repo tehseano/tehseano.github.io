@@ -1,63 +1,39 @@
-// New variables for popup functionality
-let popupMode = true; // Set to true for popup as default
-let lastClickedId = null;
-let firstItemClicked = false; // New variable to track if an item has been clicked
+// Global variables
+let popupMode = true; // Controls whether descriptions are shown in a popup or inline
+let lastClickedId = null; // Stores the ID of the last clicked grid item
+let firstItemClicked = false; // Tracks if any grid item has been clicked
+const maxLevel = 5; // Maximum level for each talent
 
-// Debounce function
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
+// Main initialization when the page loads
 window.addEventListener('load', () => {
   const fixedContainer = document.querySelector('.fixed-container');
   const gridContainer = document.querySelector('.grid-container');
   const popupContainer = document.getElementById('popup-container');
   const popupDescription = document.getElementById('popup-description');
 
+  // Function to update the margin of the grid container based on the fixed container's height
   const updateGridMargin = () => {
     const height = fixedContainer.offsetHeight;
     gridContainer.style.marginTop = `${height}px`;
   };
 
   updateGridMargin();
-  window.addEventListener('resize', updateGridMargin);
+  window.addEventListener('resize', updateGridMargin); // Update margin on window resize
 
-  // Initialize description mode
+  // Set up the initial description mode
   initializeDescriptionMode();
 
-  // Add event listeners to grid items
+  // Add click event listeners to all grid items
   const gridItems = document.querySelectorAll('.grid-item');
   gridItems.forEach(item => {
-    let isProcessing = false;
-    
-    const debouncedToggleValue = debounce((id) => {
-      if (!isProcessing) {
-        isProcessing = true;
-        toggleValue(id);
-        setTimeout(() => { isProcessing = false; }, 500); // Reset after 500ms
-      }
-    }, 50); // Reduced debounce time
-
-    const handleInteraction = (e) => {
+    item.addEventListener('click', (e) => {
       e.preventDefault();
-      e.stopPropagation();
       const id = item.getAttribute('data-id');
-      debouncedToggleValue(id);
-    };
-
-    item.addEventListener('mousedown', handleInteraction);
-    item.addEventListener('touchstart', handleInteraction, { passive: false });
+      toggleValue(id);
+    });
   });
 
-  // New code for handling image button toggles
+  // Set up event listeners for minus mode and popup mode toggles
   const minusModeButton = document.getElementById('minusMode');
   const popupModeButton = document.getElementById('popupMode');
 
@@ -71,23 +47,42 @@ window.addEventListener('load', () => {
   });
 });
 
-const maxLevel = 5; // Maximum level for each image
+// Function to toggle the value (level) of a grid item
+function toggleValue(id) {
+  const gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
+  if (!gridItem) return;
 
+  const bullets = gridItem.querySelectorAll(`#level${id} .bullet`);
+  let currentLevel = Array.from(bullets).filter(bullet => bullet.classList.contains('active')).length;
+  const minusMode = document.getElementById('minusMode').classList.contains('active');
+
+  // Increment or decrement the level based on minus mode and current level
+  if (!minusMode && currentLevel < maxLevel) {
+    currentLevel += 1;
+  } else if (minusMode && currentLevel > 0) {
+    currentLevel -= 1;
+  }
+
+  updateBullets(id, currentLevel);
+  updateDescription(id);
+  calculateTotals();
+}
+
+// Function to calculate and update the total points for each color
 function calculateTotals() {
   let totalBlue = 0;
   let totalPurple = 0;
   let totalOrange = 0;
 
-  // Iterate through each grid item to calculate totals
-  const gridItems = document.querySelectorAll('.grid-item'); // Get all grid items
+  const gridItems = document.querySelectorAll('.grid-item');
   gridItems.forEach((gridItem) => {
-    const colorClass = gridItem.classList[1]; // Get the color class
-    const pointCost = parseInt(gridItem.getAttribute('data-point-cost')); // Get point cost from the data attribute
-    const currentValue = gridItem.querySelector('.bullet.active') ? gridItem.querySelectorAll('.bullet.active').length : 0; // Count active bullets
+    const colorClass = gridItem.classList[1];
+    const pointCost = parseInt(gridItem.getAttribute('data-point-cost'));
+    const currentValue = gridItem.querySelector('.bullet.active') ? gridItem.querySelectorAll('.bullet.active').length : 0;
 
-    // Calculate total points for each color based on level and point cost
     const totalPoints = currentValue * pointCost;
 
+    // Add points to the corresponding color total
     if (colorClass === 'blue') {
       totalBlue += totalPoints;
     } else if (colorClass === 'purple') {
@@ -97,31 +92,13 @@ function calculateTotals() {
     }
   });
 
+  // Update the displayed totals
   document.getElementById('totalBlue').textContent = totalBlue;
   document.getElementById('totalPurple').textContent = totalPurple;
   document.getElementById('totalOrange').textContent = totalOrange;
 }
 
-function toggleValue(id) {
-  const gridItem = document.querySelector(`.grid-item[data-id="${id}"]`);
-  if (!gridItem) return; // Skip if the grid item doesn't exist
-
-  const bullets = gridItem.querySelectorAll(`#level${id} .bullet`);
-  let currentLevel = Array.from(bullets).filter(bullet => bullet.classList.contains('active')).length;
-  const minusMode = document.getElementById('minusMode').classList.contains('active');
-
-  if (!minusMode && currentLevel < maxLevel) {
-    currentLevel += 1;
-  } else if (minusMode && currentLevel > 0) {
-    currentLevel -= 1;
-  }
-
-  // Update bullets after calculating the current level
-  updateBullets(id, currentLevel);
-  updateDescription(id);
-  calculateTotals();
-}
-
+// Function to update the bullet (level) display for a grid item
 function updateBullets(id, level) {
   let bullets = document.querySelectorAll(`#level${id} .bullet`);
   bullets.forEach((bullet, index) => {
@@ -133,6 +110,7 @@ function updateBullets(id, level) {
   });
 }
 
+// Function to update the description for a grid item
 function updateDescription(id) {
   lastClickedId = id;
   firstItemClicked = true;
@@ -142,67 +120,33 @@ function updateDescription(id) {
   let level = gridItem.querySelectorAll('.bullet.active').length;
   let descriptions = [];
 
-  // First dynamic value
-  let baseValue1 = parseFloat(gridItem.getAttribute('data-base-value1')) || 0;
-  let increment1 = parseFloat(gridItem.getAttribute('data-increment1')) || 0;
-  let label1 = gridItem.getAttribute('data-label1') || '';
-  let end1 = gridItem.getAttribute('data-end1') || '';
-  let newValue1 = baseValue1 + (increment1 * level);
+  // Calculate and update descriptions for up to three values
+  for (let i = 1; i <= 3; i++) {
+    let baseValue = parseFloat(gridItem.getAttribute(`data-base-value${i}`)) || 0;
+    let increment = parseFloat(gridItem.getAttribute(`data-increment${i}`)) || 0;
+    let label = gridItem.getAttribute(`data-label${i}`) || '';
+    let end = gridItem.getAttribute(`data-end${i}`) || '';
+    let newValue = baseValue + (increment * level);
 
-  let description1 = `${label1}${newValue1}${end1}`;
-  descriptions.push(description1);
-
-  // Update the first dynamic text
-  let description1Element = gridItem.querySelector(`#description${id}_1`);
-  if (description1Element) {
-    description1Element.textContent = description1;
-  }
-
-  // Second dynamic value
-  let baseValue2 = parseFloat(gridItem.getAttribute('data-base-value2')) || 0;
-  let increment2 = parseFloat(gridItem.getAttribute('data-increment2')) || 0;
-  let label2 = gridItem.getAttribute('data-label2') || '';
-  let end2 = gridItem.getAttribute('data-end2') || '';
-  let newValue2 = baseValue2 + (increment2 * level);
-
-  // Update the second dynamic text if it should be shown
-  let description2Element = gridItem.querySelector(`#description${id}_2`);
-  if (description2Element) {
-    const showSecondText = description2Element.getAttribute('data-show-second-text') === "true";
-    if (showSecondText) {
-      let description2 = `${label2}${newValue2}${end2}`;
-      description2Element.textContent = description2;
-      descriptions.push(description2);
-    } else {
-      description2Element.textContent = ''; // Clear if not shown
+    let description = `${label}${newValue}${end}`;
+    let descriptionElement = gridItem.querySelector(`#description${id}_${i}`);
+    
+    if (descriptionElement) {
+      const showText = descriptionElement.getAttribute(`data-show-${i === 1 ? 'first' : i === 2 ? 'second' : 'third'}-text`) === "true";
+      if (showText || i === 1) {
+        descriptionElement.textContent = description;
+        descriptions.push(description);
+      } else {
+        descriptionElement.textContent = '';
+      }
     }
   }
 
-  // Third dynamic value
-  let baseValue3 = parseFloat(gridItem.getAttribute('data-base-value3')) || 0;
-  let increment3 = parseFloat(gridItem.getAttribute('data-base-value3')) || 0;
-  let label3 = gridItem.getAttribute('data-label3') || '';
-  let end3 = gridItem.getAttribute('data-end3') || '';
-  let newValue3 = baseValue3 + (increment3 * level);
-
-  // Update the third dynamic text if it should be shown
-  let description3Element = gridItem.querySelector(`#description${id}_3`);
-  if (description3Element) {
-    const showThirdText = description3Element.getAttribute('data-show-third-text') === "true";
-    if (showThirdText) {
-      let description3 = `${label3}${newValue3}${end3}`;
-      description3Element.textContent = description3;
-      descriptions.push(description3);
-    } else {
-      description3Element.textContent = ''; // Clear if not shown
-    }
-  }
-
-  // Update popup description with separator
+  // Update popup description
   const popupDescription = document.getElementById('popup-description');
   popupDescription.textContent = descriptions.join(' | ');
 
-  // Show/hide based on mode
+  // Show/hide descriptions based on popup mode
   const popupContainer = document.getElementById('popup-container');
   if (popupMode) {
     popupContainer.style.display = 'block';
@@ -224,6 +168,7 @@ function updateDescription(id) {
   });
 }
 
+// Function to toggle between popup and inline description modes
 function toggleDescriptionMode() {
   popupMode = !popupMode;
   const descriptions = document.querySelectorAll('[id^="description"]');
@@ -251,6 +196,7 @@ function toggleDescriptionMode() {
   }
 }
 
+// Function to initialize the description mode
 function initializeDescriptionMode() {
   const descriptions = document.querySelectorAll('[id^="description"]');
   descriptions.forEach(desc => {
@@ -262,7 +208,7 @@ function initializeDescriptionMode() {
   }
 }
 
-// Initial update for all descriptions and calculations
+// Initial update for all descriptions and calculations when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   initializeDescriptionMode();
   document.querySelectorAll('.grid-item').forEach((gridItem) => {
