@@ -12,7 +12,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: white;
+  background-color: #f9dd8a;
   padding: 5px;
   border: 1px solid #ccc;
   z-index: 1000;
@@ -201,8 +201,8 @@ p {
   bottom: -100px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
+  background-color: #f9dd8a;
+  color: black;
   padding: 15px 20px;
   border-radius: 5px;
   transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
