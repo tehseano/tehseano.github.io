@@ -208,7 +208,7 @@ p {
   transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
   z-index: 2000;
   max-width: 80%;
-  opacity: 0;
+  opacity: 1;
 }
 
 .popup-container.show {
