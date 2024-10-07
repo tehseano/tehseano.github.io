@@ -3,7 +3,6 @@ let popupMode = true; // Controls whether descriptions are shown in a popup or i
 let lastClickedId = null; // Stores the ID of the last clicked grid item
 let firstItemClicked = false; // Tracks if any grid item has been clicked
 const maxLevel = 5; // Maximum level for each talent
-let toastActive = false; // Track if a toast is currently active
 
 // Main initialization when the page loads
 window.addEventListener('load', () => {
@@ -78,24 +77,16 @@ function updatePopupMessage(message, duration = 3000) {
   
   popupDescription.textContent = message;
   
-  if (toastActive) {
-    // If a toast is already active, just update the content and reset the timer
-    clearTimeout(popupContainer.hideTimeout);
-  } else {
-    // If no toast is active, show it with animation
-    popupContainer.classList.add('show');
-    toastActive = true;
-  }
+  // Show the popup
+  popupContainer.classList.add('show');
   
-  // Set a new timeout to hide the popup
-  popupContainer.hideTimeout = setTimeout(() => {
+  // Hide the popup after the specified duration
+  setTimeout(() => {
     popupContainer.classList.remove('show');
-    // Add a timeout to reset toastActive after the animation completes
-    setTimeout(() => {
-      toastActive = false;
-    }, 300); // This should match the transition duration in CSS
   }, duration);
 }
+
+
 
 // Function to toggle the value (level) of a grid item
 function toggleValue(id) {
@@ -192,15 +183,19 @@ function updateDescription(id) {
     }
   }
 
-  // Always update popup message as a toast notification
-  updatePopupMessage(descriptions.join(' | '));
+  // Update popup description
+  const popupDescription = document.getElementById('popup-description');
+  popupDescription.textContent = descriptions.join(' | ');
 
-  // Update inline descriptions visibility based on popup mode
+  // Show/hide descriptions based on popup mode
+  const popupContainer = document.getElementById('popup-container');
   if (popupMode) {
+    popupContainer.style.display = 'block';
     gridItem.querySelectorAll('[id^="description"]').forEach(desc => {
       desc.classList.add('hide-description');
     });
   } else {
+    popupContainer.style.display = 'none';
     gridItem.querySelectorAll('[id^="description"]').forEach(desc => {
       desc.classList.remove('hide-description');
     });
@@ -225,8 +220,16 @@ function toggleDescriptionMode() {
     desc.classList.toggle('hide-description', popupMode);
   });
   
+  if (popupContainer) {
+    if (popupMode && firstItemClicked) {
+      popupContainer.style.display = 'block';
+    } else {
+      popupContainer.style.display = 'none';
+    }
+  }
+  
   // Toggle the active class on the button
-  popupModeButton.classList.toggle('active', popupMode);
+  popupModeButton.classList.toggle('active', !popupMode);
   
   // Update the current description
   if (lastClickedId) {
@@ -240,17 +243,20 @@ function initializeDescriptionMode() {
   descriptions.forEach(desc => {
     desc.classList.toggle('hide-description', popupMode);
   });
+  const popupContainer = document.getElementById('popup-container');
+  if (popupContainer) {
+    popupContainer.style.display = 'none'; // Start with popup hidden
+  }
 }
 
 // Initial update for all descriptions and calculations when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   initializeDescriptionMode();
+  document.querySelectorAll('.grid-item').forEach((gridItem) => {
+    const id = gridItem.getAttribute('data-id');
+    if (id) {
+      updateDescription(id);
+    }
+  });
   calculateTotals();
-  // Remove the following loop:
-  // document.querySelectorAll('.grid-item').forEach((gridItem) => {
-  //   const id = gridItem.getAttribute('data-id');
-  //   if (id) {
-  //     updateDescription(id);
-  //   }
-  // });
 });

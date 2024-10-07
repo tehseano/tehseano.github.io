@@ -8,7 +8,7 @@
 </head>
 <body>
   <script src="ct_planner.js"></script>
-  <!-- Main Top DIV -->
+  <!-- Fixed Top DIV -->
   <div class="fixed-container">
     <!-- Add/Remove Mode Toggle -->
     <div class="mode-toggle">
@@ -17,6 +17,9 @@
       </button>
       <button id="popupMode" class="toggle-button" aria-label="Toggle Show All Text">
         <img src="show_all_text_off.png" alt="Show All Text Off" class="toggle-image">
+      </button>
+      <button id="resetButton" class="toggle-button" aria-label="Reset All Values">
+        <img src="reset_icon.png" alt="Reset All Values" class="toggle-image">
       </button>
     </div>
     <!-- Display total points used -->
@@ -36,10 +39,16 @@
     </div>
     <!-- Version display -->
     <div class="version-display">
-      v2024.10.07.001
+      v2024.10.07.002
     </div>
   </div>
 
+  <!-- Toast DIV -->
+  <div id="popup-container" class="popup-container">
+    <div id="popup-description" class="popup-content"></div>
+  </div>
+  
+  <!-- Grid Content DIV -->
   <div class="grid-container">
     <!-- Floor 1 -->
     <div> <!-- Blank Space --></div>
@@ -57,12 +66,6 @@
       </div>
       <p id="description1_1"></p>
     </div>
-
-  <div id="popup-container" class="popup-container">
-    <div id="popup-content" class="popup-content">
-      <p id="popup-description"></p>
-    </div>
-  </div>
 
     <div class="grid-item blue" data-id="2" data-point-cost="1" data-base-value1="0" data-increment1="30" data-label1="Snail ATK/DEF +" data-end1="">
       <div class="image-button-container">
