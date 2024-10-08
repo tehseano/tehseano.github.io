@@ -131,7 +131,7 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 3px;
+  gap: 0px;
   max-width: 1100px; /* Set a max width for larger screens */
   margin: 0 auto; /* Center the grid container */
 }
@@ -213,15 +213,6 @@ body {
 
 .bullet.active {
   background-color: gold; /* Active state */
-}
-
-.description-container {
-/*  background-color: rgba(255, 255, 255, 0.6);*/
-/*  border-radius: 6px;*/
-/*  padding: 2px 2px;*/
-/*  margin-top: 5px;*/
-/*  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);*/
-/*  transition: all 0.2s ease-in-out;*/
 }
 
 .description-container:hover {
