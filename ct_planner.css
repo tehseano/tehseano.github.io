@@ -178,7 +178,7 @@ body {
 }
 
 .talent-image {
-  max-width: 40px;
+  max-width: 50px;
   cursor: pointer;
   pointer-events: auto;
   transition: transform 0.1s;
@@ -218,8 +218,8 @@ body {
 .description-container {
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 6px;
-  padding: 8px 12px;
-  margin-top: 8px;
+  padding: 8px 5px;
+  margin-top: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   font-family: 'Arial', sans-serif;
   font-size: 12px;
@@ -234,11 +234,11 @@ body {
 }
 
 .description-container p {
-  margin: 2px 0;
+  margin: 0px 0;
 }
 
 p {
-  margin: 3px 0;
+  margin: 0px 0;
 }
 
 .toast-container {
