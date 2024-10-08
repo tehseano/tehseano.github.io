@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   font-family: Verdana, sans-serif;
   font-size: .7em;
@@ -239,21 +240,21 @@ p {
   bottom: -100px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(249, 221, 138, 0.95); /* Slightly transparent */
-  color: #333; /* Darker text for better contrast */
-  padding: 12px 24px;
+  background-color: rgba(249, 221, 138, 0.95);
+  color: #333;
+  padding: 8px 16px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
   z-index: 2000;
-  max-width: 80%;
+  max-width: calc(100% - 32px);
+  width: fit-content;
+  min-width: 200px;
   opacity: 0;
-  font-family: 'Arial', sans-serif; /* Use a clean, professional font */
+  font-family: 'Verdana', sans-serif;
   font-size: 14px;
   line-height: 1.4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 }
 
 .toast-container.show {
@@ -262,17 +263,17 @@ p {
 }
 
 .toast-content {
-  max-width: 800px;
-  margin: 0 auto;
+  margin: 0px 0px;
   text-align: center;
   font-weight: 500; /* Slightly bolder text */
+  font-size: 10px;
 }
 
 /* Optional: Add an icon to the toast */
 .toast-content::before {
-  content: '🔔'; /* You can replace this with an image or icon font */
-  margin-right: 8px;
-  font-size: 16px;
+  content: '🔔 '; /* You can replace this with an image or icon font */
+/*  margin-right: 8px;*/
+  font-size: 12px;
 }
 
 .hide-description {
