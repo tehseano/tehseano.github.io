@@ -229,12 +229,8 @@ body {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-.description-container p {
-  margin: 0px 0;
-}
-
 p {
-  margin-bottom: 5px;
+  margin: 2px 0px;
   font-family: Verdana, sans-serif;
   font-size: .7em;
   color: #000000;
