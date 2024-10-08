@@ -119,7 +119,7 @@ body {
 }
 
 /* Make the grid full width on smaller screens */
-@media (max-width: 1000px) { /* Adjust the breakpoint as needed */
+@media (max-width: 1200px) { /* Adjust the breakpoint as needed */
   .grid-container {
     grid-template-columns: repeat(5, 1fr); /* Change to 2 columns on small screens */
     width: 100%; /* Take full width on mobile */
