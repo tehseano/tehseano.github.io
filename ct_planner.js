@@ -2,8 +2,8 @@
 let popupMode = true; // Controls whether descriptions are shown in a popup or inline
 let lastClickedId = null; // Stores the ID of the last clicked grid item
 let firstItemClicked = false; // Tracks if any grid item has been clicked
-const maxLevel = 5; // Maximum level for each talent
 let toastActive = false; // Track if a toast is currently active
+const maxLevel = 5; // Maximum level for each talent
 
 // Main initialization when the page loads
 window.addEventListener('load', () => {
@@ -39,7 +39,7 @@ window.addEventListener('load', () => {
     });
   });
 
-  // Set up event listeners for minus mode and popup mode toggles
+  // Set up event listeners for edit mode and popup mode toggles
   const editModeButton = document.getElementById('editMode');
   const popupModeButton = document.getElementById('popupMode');
 
@@ -62,7 +62,7 @@ function resetAllValues() {
   });
   calculateTotals();
   
-  // Reset minus mode if it's active
+  // Reset edit mode if it's active
   const editModeButton = document.getElementById('editMode');
   if (editModeButton.classList.contains('active')) {
     editModeButton.classList.remove('active');
@@ -106,7 +106,7 @@ function toggleValue(id) {
   let currentLevel = Array.from(bullets).filter(bullet => bullet.classList.contains('active')).length;
   const editMode = document.getElementById('editMode').classList.contains('active');
 
-  // Increment or decrement the level based on minus mode and current level
+  // Increment or decrement the level based on edit mode and current level
   if (!editMode && currentLevel < maxLevel) {
     currentLevel += 1;
   } else if (editMode && currentLevel > 0) {

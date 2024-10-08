@@ -10,16 +10,13 @@
   <script src="ct_planner.js"></script>
   <!-- Fixed Top DIV -->
   <div class="fixed-container">
-    <!-- Add/Remove Mode Toggle -->
-    <div class="button-container">
+    <!-- Show toggle buttons -->
+    <div class="toggle-container">
       <button id="editMode" class="toggle-button" aria-label="Toggle Edit Mode">
         <img src="btn_edit_off.png" alt="Edit Mode Off" class="toggle-image">
       </button>
       <button id="popupMode" class="toggle-button active" aria-label="Toggle Show All Text">
         <img src="btn_list_off.png" alt="Show All Text Off" class="toggle-image">
-      </button>
-      <button id="resetButton" class="toggle-button" aria-label="Reset All Values">
-        <img src="btn_reset.png" alt="Reset All Values" class="toggle-image">
       </button>
     </div>
     <!-- Display total points used -->
@@ -37,12 +34,19 @@
         <span id="totalBlue">0</span>
       </div>
     </div>
-    <!-- Version display -->
-    <div class="version-container">
-      v2024.10.07.06
+    <!-- Display reset button -->
+    <div class="reset-container">
+      <button id="resetButton" class="toggle-button" aria-label="Reset All Values">
+      <img src="btn_reset.png" alt="Reset All Values" class="toggle-image">
+      </button>
     </div>
-  </div>
 
+    <!-- Version display -->
+    <div class="version-container">v2024.10.07.006</div>
+  </div>
+  
+
+  
   <!-- Toast DIV -->
   <div id="toast-container" class="toast-container">
     <div id="toast-description" class="toast-content"></div>
