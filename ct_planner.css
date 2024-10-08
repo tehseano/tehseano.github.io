@@ -4,7 +4,7 @@ body {
   color: #000000;
   line-height: 1em;
   margin: 0;
-  padding: .5em;
+/*  padding: .5em;*/
   background-image: url('img/bg/bg2.png');
   background-repeat: repeat;
   background-position: center top;
@@ -40,7 +40,7 @@ body {
 .toggle-button {
   background: none;
   border: none;
-  padding: 0;
+  padding: 1px;
   cursor: pointer;
   outline: none;
 }
