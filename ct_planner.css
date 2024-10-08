@@ -173,7 +173,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 0px;
-  margin-top: 2px;
+  margin-top: 4px;
   width: 100%;
   pointer-events: none;
   /* Add these properties to prevent double-tap zoom on the container */
