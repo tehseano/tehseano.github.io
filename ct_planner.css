@@ -5,6 +5,10 @@ body {
   line-height: 1em;
   margin: 0;
   padding: .5em;
+  background-image: url('bg2.png');
+  background-repeat: repeat;
+  background-position: center top;
+  background-attachment: fixed;
 }
 
 .fixed-container {
@@ -55,14 +59,24 @@ body {
   height: 30px; /* Adjust as needed */
 }
 
+.toggle-button:active .toggle-image {
+  transform: scale(0.95);
+}
+
 /* Styles for active state */
 .toggle-button.active .toggle-image {
   content: url('minus_mode_on.png'); /* Replace with your "on" state image */
 }
 
-#popupMode.active .toggle-image {
-  content: url('show_all_text_on.png'); /* Replace with your "on" state image */
+/* Reverse the logic for popupMode */
+#popupMode .toggle-image {
+  content: url('btn_list_on.png'); /* "On" state is when descriptions are shown */
 }
+
+#popupMode.active .toggle-image {
+  content: url('btn_list_off.png'); /* "Off" state is when popup mode is active (descriptions hidden) */
+}
+
 
 .totals-container {
   display: flex;
@@ -189,6 +203,11 @@ body {
 
 .image-small {
   max-width: 30px;
+}
+.description-container {
+  background-color: #f9dd8a;
+  border-radius: 5px;
+  padding: 5px 5px;
 }
 
 p {

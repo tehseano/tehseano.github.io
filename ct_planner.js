@@ -196,33 +196,25 @@ function updateDescription(id) {
   updatePopupMessage(descriptions.join(' | '));
 
   // Update inline descriptions visibility based on popup mode
-  if (popupMode) {
-    gridItem.querySelectorAll('[id^="description"]').forEach(desc => {
-      desc.classList.add('hide-description');
-    });
-  } else {
-    gridItem.querySelectorAll('[id^="description"]').forEach(desc => {
-      desc.classList.remove('hide-description');
-    });
+  const descriptionContainer = gridItem.querySelector('.description-container');
+  if (descriptionContainer) {
+    descriptionContainer.classList.toggle('hide-description', popupMode);
   }
 
   // Update all grid items' descriptions visibility
-  document.querySelectorAll('.grid-item').forEach(item => {
-    item.querySelectorAll('[id^="description"]').forEach(desc => {
-      desc.classList.toggle('hide-description', popupMode);
-    });
+  document.querySelectorAll('.grid-item .description-container').forEach(container => {
+    container.classList.toggle('hide-description', popupMode);
   });
 }
 
 // Function to toggle between popup and inline description modes
 function toggleDescriptionMode() {
   popupMode = !popupMode;
-  const descriptions = document.querySelectorAll('[id^="description"]');
-  const popupContainer = document.getElementById('popup-container');
+  const descriptionContainers = document.querySelectorAll('.description-container');
   const popupModeButton = document.getElementById('popupMode');
   
-  descriptions.forEach(desc => {
-    desc.classList.toggle('hide-description', popupMode);
+  descriptionContainers.forEach(container => {
+    container.classList.toggle('hide-description', popupMode);
   });
   
   // Toggle the active class on the button
@@ -236,9 +228,9 @@ function toggleDescriptionMode() {
 
 // Function to initialize the description mode
 function initializeDescriptionMode() {
-  const descriptions = document.querySelectorAll('[id^="description"]');
-  descriptions.forEach(desc => {
-    desc.classList.toggle('hide-description', popupMode);
+  const descriptionContainers = document.querySelectorAll('.description-container');
+  descriptionContainers.forEach(container => {
+    container.classList.toggle('hide-description', popupMode);
   });
 }
 
