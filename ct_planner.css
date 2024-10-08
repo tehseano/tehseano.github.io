@@ -170,8 +170,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 5px;
-  margin-top: 5px;
+  margin-bottom: 2px;
+  margin-top: 2px;
   width: 100%;
   pointer-events: none;
   /* Add these properties to prevent double-tap zoom on the container */
