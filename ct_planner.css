@@ -173,14 +173,14 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 0px;
-  margin-top: 0px;
+  margin-top: 2px;
   width: 100%;
   pointer-events: none;
   /* Add these properties to prevent double-tap zoom on the container */
 }
 
 .talent-image {
-  max-width: 50px;
+  max-width: 60px;
   cursor: pointer;
   pointer-events: auto;
   transition: transform 0.1s;
@@ -205,8 +205,8 @@ body {
 }
 
 .bullet {
-  width: 0.45em;
-  height: 0.45em;
+  width: 0.6em;
+  height: 0.6em;
   border: 0.05em solid black; /* Bullet border */
   border-radius: 50%;
   display: inline-block;
