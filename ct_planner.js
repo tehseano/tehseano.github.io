@@ -40,11 +40,11 @@ window.addEventListener('load', () => {
   });
 
   // Set up event listeners for minus mode and popup mode toggles
-  const minusModeButton = document.getElementById('minusMode');
+  const editModeButton = document.getElementById('editMode');
   const popupModeButton = document.getElementById('popupMode');
 
-  minusModeButton.addEventListener('click', () => {
-    minusModeButton.classList.toggle('active');
+  editModeButton.addEventListener('click', () => {
+    editModeButton.classList.toggle('active');
   });
 
   popupModeButton.addEventListener('click', () => {
@@ -63,9 +63,9 @@ function resetAllValues() {
   calculateTotals();
   
   // Reset minus mode if it's active
-  const minusModeButton = document.getElementById('minusMode');
-  if (minusModeButton.classList.contains('active')) {
-    minusModeButton.classList.remove('active');
+  const editModeButton = document.getElementById('editMode');
+  if (editModeButton.classList.contains('active')) {
+    editModeButton.classList.remove('active');
   }
 
   // Display reset message as a toast notification
@@ -104,12 +104,12 @@ function toggleValue(id) {
 
   const bullets = gridItem.querySelectorAll(`#level${id} .bullet`);
   let currentLevel = Array.from(bullets).filter(bullet => bullet.classList.contains('active')).length;
-  const minusMode = document.getElementById('minusMode').classList.contains('active');
+  const editMode = document.getElementById('editMode').classList.contains('active');
 
   // Increment or decrement the level based on minus mode and current level
-  if (!minusMode && currentLevel < maxLevel) {
+  if (!editMode && currentLevel < maxLevel) {
     currentLevel += 1;
-  } else if (minusMode && currentLevel > 0) {
+  } else if (editMode && currentLevel > 0) {
     currentLevel -= 1;
   }
 

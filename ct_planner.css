@@ -56,7 +56,7 @@ body {
 
 /* Styles for active state */
 .toggle-button.active .toggle-image {
-  content: url('minus_mode_on.png'); /* Replace with your "on" state image */
+  content: url('btn_edit_on.png'); /* Replace with your "on" state image */
 }
 
 /* Reverse the logic for popupMode */
@@ -80,7 +80,7 @@ body {
 .total {
   display: flex;
   align-items: center; /* This will vertically center the children */
-  margin: 0 20px; /* Distance between totals */
+  margin: 0 0px; /* Distance between totals */
   text-align: center;
   /* border: 1px solid black; */
 }
@@ -88,12 +88,13 @@ body {
 .total-icon {
   width: 30px;  /* Adjust this value to control the image size */
   height: auto;
-  margin-right: 3px; /* Add some space between the icon and the number */
+  margin-right: 0px; /* Add some space between the icon and the number */
 }
 
 /* Optional: Style for the span to ensure it's vertically centered */
 .total span {
   display: inline-block;
+  width: 40px;
   vertical-align: middle;
   color: #5d5a52;
   font-weight: bold;
