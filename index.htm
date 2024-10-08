@@ -11,7 +11,7 @@
   <!-- Fixed Top DIV -->
   <div class="fixed-container">
     <!-- Add/Remove Mode Toggle -->
-    <div class="mode-toggle">
+    <div class="button-container">
       <button id="minusMode" class="toggle-button" aria-label="Toggle Minus Mode">
         <img src="minus_mode_off.png" alt="Minus Mode Off" class="toggle-image">
       </button>
@@ -38,24 +38,25 @@
       </div>
     </div>
     <!-- Version display -->
-    <div class="version-display">
-      v2024.10.07.003
+    <div class="version-container">
+      v2024.10.07.004
     </div>
   </div>
 
   <!-- Toast DIV -->
-  <div id="popup-container" class="popup-container">
-    <div id="popup-description" class="popup-content"></div>
+  <div id="toast-container" class="toast-container">
+    <div id="toast-description" class="toast-content"></div>
   </div>
   
   <!-- Grid Content DIV -->
   <div class="grid-container">
+
     <!-- Floor 1 -->
     <div> <!-- Blank Space --></div>
     
     <div class="grid-item blue" data-id="1" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Beads Green>Blue +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_b_l.png" alt="Image 1" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_l.png" alt="Image 1" class="talent-image">
       </div>
       <div id="level1" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -70,8 +71,8 @@
     </div>
     
     <div class="grid-item blue" data-id="2" data-point-cost="1" data-base-value1="0" data-increment1="30" data-label1="Snail ATK/DEF +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 2" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 2" class="talent-image">
       </div>
       <div id="level2" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -86,8 +87,8 @@
     </div>
     
     <div class="grid-item blue" data-id="3" data-point-cost="1" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_b_r.png" alt="Image 3" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_r.png" alt="Image 3" class="talent-image">
       </div>
       <div id="level3" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -105,8 +106,8 @@
 
     <!-- Floor 2 -->
     <div class="grid-item orange" data-id="4" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Beads Purple>Orange +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_o_l.png" alt="Image 4" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_l.png" alt="Image 4" class="talent-image">
       </div>
       <div id="level4" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -121,8 +122,8 @@
     </div>
     
     <div class="grid-item purple" data-id="5" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="Lottery Beads Blue>Purple +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_p_l.png" alt="Image 5" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_l.png" alt="Image 5" class="talent-image">
         </div>
       <div id="level5" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -137,8 +138,8 @@
     </div>
     
     <div class="grid-item blue" data-id="6" data-point-cost="1" data-base-value1="0" data-increment1="300" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="30" data-label2="Snail RUSH +" data-end2="">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 6" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 6" class="talent-image">
         </div>
       <div id="level6" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -154,8 +155,8 @@
     </div>
     
     <div class="grid-item purple" data-id="7" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="All Minion HP/DEF +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_p_r.png" alt="Image 7" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_r.png" alt="Image 7" class="talent-image">
         </div>
       <div id="level7" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -170,8 +171,8 @@
     </div>
     
     <div class="grid-item orange" data-id="8" data-point-cost="1" data-base-value1="0" data-increment1="1" data-label1="All Minion ATK/RUSH +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_o_r.png" alt="Image 8" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_r.png" alt="Image 8" class="talent-image">
         </div>
       <div id="level8" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -189,8 +190,8 @@
     <div> <!-- Blank Space --></div>
 
     <div class="grid-item blue" data-id="9" data-point-cost="2" data-base-value1="0" data-increment1="5" data-label1="Fungus Farm Max/Output +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_b_l.png" alt="Image 9" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_l.png" alt="Image 9" class="talent-image">
         </div>
       <div id="level9" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -205,8 +206,8 @@
       </div>
     </div>
     <div class="grid-item blue" data-id="10" data-point-cost="2" data-base-value1="0" data-increment1="36" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2=".5" data-label2="In explorations, DMG +" data-end2="%">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 10" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 10" class="talent-image">
         </div>
       <div id="level10" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -221,8 +222,8 @@
       </div>
     </div>
     <div class="grid-item blue" data-id="11" data-point-cost="2" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_b_r.png" alt="Image 11" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_r.png" alt="Image 11" class="talent-image">
         </div>
       <div id="level11" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -240,8 +241,8 @@
 
     <!-- Floor 4 -->
     <div class="grid-item orange" data-id="12" data-point-cost="2" data-base-value1="0" data-increment1="5" data-label1="Time Machine Max/Output +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_o_l.png" alt="Image 12" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_l.png" alt="Image 12" class="talent-image">
         </div>
       <div id="level12" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -256,8 +257,8 @@
     </div>
     
     <div class="grid-item purple" data-id="13" data-point-cost="2" data-base-value1="0" data-increment1="5" data-label1="Tadpole Pond Max/Output +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_p_l.png" alt="Image 13" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_l.png" alt="Image 13" class="talent-image">
         </div>
       <div id="level13" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -272,8 +273,8 @@
     </div>
     
     <div class="grid-item blue" data-id="14" data-point-cost="2" data-base-value1="0" data-increment1="360" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="36" data-label2="Snail RUSH +" data-end2="" data-base-value3="0" data-increment3=".5" data-label3="In explorations, DMG +" data-end3="%">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 14" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 14" class="talent-image">
         </div>
       <div id="level14" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -290,8 +291,8 @@
       </div>
     </div>
     <div class="grid-item purple" data-id="15" data-point-cost="2" data-base-value1="0" data-increment1="1" data-label1="All Minion HP/DEF +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_p_r.png" alt="Image 15" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_r.png" alt="Image 15" class="talent-image">
         </div>
       <div id="level15" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -306,8 +307,8 @@
     </div>
     
     <div class="grid-item orange" data-id="16" data-point-cost="2" data-base-value1="0" data-increment1="1" data-label1="All Minion ATK/RUSH +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_o_r.png" alt="Image 16" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_r.png" alt="Image 16" class="talent-image">
         </div>
       <div id="level16" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -325,8 +326,8 @@
     <div> <!-- Blank Space --></div>
 
     <div class="grid-item blue" data-id="17" data-point-cost="3" data-base-value1="0" data-increment1="5" data-label1="Lumber/Quarry Max/Output +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_b_l.png" alt="Image 17" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_l.png" alt="Image 17" class="talent-image">
         </div>
       <div id="level17" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -341,8 +342,8 @@
     </div>
     
     <div class="grid-item blue" data-id="18" data-point-cost="3" data-base-value1="0" data-increment1="42" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2=".5" data-label2="In Gene Simulations, DMG +" data-end2="%">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 18" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 18" class="talent-image">
         </div>
       <div id="level18" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -358,8 +359,8 @@
       </div>
     </div>
     <div class="grid-item blue" data-id="19" data-point-cost="3" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_b_r.png" alt="Image 19" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_r.png" alt="Image 19" class="talent-image">
         </div>
       <div id="level19" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -377,8 +378,8 @@
 
     <!-- Floor 6 -->
     <div class="grid-item orange" data-id="20" data-point-cost="3" data-base-value1="0" data-increment1="3" data-label1="All Gene Research SPD +" data-end1="%" data-base-value2="0" data-increment2=".5" data-label2="Gene Research Free Speedup +" data-end2="h">
-      <div class="image-button-container">
-        <img src="ct_o_l.png" alt="Image 20" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_l.png" alt="Image 20" class="talent-image">
         </div>
       <div id="level20" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -394,8 +395,8 @@
     </div>
     
     <div class="grid-item purple" data-id="21" data-point-cost="3" data-base-value1="0" data-increment1="3" data-label1="All Gene Research SPD +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_p_l.png" alt="Image 21" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_l.png" alt="Image 21" class="talent-image">
         </div>
       <div id="level21" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -410,8 +411,8 @@
     </div>
     
     <div class="grid-item blue" data-id="22" data-point-cost="3" data-base-value1="0" data-increment1="420" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="42" data-label2="Snail RUSH +" data-end2="" data-base-value3="0" data-increment3=".5" data-label3="In Gene Simulations, DMG +" data-end3="%">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 22" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 22" class="talent-image">
         </div>
       <div id="level22" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -428,8 +429,8 @@
     </div>
     
     <div class="grid-item purple" data-id="23" data-point-cost="3" data-base-value1="0" data-increment1="1" data-label1="All Minion HP/DEF +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_p_r.png" alt="Image 23" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_r.png" alt="Image 23" class="talent-image">
         </div>
       <div id="level23" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -444,8 +445,8 @@
     </div>
     
     <div class="grid-item orange" data-id="24" data-point-cost="3" data-base-value1="0" data-increment1="1" data-label1="All Minion ATK/RUSH +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_o_r.png" alt="Image 24" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_r.png" alt="Image 24" class="talent-image">
         </div>
       <div id="level24" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -463,8 +464,8 @@
     <div> <!-- Blank Space --></div>
 
     <div class="grid-item blue" data-id="25" data-point-cost="4" data-base-value1="0" data-increment1="3" data-label1="Museum Medal/Btad Output +" data-end1="%" data-base-value2="0" data-increment2="" data-label2="" data-end2="%">
-      <div class="image-button-container">
-        <img src="ct_b_l.png" alt="Image 25" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_l.png" alt="Image 25" class="talent-image">
         </div>
       <div id="level25" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -479,8 +480,8 @@
     </div>
     
     <div class="grid-item blue" data-id="26" data-point-cost="4" data-base-value1="0" data-increment1="48" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2=".5" data-label2="In Domain Duels, DMG +" data-end2="%">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 26" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 26" class="talent-image">
         </div>
       <div id="level26" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -496,8 +497,8 @@
     </div>
     
     <div class="grid-item blue" data-id="27" data-point-cost="4" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_b_r.png" alt="Image 27" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_r.png" alt="Image 27" class="talent-image">
         </div>
       <div id="level27" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -515,8 +516,8 @@
 
     <!-- Floor 8 -->
     <div class="grid-item orange" data-id="28" data-point-cost="4" data-base-value1="0" data-increment1="1" data-label1="Soul Offering SPD +" data-end1="%" data-base-value2="0" data-increment2="3" data-label2="Food/Stone/Wood from offerings +" data-end2="%">
-      <div class="image-button-container">
-        <img src="ct_o_l.png" alt="Image 28" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_l.png" alt="Image 28" class="talent-image">
         </div>
       <div id="level28" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -532,8 +533,8 @@
     </div>
     
     <div class="grid-item purple" data-id="29" data-point-cost="4" data-base-value1="0" data-increment1="1" data-label1="Soul Offering SPD +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_p_l.png" alt="Image 29" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_l.png" alt="Image 29" class="talent-image">
         </div>
       <div id="level29" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -548,8 +549,8 @@
     </div>
     
     <div class="grid-item blue" data-id="30" data-point-cost="4" data-base-value1="0" data-increment1="480" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="48" data-label2="Snail RUSH +" data-end2="" data-base-value3="0" data-increment3=".5" data-label3="In Domain Duels, DMG +" data-end3="%">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 30" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 30" class="talent-image">
         </div>
       <div id="level30" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -566,8 +567,8 @@
     </div>
     
     <div class="grid-item purple" data-id="31" data-point-cost="4" data-base-value1="0" data-increment1="1" data-label1="All Minion HP/DEF +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_p_r.png" alt="Image 31" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_r.png" alt="Image 31" class="talent-image">
         </div>
       <div id="level31" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -582,8 +583,8 @@
     </div>
     
     <div class="grid-item orange" data-id="32" data-point-cost="4" data-base-value1="0" data-increment1="1" data-label1="All Minion ATK/RUSH +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_o_r.png" alt="Image 32" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_r.png" alt="Image 32" class="talent-image">
         </div>
       <div id="level32" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -601,8 +602,8 @@
     <div> <!-- Blank Space --></div>
 
     <div class="grid-item blue" data-id="33" data-point-cost="5" data-base-value1="0" data-increment1="2" data-label1="Refining SPD +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_b_l.png" alt="Image 33" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_l.png" alt="Image 33" class="talent-image">
         </div>
       <div id="level33" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -617,8 +618,8 @@
     </div>
     
     <div class="grid-item blue" data-id="34" data-point-cost="5" data-base-value1="0" data-increment1="54" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2=".5" data-label2="In Snail Arena, DMG +" data-end2="%">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 34" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 34" class="talent-image">
         </div>
       <div id="level34" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -634,8 +635,8 @@
     </div>
     
     <div class="grid-item blue" data-id="35" data-point-cost="5" data-base-value1="0" data-increment1="2" data-label1="Snail Leadership +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_b_r.png" alt="Image 35" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_r.png" alt="Image 35" class="talent-image">
         </div>
       <div id="level35" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -653,8 +654,8 @@
 
     <!-- Floor 10 -->
     <div class="grid-item orange" data-id="36" data-point-cost="5" data-base-value1="0" data-increment1="3" data-label1="Minion Clone SPD +" data-end1="%" data-base-value2="0" data-increment2="2" data-label2="Minion Clone Btad Cost +" data-end2="%" data-base-value3="0" data-increment3="1" data-label3="Minion Recovery SPD/Btad Cost +" data-end3="%">
-      <div class="image-button-container">
-        <img src="ct_o_l.png" alt="Image 36" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_l.png" alt="Image 36" class="talent-image">
         </div>
       <div id="level36" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -671,8 +672,8 @@
     </div>
     
     <div class="grid-item purple" data-id="37" data-point-cost="5" data-base-value1="0" data-increment1="3" data-label1="Minion Clone SPD +" data-end1="%" data-base-value2="0" data-increment2="1" data-label2="Minion Recovery SPD +" data-end2="%">
-      <div class="image-button-container">
-        <img src="ct_p_l.png" alt="Image 37" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_l.png" alt="Image 37" class="talent-image">
         </div>
       <div id="level37" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -688,8 +689,8 @@
     </div>
     
     <div class="grid-item blue" data-id="38" data-point-cost="5" data-base-value1="0" data-increment1="540" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="54" data-label2="Snail RUSH +" data-end2="" data-base-value3="0" data-increment3=".5" data-label3="In Snail Arena, DMG +" data-end3="%">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 38" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 38" class="talent-image">
         </div>
       <div id="level38" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -706,8 +707,8 @@
     </div>
     
     <div class="grid-item purple" data-id="39" data-point-cost="5" data-base-value1="0" data-increment1="1" data-label1="All Minion HP/DEF +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_p_r.png" alt="Image 39" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_r.png" alt="Image 39" class="talent-image">
         </div>
       <div id="level39" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -722,8 +723,8 @@
     </div>
     
     <div class="grid-item orange" data-id="40" data-point-cost="5" data-base-value1="0" data-increment1="1" data-label1="All Minion ATK/RUSH +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_o_r.png" alt="Image 40" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_r.png" alt="Image 40" class="talent-image">
         </div>
       <div id="level40" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -741,8 +742,8 @@
     <div> <!-- Blank Space --></div>
 
     <div class="grid-item blue" data-id="41" data-point-cost="6" data-base-value1="0" data-increment1="100" data-label1="W-tads from Drill Rig +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_b_l.png" alt="Image 41" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_l.png" alt="Image 41" class="talent-image">
         </div>
       <div id="level41" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -757,8 +758,8 @@
     </div>
     
     <div class="grid-item blue" data-id="42" data-point-cost="6" data-base-value1="0" data-increment1="60" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2=".5" data-label2="TBD, DMG +" data-end2="%">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 42" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 42" class="talent-image">
         </div>
       <div id="level42" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -774,8 +775,8 @@
     </div>
     
     <div class="grid-item blue" data-id="43" data-point-cost="6" data-base-value1="0" data-increment1="4" data-label1="Snail Leadership +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_b_r.png" alt="Image 43" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_r.png" alt="Image 43" class="talent-image">
         </div>
       <div id="level43" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -793,8 +794,8 @@
 
     <!-- Floor 12 -->
     <div class="grid-item orange" data-id="44" data-point-cost="6" data-base-value1="0" data-increment1="4" data-label1="All Gene Research SPD +" data-end1="%" data-base-value2="0" data-increment2="1" data-label2="Gene Research Free Speedup +" data-end2="h">
-      <div class="image-button-container">
-        <img src="ct_o_l.png" alt="Image 44" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_l.png" alt="Image 44" class="talent-image">
         </div>
       <div id="level44" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -810,8 +811,8 @@
     </div>
     
     <div class="grid-item purple" data-id="45" data-point-cost="6" data-base-value1="0" data-increment1="4" data-label1="All Gene Research SPD +" data-end1="%" data-base-value2="0" data-increment2="2" data-label2="" data-end2="">
-      <div class="image-button-container">
-        <img src="ct_p_l.png" alt="Image 45" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_l.png" alt="Image 45" class="talent-image">
         </div>
       <div id="level45" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -826,8 +827,8 @@
     </div>
     
     <div class="grid-item blue" data-id="46" data-point-cost="6" data-base-value1="0" data-increment1="600" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="60" data-label2="Snail RUSH +" data-end2="" data-base-value3="0" data-increment3=".5" data-label3="TBD, DMG +" data-end3="%">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 46" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 46" class="talent-image">
         </div>
       <div id="level46" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -844,8 +845,8 @@
     </div>
     
     <div class="grid-item purple" data-id="47" data-point-cost="6" data-base-value1="0" data-increment1="2" data-label1="All Minion HP/DEF +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_p_r.png" alt="Image 47" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_r.png" alt="Image 47" class="talent-image">
         </div>
       <div id="level47" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -860,8 +861,8 @@
     </div>
     
     <div class="grid-item orange" data-id="48" data-point-cost="6" data-base-value1="0" data-increment1="2" data-label1="All Minion ATK/RUSH +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_o_r.png" alt="Image 48" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_r.png" alt="Image 48" class="talent-image">
         </div>
       <div id="level48" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -879,8 +880,8 @@
     <div> <!-- Blank Space --></div>
 
     <div class="grid-item blue" data-id="49" data-point-cost="6" data-base-value1="0" data-increment1="1" data-label1="Refining Mats Green>Blue +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_b_l.png" alt="Image 49" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_l.png" alt="Image 49" class="talent-image">
         </div>
       <div id="level49" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -895,8 +896,8 @@
     </div>
     
     <div class="grid-item blue" data-id="50" data-point-cost="6" data-base-value1="0" data-increment1="66" data-label1="Snail ATK/DEF +" data-end1="" data-base-value2="0" data-increment2=".5" data-label2="TBD, DMG +" data-end2="%">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 50" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 50" class="talent-image">
         </div>
       <div id="level50" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -912,8 +913,8 @@
       </div>
     </div>
     <div class="grid-item blue" data-id="51" data-point-cost="6" data-base-value1="0" data-increment1="5" data-label1="Snail Leadership +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_b_r.png" alt="Image 51" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_r.png" alt="Image 51" class="talent-image">
         </div>
       <div id="level51" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -931,8 +932,8 @@
 
     <!-- Floor 14 -->
     <div class="grid-item orange" data-id="52" data-point-cost="6" data-base-value1="0" data-increment1="1" data-label1="Refining Mats Purple>Orange +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_o_l.png" alt="Image 52" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_l.png" alt="Image 52" class="talent-image">
         </div>
       <div id="level52" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -947,8 +948,8 @@
     </div>
     
     <div class="grid-item purple" data-id="53" data-point-cost="6" data-base-value1="0" data-increment1="1" data-label1="Refining Mats Blue>Purple +" data-end1="%">
-      <div class="image-button-container">
-        <img src="ct_p_l.png" alt="Image 53" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_l.png" alt="Image 53" class="talent-image">
         </div>
       <div id="level53" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -963,8 +964,8 @@
     </div>
     
     <div class="grid-item blue" data-id="54" data-point-cost="6" data-base-value1="0" data-increment1="660" data-label1="Snail HP +" data-end1="" data-base-value2="0" data-increment2="66" data-label2="Snail RUSH +" data-end2="" data-base-value3="0" data-increment3=".5" data-label3="TBD, DMG +" data-end3="%">
-      <div class="image-button-container">
-        <img src="ct_b_m.png" alt="Image 54" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_b_m.png" alt="Image 54" class="talent-image">
         </div>
       <div id="level54" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -981,8 +982,8 @@
     </div>
     
     <div class="grid-item purple" data-id="55" data-point-cost="6" data-base-value1="0" data-increment1="3" data-label1="All Minion HP/DEF +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_p_r.png" alt="Image 55" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_p_r.png" alt="Image 55" class="talent-image">
         </div>
       <div id="level55" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -997,8 +998,8 @@
     </div>
     
     <div class="grid-item orange" data-id="56" data-point-cost="6" data-base-value1="0" data-increment1="3" data-label1="All Minion ATK/RUSH +" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_o_r.png" alt="Image 56" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_r.png" alt="Image 56" class="talent-image">
         </div>
       <div id="level56" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -1014,8 +1015,8 @@
     
     <!-- Floor 15 -->
     <div class="grid-item orange" data-id="57" data-point-cost="6" data-base-value1="0" data-increment1="5" data-label1="Rocket Cabin Output +" data-end1="%" data-base-value2="0" data-increment2="10" data-label2="Rocket Cabin Max Cap +" data-end2="%">
-      <div class="image-button-container">
-        <img src="ct_o_l.png" alt="Image 57" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_l.png" alt="Image 57" class="talent-image">
           </div>
       <div id="level57" class="level-bullets bullet-container">
         <span class="bullet"></span>
@@ -1037,8 +1038,8 @@
     <div> <!-- Blank Space --></div>
    
     <div class="grid-item orange" data-id="58" data-point-cost="6" data-base-value1="0" data-increment1="5" data-label1="TBD+" data-end1="">
-      <div class="image-button-container">
-        <img src="ct_o_r.png" alt="Image 58" class="talent-image image-small">
+      <div class="talent-image-container">
+        <img src="ct_o_r.png" alt="Image 58" class="talent-image">
           </div>
       <div id="level58" class="level-bullets bullet-container">
         <span class="bullet"></span>

@@ -26,16 +26,7 @@ body {
   justify-content: center;
 }
 
-.version-display {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  font-size: 0.8em;
-  color: #666;
-  padding: 5px;
-}
-
-.mode-toggle {
+.button-container {
   position: absolute;
   left: 5px;
   top: 50%;
@@ -54,13 +45,13 @@ body {
   outline: none;
 }
 
-.toggle-image {
-  width: 30px; /* Adjust as needed */
-  height: 30px; /* Adjust as needed */
-}
-
 .toggle-button:active .toggle-image {
   transform: scale(0.95);
+}
+
+.toggle-image {
+  width: 40px; /* Adjust as needed */
+  height: 40px; /* Adjust as needed */
 }
 
 /* Styles for active state */
@@ -77,7 +68,6 @@ body {
   content: url('btn_list_off.png'); /* "Off" state is when popup mode is active (descriptions hidden) */
 }
 
-
 .totals-container {
   display: flex;
   justify-content: center;
@@ -90,13 +80,13 @@ body {
 .total {
   display: flex;
   align-items: center; /* This will vertically center the children */
-  margin: 0 20px;
+  margin: 0 20px; /* Distance between totals */
   text-align: center;
   /* border: 1px solid black; */
 }
 
 .total-icon {
-  width: 20px;  /* Adjust this value to control the image size */
+  width: 30px;  /* Adjust this value to control the image size */
   height: auto;
   margin-right: 3px; /* Add some space between the icon and the number */
 }
@@ -105,18 +95,31 @@ body {
 .total span {
   display: inline-block;
   vertical-align: middle;
+  color: #5d5a52;
+  font-weight: bold;
+  font-family: Verdana, sans-serif;
+  font-size: 1.3em;
+}
+
+.version-container {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  font-size: 0.8em;
+  color: #666;
+  padding: 5px;
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 7px;
-  max-width: 1100px; /* Set a max width for larger screens */
+  max-width: 900px; /* Set a max width for larger screens */
   margin: 0 auto; /* Center the grid container */
 }
 
 /* Make the grid full width on smaller screens */
-@media (max-width: 1200px) { /* Adjust the breakpoint as needed */
+@media (max-width: 1000px) { /* Adjust the breakpoint as needed */
   .grid-container {
     grid-template-columns: repeat(5, 1fr); /* Change to 2 columns on small screens */
     width: 100%; /* Take full width on mobile */
@@ -146,7 +149,7 @@ body {
   transform: scale(0.95);
 }
 
-.image-button-container {
+.talent-image-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,6 +160,22 @@ body {
   /* Add these properties to prevent double-tap zoom on the container */
 }
 
+.talent-image {
+  max-width: 30px;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.1s;
+  /* Add these properties to prevent double-tap zoom on the image */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.minus-mode .talent-image {
+  opacity: 0.7;
+}
+
 /* Bullet container for showing levels */
 .bullet-container {
   display: flex;
@@ -164,7 +183,7 @@ body {
   align-items: center;
   justify-content: center; /* Center the image horizontally */
   margin-top: -7px;
-  z-index: 1000;
+  z-index: 5;
 }
 
 /* Bullet style */
@@ -182,28 +201,6 @@ body {
   background-color: gold; /* Active state */
 }
 
-.talent-image {
-  cursor: pointer;
-  pointer-events: auto;
-  transition: transform 0.1s;
-  /* Add these properties to prevent double-tap zoom on the image */
-  -webkit-tap-highlight-color: transparent;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* .talent-image:active { */
-  /* transform: scale(0.95); */
-/* } */
-
-.minus-mode .talent-image {
-  opacity: 0.7;
-}
-
-.image-small {
-  max-width: 30px;
-}
 .description-container {
   background-color: #f9dd8a;
   border-radius: 5px;
@@ -215,7 +212,7 @@ p {
 }
 
 /* New styles for the popup */
-.popup-container {
+.toast-container {
   position: fixed;
   bottom: -100px;
   left: 50%;
@@ -230,12 +227,12 @@ p {
   opacity: 1;
 }
 
-.popup-container.show {
+.toast-container.show {
   bottom: 20px;
   opacity: 1;
 }
 
-.popup-content {
+.toast-content {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;

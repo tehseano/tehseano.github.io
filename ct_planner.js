@@ -9,8 +9,8 @@ let toastActive = false; // Track if a toast is currently active
 window.addEventListener('load', () => {
   const fixedContainer = document.querySelector('.fixed-container');
   const gridContainer = document.querySelector('.grid-container');
-  const popupContainer = document.getElementById('popup-container');
-  const popupDescription = document.getElementById('popup-description');
+  const popupContainer = document.getElementById('toast-container');
+  const popupDescription = document.getElementById('toast-description');
   const resetButton = document.getElementById('resetButton');
 
   // Reset button
@@ -73,8 +73,8 @@ function resetAllValues() {
 }
 
 function updatePopupMessage(message, duration = 3000) {
-  const popupContainer = document.getElementById('popup-container');
-  const popupDescription = document.getElementById('popup-description');
+  const popupContainer = document.getElementById('toast-container');
+  const popupDescription = document.getElementById('toast-description');
   
   popupDescription.textContent = message;
   
