@@ -22,7 +22,9 @@ window.addEventListener('load', () => {
     const height = fixedContainer.offsetHeight;
     gridContainer.style.marginTop = `${height}px`;
   };
-
+  
+  loadState(); // Update cookie
+  
   updateGridMargin();
   window.addEventListener('resize', updateGridMargin); // Update margin on window resize
 
@@ -57,6 +59,59 @@ window.addEventListener('load', () => {
   }, 100);
 });
 
+function setCookie(name, value, days) {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
+}
+
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+function loadState() {
+    const savedState = getCookie('talentState');
+    if (savedState) {
+        const state = JSON.parse(savedState);
+        
+        Object.keys(state).forEach((id) => {
+            if (id === 'descriptionMode') {
+                descriptionMode = state[id];
+                const descriptionModeButton = document.getElementById('descriptionMode');
+                descriptionModeButton.classList.toggle('active', descriptionMode);
+                initializeDescriptionMode();
+            } else {
+                updateBullets(id, state[id]);
+                updateDescription(id);
+            }
+        });
+        
+        calculateTotals();
+    }
+}
+
+function saveState() {
+    const gridItems = document.querySelectorAll('.grid-item');
+    const state = {};
+    
+    gridItems.forEach((item) => {
+        const id = item.getAttribute('data-id');
+        const level = item.querySelectorAll('.bullet.active').length;
+        state[id] = level;
+    });
+    
+    state.descriptionMode = descriptionMode;
+    
+    setCookie('talentState', JSON.stringify(state), 30); // Save for 30 days
+}
+
 // Reset Button
 function resetAllValues() {
   const gridItems = document.querySelectorAll('.grid-item');
@@ -74,6 +129,8 @@ function resetAllValues() {
 
   // Display reset message as a toast notification
   updateToastMessage("Talents reset successfully!", 3000);
+  
+  setCookie('talentState', '', -1); // Clear the cookie
 }
 
 function updateToastMessage(message, duration = 3000) {
@@ -120,6 +177,7 @@ function toggleValue(id) {
   updateBullets(id, currentLevel);
   updateDescription(id);
   calculateTotals();
+  saveState(); // Update cookie
 }
 
 // Function to calculate and update the total points for each color
@@ -233,6 +291,9 @@ function toggleDescriptionMode() {
   const buttonImage = descriptionModeButton.querySelector('.toggle-image');
   buttonImage.src = descriptionMode ? 'img/btn/btn_list_on.png' : 'img/btn/btn_list_off.png';
   buttonImage.alt = descriptionMode ? 'Show All Text On' : 'Show All Text Off';
+  
+  // Update cookie
+  saveState(); // Add this line
 }
 
 // Function to initialize the description mode
