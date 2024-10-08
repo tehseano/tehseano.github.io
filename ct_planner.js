@@ -231,7 +231,7 @@ function toggleDescriptionMode() {
   
   // Update the button image
   const buttonImage = descriptionModeButton.querySelector('.toggle-image');
-  buttonImage.src = descriptionMode ? 'btn_list_on.png' : 'btn_list_off.png';
+  buttonImage.src = descriptionMode ? 'img/btn/btn_list_on.png' : 'img/btn/btn_list_off.png';
   buttonImage.alt = descriptionMode ? 'Show All Text On' : 'Show All Text Off';
 }
 
