@@ -170,15 +170,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2px;
-  margin-top: 2px;
+  margin-bottom: 0px;
+  margin-top: 0px;
   width: 100%;
   pointer-events: none;
   /* Add these properties to prevent double-tap zoom on the container */
 }
 
 .talent-image {
-  max-width: 35px;
+  max-width: 40px;
   cursor: pointer;
   pointer-events: auto;
   transition: transform 0.1s;
@@ -234,7 +234,7 @@ body {
 }
 
 .description-container p {
-  margin: 4px 0;
+  margin: 2px 0;
 }
 
 p {
