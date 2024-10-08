@@ -205,8 +205,8 @@ body {
 }
 
 .bullet {
-  width: 0.9em;
-  height: 0.9em;
+  width: 0.7em;
+  height: 0.7em;
   border: 0.1em solid black; /* Bullet border */
   border-radius: 50%;
   display: inline-block;
