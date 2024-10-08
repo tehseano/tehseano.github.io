@@ -54,17 +54,15 @@ body {
   height: 40px; /* Adjust as needed */
 }
 
-/* Styles for active state */
 .toggle-button.active .toggle-image {
   content: url('btn_edit_on.png'); /* Replace with your "on" state image */
 }
 
-/* Reverse the logic for popupMode */
-#popupMode .toggle-image {
+#descriptionMode .toggle-image {
   content: url('btn_list_on.png'); /* "On" state is when descriptions are shown */
 }
 
-#popupMode.active .toggle-image {
+#descriptionMode.active .toggle-image {
   content: url('btn_list_off.png'); /* "Off" state is when popup mode is active (descriptions hidden) */
 }
 
@@ -91,7 +89,6 @@ body {
   margin-right: 0px; /* Add some space between the icon and the number */
 }
 
-/* Optional: Style for the span to ensure it's vertically centered */
 .total span {
   display: inline-block;
   width: 40px;
@@ -139,7 +136,6 @@ body {
   margin: 0 auto; /* Center the grid container */
 }
 
-/* Make the grid full width on smaller screens */
 @media (max-width: 1200px) { /* Adjust the breakpoint as needed */
   .grid-container {
     grid-template-columns: repeat(5, 1fr); /* Change to 2 columns on small screens */
@@ -197,7 +193,6 @@ body {
   opacity: 0.7;
 }
 
-/* Bullet container for showing levels */
 .bullet-container {
   display: flex;
   gap: 0px; /* Slightly reduce spacing between bullets */
@@ -207,7 +202,6 @@ body {
   z-index: 5;
 }
 
-/* Bullet style */
 .bullet {
   width: 0.45em;
   height: 0.45em;
@@ -217,7 +211,6 @@ body {
   background-color: #A9A9A9; /* Inactive state */
 }
 
-/* Active bullet (level reached) */
 .bullet.active {
   background-color: gold; /* Active state */
 }
@@ -232,7 +225,6 @@ p {
   margin: 3px 0;
 }
 
-/* New styles for the popup */
 .toast-container {
   position: fixed;
   bottom: -100px;
@@ -259,7 +251,6 @@ p {
   text-align: center;
 }
 
-/* Add this class to hide descriptions when popup mode is active */
 .hide-description {
   display: none;
 }

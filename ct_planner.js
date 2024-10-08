@@ -1,21 +1,21 @@
 // Global variables
-let popupMode = true; // Controls whether descriptions are shown in a popup or inline
+let descriptionMode = true; // Controls whether descriptions are shown in a popup or inline
 let lastClickedId = null; // Stores the ID of the last clicked grid item
 let firstItemClicked = false; // Tracks if any grid item has been clicked
 let toastActive = false; // Track if a toast is currently active
+let initialLoad = true; // New variable to track initial page load
 const maxLevel = 5; // Maximum level for each talent
 
 // Main initialization when the page loads
 window.addEventListener('load', () => {
   const fixedContainer = document.querySelector('.fixed-container');
   const gridContainer = document.querySelector('.grid-container');
-  const popupContainer = document.getElementById('toast-container');
-  const popupDescription = document.getElementById('toast-description');
+  const toastContainer = document.getElementById('toast-container');
+  const toastDescription = document.getElementById('toast-description');
   const resetButton = document.getElementById('resetButton');
 
   // Reset button
   resetButton.addEventListener('click', resetAllValues);
-
 
   // Function to update the margin of the grid container based on the fixed container's height
   const updateGridMargin = () => {
@@ -41,16 +41,20 @@ window.addEventListener('load', () => {
 
   // Set up event listeners for edit mode and popup mode toggles
   const editModeButton = document.getElementById('editMode');
-  const popupModeButton = document.getElementById('popupMode');
+  const descriptionModeButton = document.getElementById('descriptionMode');
 
   editModeButton.addEventListener('click', () => {
     editModeButton.classList.toggle('active');
+    const isActive = editModeButton.classList.contains('active');
+    updateToastMessage(`Edit mode ${isActive ? 'on' : 'off'}`, 2000);
   });
 
-  popupModeButton.addEventListener('click', () => {
-    popupModeButton.classList.toggle('active');
-    toggleDescriptionMode();
-  });
+  descriptionModeButton.addEventListener('click', toggleDescriptionMode);
+
+  // Set initialLoad to false after all initial descriptions are set
+  setTimeout(() => {
+    initialLoad = false;
+  }, 100);
 });
 
 // Reset Button
@@ -69,27 +73,27 @@ function resetAllValues() {
   }
 
   // Display reset message as a toast notification
-  updatePopupMessage("Talents reset successfully!", 3000);
+  updateToastMessage("Talents reset successfully!", 3000);
 }
 
-function updatePopupMessage(message, duration = 3000) {
-  const popupContainer = document.getElementById('toast-container');
-  const popupDescription = document.getElementById('toast-description');
+function updateToastMessage(message, duration = 3000) {
+  const toastContainer = document.getElementById('toast-container');
+  const toastDescription = document.getElementById('toast-description');
   
-  popupDescription.textContent = message;
+  toastDescription.textContent = message;
   
   if (toastActive) {
     // If a toast is already active, just update the content and reset the timer
-    clearTimeout(popupContainer.hideTimeout);
+    clearTimeout(toastContainer.hideTimeout);
   } else {
     // If no toast is active, show it with animation
-    popupContainer.classList.add('show');
+    toastContainer.classList.add('show');
     toastActive = true;
   }
   
   // Set a new timeout to hide the popup
-  popupContainer.hideTimeout = setTimeout(() => {
-    popupContainer.classList.remove('show');
+  toastContainer.hideTimeout = setTimeout(() => {
+    toastContainer.classList.remove('show');
     // Add a timeout to reset toastActive after the animation completes
     setTimeout(() => {
       toastActive = false;
@@ -192,45 +196,50 @@ function updateDescription(id) {
     }
   }
 
-  // Always update popup message as a toast notification
-  updatePopupMessage(descriptions.join(' | '));
+  // Update popup message as a toast notification only if descriptionMode is true and it's not the initial load
+  if (descriptionMode && !initialLoad) {
+    updateToastMessage(descriptions.join(' | '));
+  }
 
-  // Update inline descriptions visibility based on popup mode
+  // Update inline descriptions visibility based on description mode
   const descriptionContainer = gridItem.querySelector('.description-container');
   if (descriptionContainer) {
-    descriptionContainer.classList.toggle('hide-description', popupMode);
+    descriptionContainer.classList.toggle('hide-description', descriptionMode);
   }
 
   // Update all grid items' descriptions visibility
   document.querySelectorAll('.grid-item .description-container').forEach(container => {
-    container.classList.toggle('hide-description', popupMode);
+    container.classList.toggle('hide-description', descriptionMode);
   });
 }
 
 // Function to toggle between popup and inline description modes
 function toggleDescriptionMode() {
-  popupMode = !popupMode;
+  descriptionMode = !descriptionMode;
   const descriptionContainers = document.querySelectorAll('.description-container');
-  const popupModeButton = document.getElementById('popupMode');
+  const descriptionModeButton = document.getElementById('descriptionMode');
   
   descriptionContainers.forEach(container => {
-    container.classList.toggle('hide-description', popupMode);
+    container.classList.toggle('hide-description', descriptionMode);
   });
   
   // Toggle the active class on the button
-  popupModeButton.classList.toggle('active', popupMode);
+  descriptionModeButton.classList.toggle('active', descriptionMode);
   
-  // Update the current description
-  if (lastClickedId) {
-    updateDescription(lastClickedId);
-  }
+  // Update the toast message
+  updateToastMessage(`Description mode ${descriptionMode ? 'off' : 'on'}`, 2000);
+  
+  // Update the button image
+  const buttonImage = descriptionModeButton.querySelector('.toggle-image');
+  buttonImage.src = descriptionMode ? 'btn_list_on.png' : 'btn_list_off.png';
+  buttonImage.alt = descriptionMode ? 'Show All Text On' : 'Show All Text Off';
 }
 
 // Function to initialize the description mode
 function initializeDescriptionMode() {
   const descriptionContainers = document.querySelectorAll('.description-container');
   descriptionContainers.forEach(container => {
-    container.classList.toggle('hide-description', popupMode);
+    container.classList.toggle('hide-description', descriptionMode);
   });
 }
 

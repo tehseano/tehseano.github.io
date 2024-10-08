@@ -2,14 +2,15 @@
 let popupMode = true; // Controls whether descriptions are shown in a popup or inline
 let lastClickedId = null; // Stores the ID of the last clicked grid item
 let firstItemClicked = false; // Tracks if any grid item has been clicked
+let toastActive = false; // Track if a toast is currently active
 const maxLevel = 5; // Maximum level for each talent
 
 // Main initialization when the page loads
 window.addEventListener('load', () => {
   const fixedContainer = document.querySelector('.fixed-container');
   const gridContainer = document.querySelector('.grid-container');
-  const popupContainer = document.getElementById('popup-container');
-  const popupDescription = document.getElementById('popup-description');
+  const toastContainer = document.getElementById('toast-container');
+  const toastDescription = document.getElementById('toast-description');
   const resetButton = document.getElementById('resetButton');
 
   // Reset button
@@ -38,12 +39,12 @@ window.addEventListener('load', () => {
     });
   });
 
-  // Set up event listeners for minus mode and popup mode toggles
-  const minusModeButton = document.getElementById('minusMode');
+  // Set up event listeners for edit mode and popup mode toggles
+  const editModeButton = document.getElementById('editMode');
   const popupModeButton = document.getElementById('popupMode');
 
-  minusModeButton.addEventListener('click', () => {
-    minusModeButton.classList.toggle('active');
+  editModeButton.addEventListener('click', () => {
+    editModeButton.classList.toggle('active');
   });
 
   popupModeButton.addEventListener('click', () => {
@@ -61,32 +62,40 @@ function resetAllValues() {
   });
   calculateTotals();
   
-  // Reset minus mode if it's active
-  const minusModeButton = document.getElementById('minusMode');
-  if (minusModeButton.classList.contains('active')) {
-    minusModeButton.classList.remove('active');
+  // Reset edit mode if it's active
+  const editModeButton = document.getElementById('editMode');
+  if (editModeButton.classList.contains('active')) {
+    editModeButton.classList.remove('active');
   }
 
   // Display reset message as a toast notification
-  updatePopupMessage("Talents reset successfully!", 3000);
+  updateToastMessage("Talents reset successfully!", 3000);
 }
 
-function updatePopupMessage(message, duration = 3000) {
-  const popupContainer = document.getElementById('popup-container');
-  const popupDescription = document.getElementById('popup-description');
+function updateToastMessage(message, duration = 3000) {
+  const toastContainer = document.getElementById('toast-container');
+  const toastDescription = document.getElementById('toast-description');
   
-  popupDescription.textContent = message;
+  toastDescription.textContent = message;
   
-  // Show the popup
-  popupContainer.classList.add('show');
+  if (toastActive) {
+    // If a toast is already active, just update the content and reset the timer
+    clearTimeout(toastContainer.hideTimeout);
+  } else {
+    // If no toast is active, show it with animation
+    toastContainer.classList.add('show');
+    toastActive = true;
+  }
   
-  // Hide the popup after the specified duration
-  setTimeout(() => {
-    popupContainer.classList.remove('show');
+  // Set a new timeout to hide the popup
+  toastContainer.hideTimeout = setTimeout(() => {
+    toastContainer.classList.remove('show');
+    // Add a timeout to reset toastActive after the animation completes
+    setTimeout(() => {
+      toastActive = false;
+    }, 300); // This should match the transition duration in CSS
   }, duration);
 }
-
-
 
 // Function to toggle the value (level) of a grid item
 function toggleValue(id) {
@@ -95,12 +104,12 @@ function toggleValue(id) {
 
   const bullets = gridItem.querySelectorAll(`#level${id} .bullet`);
   let currentLevel = Array.from(bullets).filter(bullet => bullet.classList.contains('active')).length;
-  const minusMode = document.getElementById('minusMode').classList.contains('active');
+  const editMode = document.getElementById('editMode').classList.contains('active');
 
-  // Increment or decrement the level based on minus mode and current level
-  if (!minusMode && currentLevel < maxLevel) {
+  // Increment or decrement the level based on edit mode and current level
+  if (!editMode && currentLevel < maxLevel) {
     currentLevel += 1;
-  } else if (minusMode && currentLevel > 0) {
+  } else if (editMode && currentLevel > 0) {
     currentLevel -= 1;
   }
 
@@ -183,53 +192,33 @@ function updateDescription(id) {
     }
   }
 
-  // Update popup description
-  const popupDescription = document.getElementById('popup-description');
-  popupDescription.textContent = descriptions.join(' | ');
+  // Always update popup message as a toast notification
+  updateToastMessage(descriptions.join(' | '));
 
-  // Show/hide descriptions based on popup mode
-  const popupContainer = document.getElementById('popup-container');
-  if (popupMode) {
-    popupContainer.style.display = 'block';
-    gridItem.querySelectorAll('[id^="description"]').forEach(desc => {
-      desc.classList.add('hide-description');
-    });
-  } else {
-    popupContainer.style.display = 'none';
-    gridItem.querySelectorAll('[id^="description"]').forEach(desc => {
-      desc.classList.remove('hide-description');
-    });
+  // Update inline descriptions visibility based on popup mode
+  const descriptionContainer = gridItem.querySelector('.description-container');
+  if (descriptionContainer) {
+    descriptionContainer.classList.toggle('hide-description', popupMode);
   }
 
   // Update all grid items' descriptions visibility
-  document.querySelectorAll('.grid-item').forEach(item => {
-    item.querySelectorAll('[id^="description"]').forEach(desc => {
-      desc.classList.toggle('hide-description', popupMode);
-    });
+  document.querySelectorAll('.grid-item .description-container').forEach(container => {
+    container.classList.toggle('hide-description', popupMode);
   });
 }
 
 // Function to toggle between popup and inline description modes
 function toggleDescriptionMode() {
   popupMode = !popupMode;
-  const descriptions = document.querySelectorAll('[id^="description"]');
-  const popupContainer = document.getElementById('popup-container');
+  const descriptionContainers = document.querySelectorAll('.description-container');
   const popupModeButton = document.getElementById('popupMode');
   
-  descriptions.forEach(desc => {
-    desc.classList.toggle('hide-description', popupMode);
+  descriptionContainers.forEach(container => {
+    container.classList.toggle('hide-description', popupMode);
   });
   
-  if (popupContainer) {
-    if (popupMode && firstItemClicked) {
-      popupContainer.style.display = 'block';
-    } else {
-      popupContainer.style.display = 'none';
-    }
-  }
-  
   // Toggle the active class on the button
-  popupModeButton.classList.toggle('active', !popupMode);
+  popupModeButton.classList.toggle('active', popupMode);
   
   // Update the current description
   if (lastClickedId) {
@@ -239,14 +228,10 @@ function toggleDescriptionMode() {
 
 // Function to initialize the description mode
 function initializeDescriptionMode() {
-  const descriptions = document.querySelectorAll('[id^="description"]');
-  descriptions.forEach(desc => {
-    desc.classList.toggle('hide-description', popupMode);
+  const descriptionContainers = document.querySelectorAll('.description-container');
+  descriptionContainers.forEach(container => {
+    container.classList.toggle('hide-description', popupMode);
   });
-  const popupContainer = document.getElementById('popup-container');
-  if (popupContainer) {
-    popupContainer.style.display = 'none'; // Start with popup hidden
-  }
 }
 
 // Initial update for all descriptions and calculations when the DOM is fully loaded
