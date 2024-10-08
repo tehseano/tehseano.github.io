@@ -285,3 +285,26 @@ p {
 .hide-description {
   display: none;
 }
+
+.copyright-container {
+  position: fixed;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  font-size: 1.0em;
+  color: white;
+  padding: 5px 10px;
+  z-index: 1000;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  pointer-events: none; /* Allows clicking through the copyright display */
+}
+
+.copyright-container a {
+  color: white;
+  text-decoration: none;
+}
+
+.copyright-container a:hover {
+  text-decoration: underline;
+}
