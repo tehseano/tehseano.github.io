@@ -287,24 +287,14 @@ p {
 }
 
 .copyright-container {
-  position: fixed;
-  bottom: 5px;
-  left: 0;
-  right: 0;
+  flex-shrink: 0;
+  width: 100%;
   font-size: 1.0em;
   color: white;
-  padding: 5px 10px;
-  z-index: 1000;
-  font-family: 'Arial', sans-serif;
+  padding: 30px 0px;
+  font-family: 'Verdana', sans-serif;
   text-align: center;
-  pointer-events: none; /* Allows clicking through the copyright display */
-}
-
-.copyright-container a {
-  color: white;
-  text-decoration: none;
-}
-
-.copyright-container a:hover {
-  text-decoration: underline;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  line-height: 1.5em;
 }
