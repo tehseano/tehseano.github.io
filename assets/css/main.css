@@ -3350,9 +3350,11 @@ input, select, textarea {
 
 		@media screen and (max-width: 480px) {
 
+/*
 			#header .logo span {
 				display: none;
 			}
+*/
 
 			#header nav a[href="#menu"] {
 				overflow: hidden;
@@ -3386,17 +3388,17 @@ input, select, textarea {
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		padding: 6em 0 2em 0 ;
+		padding: 6em 0 2em 0;
 		background-attachment: fixed;
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
 		border-bottom: 0 !important;
 		cursor: default;
-		height: 60vh;
+		height: 25vh;
 		margin-bottom: -3.25em;
 		max-height: 32em;
-		min-height: 22em;
+		min-height: 15em;
 		position: relative;
 		top: -3.25em;
 	}
