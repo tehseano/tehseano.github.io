@@ -314,11 +314,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   calculateTotals();
-
-  // Update copyright year
-  const currentYear = new Date().getFullYear();
-  const copyrightElement = document.getElementById('copyright-year');
-  if (copyrightElement) {
-    copyrightElement.innerHTML = `&copy; ${currentYear} SnailSmashers | Lorg Fries 3`;
-  }
 });

@@ -284,16 +284,3 @@ p {
 .hide-description {
   display: none;
 }
-
-.copyright-container {
-  flex-shrink: 0;
-  width: 100%;
-  font-size: 1.0em;
-  color: white;
-  padding: 30px 0px;
-  font-family: 'Verdana', sans-serif;
-  text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  font-weight: bold;
-  line-height: 1.5em;
-}

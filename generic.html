@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
+  <head>
 		<title>Generic - Forty by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -9,78 +9,97 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
-    <script src="assets/js/precook.js"></script>
-
-
 		<!-- Wrapper -->
-			<div id="wrapper">
-
-      <!-- Header -->
-        <header id="header" class="alt">
-          <a href="index2.html" class="logo"><strong>sn</strong><span>ailh</span><strong>elp</strong><span>.com</span></a>
-        <!--            <a href="index.html" class="logo"><strong>Forty</strong> <span>by HTML5 UP</span></a>-->
-          <nav>
-            <a href="#menu">Menu</a>
-          </nav>
-        </header>
-
-      <!-- Menu -->
-        <nav id="menu">
-          <ul class="links">
-            <li><a href="index2.html">Home</a></li>
-            <li><a href="landing.html">Landing</a></li>
-            <li><a href="generic.html">Generic</a></li>
-            <li><a href="elements.html">Elements</a></li>
-          </ul>
-          <ul class="actions stacked">
-            <li><a href="#" class="button primary fit">Get Started</a></li>
-            <li><a href="#" class="button fit">Log In</a></li>
-          </ul>
+    <div id="wrapper">
+    <!-- Header -->
+      <header id="header" class="alt">
+        <a href="index2.html" class="logo"><strong>sn</strong><span>ailh</span><strong>elp</strong><span>.com</span></a>
+        <nav>
+          <a href="#menu">Menu</a>
         </nav>
-
-				<!-- Main -->
-					<div id="main" class="alt">
-
-						<!-- One -->
-							<section id="one">
-								<div class="inner">
-									<header class="major">
-										<h1>Generic</h1>
-									</header>
-
-									
-								</div>
-							</section>
-
-					</div>
-
-
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<ul class="icons">
-								<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-							</ul>
-							<ul class="copyright">
-								<li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-					</footer>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
+      </header>
+      <!-- Menu -->
+      <nav id="menu">
+        <ul class="links">
+          <li><a href="index2.html">Home</a></li>
+          <li><a href="landing.html">Landing</a></li>
+          <li><a href="generic.html">Precook Calculator</a></li>
+          <li><a href="elements.html">Elements</a></li>
+        </ul>
+        <ul class="actions stacked">
+          <li><a href="#" class="button primary fit">Get Started</a></li>
+          <li><a href="#" class="button fit">Log In</a></li>
+        </ul>
+      </nav>
+      <!-- Main -->
+      <div id="main" class="alt">
+        <!-- One -->
+        <section id="one">
+          <div class="inner">
+            <header class="major">
+              <h1>Pre-cook Calculator</h1>
+            </header>
+            <p>This calculator allows you to input the <b>actual</b> speed of your 8-hour souls and dragon orbs, and how many dragon orbs/mahakala's offerings you plan to submit at the Altar (and assumes your last 5 slots will be filled with 8-hour souls). It will then calulate the date and time you need to begin cooking, in preperation for the next <b>Offering Week</b>.</p>
+            <div class="container">
+              <form id="precookForm">
+                <div class="tooltip-container">
+                  <label for="soulSpeed">8-Hour Soul Offering Speed</label>
+                  <input type="text" id="soulSpeed" name="soulSpeed" placeholder="ex: 5h36m36s" required>
+                  <div class="tooltip" id="soulSpeedTooltip">
+                    <img src="images/offspd/offspd_soul.png" alt="Soul Speed Example">
+                  </div>
+                </div>
+                <div class="tooltip-container">
+                  <label for="dorbSpeed">Dragon Orb Offering Speed</label>
+                  <input type="text" id="dorbSpeed" name="dorbSpeed" placeholder="ex: 43h7m9s" required>
+                  <div class="tooltip" id="dorbSpeedTooltip">
+                    <img src="images/offspd/offspd_dorb.png" alt="Dragon Orb Speed Example">
+                  </div>
+                </div>
+                <label for="dorbQty">Quantity of Dragon Orbs</label>
+                <select id="dorbQty" name="dorbQty" required>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+                <label for="mahakalaQty">Quantity of Mahakalas</label>
+                <select id="mahakalaQty" name="mahakalaQty" required>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+                <button type="submit">Calculate</button>
+              </form>
+              <div id="result"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="icons">
+            <li><a href="https://discord.gg/gcJ25q4mJc" class="icon brands alt fa-discord" target="new"><span class="label">Discord</span></a></li>
+          </ul>
+          <ul class="copyright">
+            <li id="copyright-year"></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/precook.js"></script>
+    <script src="assets/js/copyright.js"></script>
 	</body>
 </html>
