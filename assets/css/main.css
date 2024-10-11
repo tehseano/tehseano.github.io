@@ -177,7 +177,7 @@ input, select, textarea {
 	}
 
 	p {
-		margin: 0 0 2em 0;
+		margin: 0 0 0 0;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -1895,7 +1895,7 @@ input, select, textarea {
 		font-size: 0.8em;
 		font-weight: 600;
 		letter-spacing: 0.25em;
-		margin: .5em 0;
+		margin: 1.5em 0 .5em 0;
 		text-transform: uppercase;
 	}
 
@@ -2530,7 +2530,7 @@ input, select, textarea {
 		text-decoration: none;
 		text-transform: uppercase;
 		white-space: nowrap;
-    margin-top: 2em;
+    margin: 2.5em 0 5em 0;
 	}
 
 		input[type="submit"]:hover, input[type="submit"]:active,
@@ -3397,7 +3397,7 @@ input, select, textarea {
 		cursor: default;
 		height: 25vh;
 		margin-bottom: -3.25em;
-		max-height: 32em;
+		max-height: 20em;
 		min-height: 15em;
 		position: relative;
 		top: -3.25em;
