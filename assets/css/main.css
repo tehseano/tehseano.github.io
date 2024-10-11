@@ -177,7 +177,7 @@ input, select, textarea {
 	}
 
 	p {
-		margin: 0 0 2em 0;
+		margin: 0 0 0 0;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -1818,7 +1818,7 @@ input, select, textarea {
 /* Form */
 
 	form {
-		margin: 0 0 0em 0;
+		margin: 0;
 	}
 
 		form > :last-child {
@@ -1835,7 +1835,7 @@ input, select, textarea {
 			-ms-flex-wrap: wrap;
 			flex-wrap: wrap;
 			width: calc(100% + 3em);
-			margin: -1.5em 0 0em -1.5em;
+			margin: -1.5em 0 0 -1.5em;
 		}
 
 			form > .fields > .field {
@@ -1867,7 +1867,7 @@ input, select, textarea {
 
 			form > .fields {
 				width: calc(100% + 3em);
-				margin: -1.5em 0 2em -1.5em;
+				margin: -1.5em 0 0 -1.5em;
 			}
 
 				form > .fields > .field {
@@ -2530,6 +2530,7 @@ input, select, textarea {
 		text-decoration: none;
 		text-transform: uppercase;
 		white-space: nowrap;
+    margin: 2.5em 0 5em 0;
 	}
 
 		input[type="submit"]:hover, input[type="submit"]:active,
@@ -3349,9 +3350,11 @@ input, select, textarea {
 
 		@media screen and (max-width: 480px) {
 
+/*
 			#header .logo span {
 				display: none;
 			}
+*/
 
 			#header nav a[href="#menu"] {
 				overflow: hidden;
@@ -3385,17 +3388,17 @@ input, select, textarea {
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		padding: 6em 0 2em 0 ;
+		padding: 6em 0 2em 0;
 		background-attachment: fixed;
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
 		border-bottom: 0 !important;
 		cursor: default;
-		height: 60vh;
+		height: 25vh;
 		margin-bottom: -3.25em;
-		max-height: 32em;
-		min-height: 22em;
+		max-height: 20em;
+		min-height: 15em;
 		position: relative;
 		top: -3.25em;
 	}

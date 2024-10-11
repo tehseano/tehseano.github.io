@@ -1,14 +1,17 @@
 const CodeGroup = ({ codes, groupIndex }) => {
+    const [buttonText, setButtonText] = React.useState("Copy Codes");
     const copyToClipboard = () => {
         const textToCopy = codes.join('\n');
         navigator.clipboard.writeText(textToCopy).then(() => {
-            alert('Codes copied to clipboard!');
+            setButtonText("Copied!");
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+            setButtonText("Copy Failed");
         });
     };
-
     return (
         <div className="mb-4 p-4 border border-gray-300 rounded">
-            <h2 className="text-xl font-bold mb-2">Group {groupIndex + 1}</h2>
+            <h2>Code Group {groupIndex + 1}</h2>
             <div className="max-h-40 overflow-y-auto mb-2">
                 <p className="whitespace-pre-wrap">
                     {codes.join(', ')}
@@ -16,9 +19,15 @@ const CodeGroup = ({ codes, groupIndex }) => {
             </div>
             <button 
                 onClick={copyToClipboard}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className={`font-bold py-2 px-4 rounded ${
+                    buttonText === "Copied!" 
+                        ? "bg-green-500 hover:bg-green-700"
+                        : buttonText === "Copy Failed"
+                        ? "bg-red-500 hover:bg-red-700"
+                        : "bg-blue-500 hover:bg-blue-700"
+                } text-white`}
             >
-                Copy All Codes in Group
+                {buttonText}
             </button>
         </div>
     );
@@ -32,10 +41,8 @@ const CodeList = ({ codes }) => {
     for (let i = 0; i < reversedCodes.length; i += groupSize) {
         groupedCodes.push(reversedCodes.slice(i, i + groupSize));
     }
-
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Grouped Code List</h1>
             {groupedCodes.map((group, index) => (
                 <CodeGroup key={index} codes={group} groupIndex={index} />
             ))}
@@ -46,7 +53,6 @@ const CodeList = ({ codes }) => {
 const App = () => {
     const [codes, setCodes] = React.useState([]);
     const [error, setError] = React.useState(null);
-
     React.useEffect(() => {
         fetch('codes.json')
             .then(response => {
@@ -61,11 +67,9 @@ const App = () => {
                 setError('Failed to load codes. Please try again later.');
             });
     }, []);
-
     if (error) {
         return <div className="text-red-500">{error}</div>;
     }
-
     return <CodeList codes={codes} />;
 };
 
