@@ -6,7 +6,7 @@ body {
   line-height: 1em;
   margin: 0;
 /*  padding: .5em;*/
-  background-image: url('img/bg/bg2.png');
+  background-image: url('../../images/bg/bg2.png');
   background-repeat: repeat;
   background-position: center top;
   background-attachment: fixed;
@@ -56,15 +56,15 @@ body {
 }
 
 .toggle-button.active .toggle-image {
-  content: url('img/btn/btn_edit_on.png'); /* Replace with your "on" state image */
+  content: url('../../images/btn/btn_edit_on.png'); /* Replace with your "on" state image */
 }
 
 #descriptionMode .toggle-image {
-  content: url('img/btn/btn_list_on.png'); /* "On" state is when descriptions are shown */
+  content: url('../../images/btn/btn_list_on.png'); /* "On" state is when descriptions are shown */
 }
 
 #descriptionMode.active .toggle-image {
-  content: url('img/btn/btn_list_off.png'); /* "Off" state is when popup mode is active (descriptions hidden) */
+  content: url('../../images/btn/btn_list_off.png'); /* "Off" state is when popup mode is active (descriptions hidden) */
 }
 
 .totals-container {

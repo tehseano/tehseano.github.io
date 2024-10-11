@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-cook Calculator</title>
+  <link rel="stylesheet" href="assets/css/precook.css">
+</head>
+<body>
+  <script src="assets/js/precook.js"></script>
+  <div class="container">
+    <h1>Pre-cook Calculator</h1>
+    <form id="precookForm">
+      <div class="tooltip-container">
+        <label for="soulSpeed">8-Hour Soul Offering Speed</label>
+        <input type="text" id="soulSpeed" name="soulSpeed" placeholder="ex: 5h36m36s" required>
+        <div class="tooltip" id="soulSpeedTooltip">
+          <img src="images/offspd/offspd_soul.png" alt="Soul Speed Example">
+        </div>
+      </div>
+      <div class="tooltip-container">
+        <label for="dorbSpeed">Dragon Orb Offering Speed</label>
+        <input type="text" id="dorbSpeed" name="dorbSpeed" placeholder="ex: 43h7m9s" required>
+        <div class="tooltip" id="dorbSpeedTooltip">
+          <img src="images/offspd/offspd_dorb.png" alt="Dragon Orb Speed Example">
+        </div>
+      </div>
+      <label for="dorbQty">Quantity of Dragon Orbs</label>
+      <select id="dorbQty" name="dorbQty" required>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <label for="mahakalaQty">Quantity of Mahakalas</label>
+      <select id="mahakalaQty" name="mahakalaQty" required>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <button type="submit">Calculate</button>
+    </form>
+    <div id="result"></div>
+  </div>
+</body>
+</html>
