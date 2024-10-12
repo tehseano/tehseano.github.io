@@ -42,7 +42,7 @@
 .total {
   display: flex;
   align-items: center;
-  margin: 0 2em;
+  margin: 0;
   text-align: center;
 }
 
@@ -54,12 +54,12 @@
 
 .total span {
   display: inline-block;
-  width: 40px;
   vertical-align: middle;
   color: #FFFFFF;
   font-weight: bold;
   font-family: Verdana, sans-serif;
   font-size: 1.3em;
+  margin: 0 1em;
 }
 
 .reset-container {
