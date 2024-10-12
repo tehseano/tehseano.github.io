@@ -2530,7 +2530,7 @@ input, select, textarea {
 		text-decoration: none;
 		text-transform: uppercase;
 		white-space: nowrap;
-    margin: 2.5em 0 5em 0;
+    margin: 0 0;
 	}
 
 		input[type="submit"]:hover, input[type="submit"]:active,
@@ -3375,6 +3375,49 @@ input, select, textarea {
 				}
 
 		}
+
+
+/*Style*/
+
+		.style1 {
+			background-color: #6fc3df;
+      color: #FFFFFF;
+		}
+
+		.style2 {
+			background-color: #8d82c4;
+      color: #FFFFFF;
+		}
+
+		.style3 {
+			background-color: #ec8d81;
+      color: #FFFFFF;
+		}
+
+		.style4 {
+			background-color: #e7b788;
+      color: #FFFFFF;
+		}
+
+		.style5 {
+			background-color: #8ea9e8;
+      color: #FFFFFF;
+		}
+
+		.style6 {
+			background-color: #87c5a4;
+      color: #FFFFFF;
+		}
+    .grid-item:hover > p,
+    .grid-item:hover p {
+      background-color: #87c5a4;
+      color: #FFFFFF;
+    }
+
+
+
+
+
 
 /* Banner */
 
