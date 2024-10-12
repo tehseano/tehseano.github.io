@@ -10,9 +10,9 @@ const CodeGroup = ({ codes, groupIndex }) => {
         });
     };
     return (
-        <div className="mb-4 p-4 border border-gray-300 rounded">
+        <div id="code-container" className="mb-4 p-4 border border-gray-300 rounded">
             <h2>Code Group {groupIndex + 1}</h2>
-            <div className="max-h-40 overflow-y-auto mb-2">
+            <div id="code-list" className="max-h-40 overflow-y-auto mb-2">
                 <p className="whitespace-pre-wrap">
                     {codes.join(', ')}
                 </p>
