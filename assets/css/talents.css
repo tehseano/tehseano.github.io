@@ -1,35 +1,4 @@
 @charset "UTF-8";
-/*
-body {
-  font-family: Verdana, sans-serif;
-  font-size: .7em;
-  color: #000000;
-  line-height: 1em;
-  margin: 0;
-  padding: .5em;
-  background-image: url('../../images/bg/bg2.png');
-  background-repeat: repeat;
-  background-position: center top;
-  background-attachment: fixed;
-}
-*/
-
-/*
-.fixed-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #f9dd8a;
-  padding: 5px;
-  border: 1px solid #ccc;
-  z-index: 1000;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-*/
 
 .toggle-container {
   position: absolute;
@@ -39,7 +8,7 @@ body {
   z-index: 1001;
   display: flex;
   flex-direction: row;
-  gap: 10px; /* Space between buttons */
+  gap: 10px;
 }
 
 .toggle-button {
@@ -55,8 +24,8 @@ body {
 }
 
 .toggle-image {
-  width: 40px; /* Adjust as needed */
-  height: 40px; /* Adjust as needed */
+  width: 40px;
+  height: 40px;
 }
 
 .totals-container {
@@ -72,16 +41,15 @@ body {
 
 .total {
   display: flex;
-  align-items: center; /* This will vertically center the children */
-  margin: 0 0px; /* Distance between totals */
+  align-items: center;
+  margin: 0;
   text-align: center;
-  /* border: 1px solid black; */
 }
 
 .total-icon {
-  width: 30px;  /* Adjust this value to control the image size */
+  width: 30px;
   height: auto;
-  margin-right: 0px; /* Add some space between the icon and the number */
+  margin-right: 0;
 }
 
 .total span {
@@ -111,54 +79,34 @@ body {
   font-size: 0.8em;
   color: #666;
   padding: 5px 10px;
-  z-index: 9999; /* Increased z-index to ensure it's on top */
+  z-index: 9999;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  pointer-events: none; /* Allows clicking through the version display */
-  display: block; /* Ensure it's not set to none */
-  visibility: visible; /* Ensure it's not hidden */
-  opacity: 1; /* Ensure it's fully opaque */
-  min-width: 100px; /* Ensure it has some width */
-  text-align: right; /* Align text to the right */
+  pointer-events: none;
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  min-width: 100px;
+  text-align: right;
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 5px;
-  max-width: 800px; /* Set a max width for larger screens */
-  margin: 0 auto; /* Center the grid container */
+  max-width: 800px;
+  margin: 0 auto;
   font-size: 1em;
-  padding: 0 10px; /* Add some padding on the sides */
-  box-sizing: border-box; /* Include padding in width calculation */
-}
-
-@media (max-width: 800px) {
-  .grid-container {
-    width: 100%; /* Take full width on mobile */
-    font-size: 0.7em;
-    gap: 2px; /* Reduce gap on mobile */
-    padding: 0 5px; /* Reduce padding on mobile */
-  }
-}
-
-.grid-item {
-  min-width: 0;
-}
-
-.grid-item > * {
-  max-width: 100%;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  hyphens: auto;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .grid-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: top;
+  justify-content: flex-start;
   text-align: center;
   padding: 0.0rem;
   border-radius: 8px;
@@ -168,18 +116,24 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  /* Add these properties to prevent double-tap zoom */
   -webkit-tap-highlight-color: transparent;
   outline: none;
+  overflow: hidden;
+}
+
+.grid-item > * {
+  max-width: 100%;
 }
 
 .grid-item p {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin: 2px 0;
+  width: 100%;
+  font-size: 0.9em;
 }
 
 .grid-item:hover > p,
 .grid-item:hover p {
-/*  background-color: rgba(249, 221, 138, 0.9);*/
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -195,15 +149,15 @@ body {
   margin-top: 4px;
   width: 100%;
   pointer-events: none;
-  /* Add these properties to prevent double-tap zoom on the container */
 }
 
 .talent-image {
   max-width: 60px;
+  width: 100%;
+  height: auto;
   cursor: pointer;
   pointer-events: auto;
   transition: transform 0.1s;
-  /* Add these properties to prevent double-tap zoom on the image */
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -216,9 +170,9 @@ body {
 
 .bullet-container {
   display: flex;
-  gap: 0px; /* Slightly reduce spacing between bullets */
+  gap: 2px;
   align-items: center;
-  justify-content: center; /* Center the image horizontally */
+  justify-content: center;
   margin-top: -7px;
   z-index: 5;
 }
@@ -226,24 +180,33 @@ body {
 .bullet {
   width: 0.7em;
   height: 0.7em;
-  border: 0.1em solid black; /* Bullet border */
+  border: 0.1em solid black;
   border-radius: 50%;
   display: inline-block;
-  background-color: #A9A9A9; /* Inactive state */
+  background-color: #A9A9A9;
 }
 
 .bullet.active {
-  background-color: gold; /* Active state */
+  background-color: gold;
+}
+
+.description-container {
+  width: 100%;
+  overflow: hidden;
 }
 
 .description-container p {
   margin: 2px 0px;
   font-family: Verdana, sans-serif;
-  line-height: 1em;
+  font-size: 0.9em;
+  line-height: 1.2em;
   border-radius: 8px;
   padding: 2px 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease-in-out;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .toast-container {
@@ -251,8 +214,6 @@ body {
   bottom: -100px;
   left: 50%;
   transform: translateX(-50%);
-/*  background-color: rgba(249, 221, 138, 0.95);*/
-/*  color: #333;*/
   padding: 8px 16px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -276,17 +237,55 @@ body {
 .toast-content {
   margin: 0px 0px;
   text-align: center;
-  font-weight: 500; /* Slightly bolder text */
+  font-weight: 500;
   font-size: 10px;
 }
 
-/* Optional: Add an icon to the toast */
 .toast-content::before {
-  content: '🔔 '; /* You can replace this with an image or icon font */
-/*  margin-right: 8px;*/
+  content: '🔔 ';
   font-size: 12px;
 }
 
 .hide-description {
   display: none;
+}
+
+@media (max-width: 800px) {
+  .grid-container {
+    font-size: 0.8em;
+    gap: 2px;
+    padding: 0 5px;
+  }
+  
+  .talent-image {
+    max-width: 50px;
+  }
+  
+  .bullet {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  
+  .description-container p {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 400px) {
+  .grid-container {
+    font-size: 0.7em;
+  }
+  
+  .talent-image {
+    max-width: 40px;
+  }
+  
+  .bullet {
+    width: 0.5em;
+    height: 0.5em;
+  }
+  
+  .description-container p {
+    font-size: 0.7em;
+  }
 }
