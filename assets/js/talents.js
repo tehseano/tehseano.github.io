@@ -1,5 +1,5 @@
 // Global variables
-let descriptionMode = false; // Controls whether descriptions are shown in a popup or inline
+let descriptionMode = true; // Controls whether descriptions are shown in a popup or inline
 let lastClickedId = null; // Stores the ID of the last clicked grid item
 let firstItemClicked = false; // Tracks if any grid item has been clicked
 let toastActive = false; // Track if a toast is currently active
