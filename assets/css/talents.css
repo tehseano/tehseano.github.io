@@ -267,13 +267,13 @@
   }
   
   .description-container p {
-    font-size: 0.8em;
+/*    font-size: 0.8em;*/
   }
 }
 
 @media (max-width: 400px) {
   .grid-container {
-    font-size: 0.7em;
+/*    font-size: 0.7em;*/
   }
   
   .talent-image {
@@ -286,6 +286,6 @@
   }
   
   .description-container p {
-    font-size: 0.7em;
+/*    font-size: 0.7em;*/
   }
 }
