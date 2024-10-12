@@ -126,18 +126,32 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 0px;
+  gap: 5px;
   max-width: 800px; /* Set a max width for larger screens */
   margin: 0 auto; /* Center the grid container */
   font-size: 1em;
+  padding: 0 10px; /* Add some padding on the sides */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
-@media (max-width: 800px) { /* Adjust the breakpoint as needed */
+@media (max-width: 800px) {
   .grid-container {
-    grid-template-columns: repeat(5, 1fr); /* Change to 2 columns on small screens */
     width: 100%; /* Take full width on mobile */
-    font-size: .7em;
+    font-size: 0.7em;
+    gap: 2px; /* Reduce gap on mobile */
+    padding: 0 5px; /* Reduce padding on mobile */
   }
+}
+
+.grid-item {
+  min-width: 0;
+}
+
+.grid-item > * {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .grid-item {
