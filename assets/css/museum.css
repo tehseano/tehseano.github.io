@@ -1,0 +1,36 @@
+/*
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+*/
+    .museum-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .museum-name {
+      width: 100px;
+    }
+    input[type="number"], select {
+      width: 100px;
+      padding: 5px;
+    }
+    #museum-medals-total {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+
+    #museum-wtads-cost {
+      color: #007bff;
+      font-weight: bold;
+    }
+    
+    .results-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }

@@ -1900,6 +1900,7 @@ input, select, textarea {
 	}
 
 	input[type="text"],
+  input[type="number"],
 	input[type="password"],
 	input[type="email"],
 	input[type="tel"],
@@ -1923,6 +1924,7 @@ input, select, textarea {
 	}
 
 		input[type="text"]:invalid,
+    input[type="number"]:invalid,
 		input[type="password"]:invalid,
 		input[type="email"]:invalid,
 		input[type="tel"]:invalid,
@@ -1934,6 +1936,7 @@ input, select, textarea {
 		}
 
 		input[type="text"]:focus,
+    input[type="number"]:focus,
 		input[type="password"]:focus,
 		input[type="email"]:focus,
 		input[type="tel"]:focus,
