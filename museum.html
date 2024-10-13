@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/museum.css" />
+    <link rel="stylesheet" href="assets/css/tooltip.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -14,6 +15,10 @@
     <!-- Header -->
       <header id="header" class="alt style4">
         <a href="index.html" class="logo"><strong>sn</strong><span>ailh</span><strong>elp</strong><span>.com</span></a>
+        <!-- Help Toggle -->
+        <div id="helpModeToggle" class="style4">
+          <span>?</span>
+        </div>
         <nav><a href="#menu">Menu</a></nav>
       </header>
       <!-- Menu -->
@@ -23,6 +28,7 @@
           <li><a href="codes.html">Snail Codes</a></li>
           <li><a href="precook.html">Precook Calculator</a></li>
           <li><a href="talents.html">Collector Talents Planner</a></li>
+          <li><a href="museum.html">Museum Calculator</a></li>
           <li><a href="https://discord.gg/gcJ25q4mJc">Join Our Discord</a></li>
         </ul>
       </nav>       
@@ -37,7 +43,7 @@
               <h1>Museum Calculator</h1>
           </header>
           <div class="content">
-            <p>Page sub-title</p>
+            <p>Plan your track to athena accordingly</p>
           </div>
         </div>
       </section>      
@@ -61,15 +67,33 @@
                   <li><label for="medals-used-per-reset">Medals Used per Reset:</label></li>
                 </ul>
                 <ul class="actions fit">
-                  <li><input type="number" id="current-medals" min="0" placeholder="e.g. 25123"></li>
-                  <li><input type="number" id="medals-used-per-reset" min="0" placeholder="e.g. 840"></li>
+                  <li>
+                    <div class="tooltip tooltip-show tooltip-help tooltip-top">
+                      <input type="number" id="current-medals" min="0" placeholder="e.g. 25123">
+                      <span class="tooltip-text style4">How many medals do you currently have?</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="tooltip tooltip-show tooltip-help tooltip-top">
+                      <input type="number" id="medals-used-per-reset" min="0" placeholder="e.g. 840">
+                      <span class="tooltip-text style4">How many medals do you spend when the Museum Shop resets (wish coins, speedups, etc)?</span>
+                    </div>
+                  </li>
                 </ul>
               </div>
-              <div id="item-checkboxes"></div>
+              <div class="tooltip tooltip-show tooltip-help tooltip-right">
+                <div id="item-checkboxes"></div>
+                <span class="tooltip-text style4">Choose what 1-time purchases you've already bought from the Museum Shop.</span>
+              </div>
               <br>
               <div id="item-predictions"></div>
               <br>
-              <button id="reset-button">Reset</button>
+              <div class="reset-container">
+                <div class="tooltip tooltip-show tooltip-help tooltip-right">
+                  <button id="reset-button">Reset</button>
+                  <span class="tooltip-text style4">Fully resets the calculator</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -88,6 +112,7 @@
     </div>
     <!-- Scripts -->
     <script src="assets/js/museum.js"></script>
+    <script src="assets/js/tooltip.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>

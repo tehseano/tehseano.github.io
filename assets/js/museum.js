@@ -48,6 +48,7 @@ function createMuseumRow(museum) {
     
     const medalInput = document.createElement('input');
     medalInput.type = 'number';
+    medalInput.className = 'medal-input';
     medalInput.placeholder = 'e.g. 123';
     medalInput.min = '0';
     medalInput.inputMode = 'numeric'; // Helps bring up the numeric keypad on mobile
@@ -75,7 +76,7 @@ function createMuseumRow(museum) {
     });
   
     promotionSelect.setAttribute('data-native-menu', 'true');
-  
+    
     row.appendChild(nameSpan);
     row.appendChild(medalInput);
     row.appendChild(promotionSelect);

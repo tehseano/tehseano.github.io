@@ -3364,43 +3364,67 @@ input, select, textarea {
 
 /*Style*/
 
-		.style1 {
+    .grid-item.style1:hover p {
 			background-color: #6fc3df;
       color: #FFFFFF;
 		}
 
-		.style2 {
+    .grid-item.style2:hover p {
 			background-color: #8d82c4;
       color: #FFFFFF;
 		}
 
-		.style3 {
+		
+    .grid-item.style3:hover p {
 			background-color: #ec8d81;
       color: #FFFFFF;
 		}
 
-		.style4 {
+    .grid-item.style4:hover p {
 			background-color: #e7b788;
       color: #FFFFFF;
 		}
 
-		.style5 {
+    .grid-item.style5:hover p {
 			background-color: #8ea9e8;
       color: #FFFFFF;
 		}
 
-		.style6 {
+    .grid-item.style6:hover p {
 			background-color: #87c5a4;
       color: #FFFFFF;
 		}
-    .grid-item:hover > p,
-    .grid-item:hover p {
-      background-color: #87c5a4;
+
+
+    #toast-container.style1 {
+			background-color: #6fc3df;
       color: #FFFFFF;
-    }
+		}
 
+    #toast-container.style2 {
+			background-color: #8d82c4;
+      color: #FFFFFF;
+		}
 
+    #toast-container.style3 {
+			background-color: #ec8d81;
+      color: #FFFFFF;
+		}
 
+    #toast-container.style4 {
+			background-color: #e7b788;
+      color: #FFFFFF;
+		}
+
+    #toast-container.style5 {
+			background-color: #8ea9e8;
+      color: #FFFFFF;
+		}
+
+    #toast-container.style6 {
+			background-color: #87c5a4;
+      color: #FFFFFF;
+		}
 
 
 
