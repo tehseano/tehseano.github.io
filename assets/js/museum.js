@@ -61,7 +61,7 @@ function createMuseumRow(museum) {
     // Create tooltip image
     const tooltipImg = document.createElement('img');
     tooltipImg.src = "images/museum/museum_medals.png";
-    tooltipImg.className = 'tooltip-img style4';
+    tooltipImg.className = 'tooltip-img tooltip-text style4';
     tooltipImg.alt = 'Museum Medals';
     
     // Assemble tooltip

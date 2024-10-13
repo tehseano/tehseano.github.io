@@ -9,11 +9,11 @@
   margin: 0px;
 }
 
+.tooltip .tooltip-text,
 .tooltip .tooltip-img {
-  visibility: hidden; /* Hide the tooltip initially */
+  visibility: hidden;
   text-align: center;
   border-radius: 6px;
-  width: 250px;
   padding: 5px;
   position: absolute;
   z-index: 1;
@@ -21,30 +21,27 @@
   transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
   justify-content: center;
   align-items: center;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-  border: 1px solid black;
-  pointer-events: none;  
-}
-
-.tooltip .tooltip-text {
-  visibility: hidden; /* Hide the tooltip initially */
-  text-align: center;
-  border-radius: 6px;
-  width: 200px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-  justify-content: center;
-  align-items: center;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
   border: 1px solid black;
   pointer-events: none;
 }
 
+/* Specific styles for text tooltips */
+.tooltip .tooltip-text {
+  width: 200px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+/* Specific styles for image tooltips */
+.tooltip .tooltip-img {
+  width: auto; /* or set a specific width if needed */
+  max-width: 300px; /* Adjust as needed */
+}
+
+/* Visibility rules for both text and image tooltips */
 .tooltip.tooltip-show:focus-within .tooltip-text,
-.tooltip.tooltip-help.active .tooltip-text {
+.tooltip.tooltip-show:focus-within .tooltip-img,
+.tooltip.tooltip-help.active .tooltip-text,
+.tooltip.tooltip-help.active .tooltip-img {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
