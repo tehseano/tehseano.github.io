@@ -4,7 +4,7 @@
 }
 
 .tooltip .tooltip-text {
-  visibility: hidden;
+  visibility: hidden; /* Hide the tooltip initially */
   text-align: center;
   border-radius: 6px;
   width: 200px;
@@ -12,12 +12,22 @@
   position: absolute;
   z-index: 1;
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
   justify-content: center;
   align-items: center;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
   border: 1px solid black;
+  pointer-events: none;
 }
+
+.tooltip.tooltip-show:focus-within .tooltip-text,
+.tooltip.tooltip-help.active .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0); /* Move to final position */
+}
+
 
 /* Arrow styles */
 .tooltip .tooltip-text::after {
@@ -31,13 +41,13 @@
 .tooltip.tooltip-top .tooltip-text {
   bottom: 150%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, 20px); /* Start 20px below final position */
 }
 
 .tooltip.tooltip-bottom .tooltip-text {
   top: 150%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -20px); /* Start 20px below final position */
 }
 
 .tooltip.tooltip-left .tooltip-text {
@@ -268,10 +278,11 @@
 }
 
 /* Hover */
-
+#helpModeToggle:hover {
+  color: #FFFFFF;
+}
 #helpModeToggle.style1:hover {
   background-color: #6fc3df;
-  color: transparent;
 }
 #helpModeToggle.style2:hover {
   background-color: #8d82c4;
@@ -281,7 +292,6 @@
 }
 #helpModeToggle.style4:hover {
   background-color: #e7b788;
-  color: transparent;
 }
 #helpModeToggle.style5:hover {
   background-color: #8ea9e8;
@@ -291,25 +301,27 @@
 }
 
 /* Active */
-
 #helpModeToggle.active {
-  background-color: #FFFFFF;
+  color: #2a2f4a;
 }
-#helpModeToggle.style1.active span {
-  color: #6fc3df;
+#helpModeToggle.active:hover {
+  color: #FFFFFF;
 }
-#helpModeToggle.style2.active span {
-  color: #8d82c4;
+#helpModeToggle.style1.active {
+  background-color: #6fc3df;
 }
-#helpModeToggle.style3.active span {
-  color: #ec8d81;
+#helpModeToggle.style2.active {
+  background-color: #8d82c4;
 }
-#helpModeToggle.style4.active span {
-  color: #e7b788;
+#helpModeToggle.style3.active {
+  background-color: #ec8d81;
 }
-#helpModeToggle.style5.active span {
-  color: #8ea9e8;
+#helpModeToggle.style4.active {
+  background-color: #e7b788;
 }
-#helpModeToggle.style6.active span {
-  color: #87c5a4;
+#helpModeToggle.style5.active {
+  background-color: #8ea9e8;
+}
+#helpModeToggle.style6.active {
+  background-color: #87c5a4;
 }

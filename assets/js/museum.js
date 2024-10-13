@@ -26,18 +26,6 @@ const resetButton = document.getElementById('reset-button');
 
 let totalDailyMedals = 0;
 
-function formatNumberWithCommas(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-function updateInputWithCommas(input) {
-    const numericValue = input.value.replace(/,/g, '');
-    if (numericValue !== '') {
-        const formattedValue = formatNumberWithCommas(parseInt(numericValue, 10));
-        input.value = formattedValue;
-    }
-}
-
 function createMuseumRow(museum) {
     const row = document.createElement('div');
     row.className = 'museum-row';
@@ -108,7 +96,7 @@ function calculateMuseumTotals() {
     const wtadsCostPerMedal = extraMedals > 0 ? totalWtadsCost / extraMedals : 0;
 
     if (hasPromotion) {
-        museumWtadsCost.innerHTML = `<label>Wtads Cost/Medal: ${wtadsCostPerMedal.toFixed(2)}</label>`;
+        museumWtadsCost.innerHTML = `<label>Wtads/Medal: ${wtadsCostPerMedal.toFixed(2)}</label>`;
         museumWtadsCost.style.display = 'block';
     } else {
         museumWtadsCost.style.display = 'none';

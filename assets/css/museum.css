@@ -11,6 +11,7 @@
 #museum-title-container {
   text-align: center;
   font-weight: bold;
+  font-size: 1.25em;
 }
 
 .museum-row {
@@ -49,6 +50,9 @@
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+}
+.inputs-container label {
+  margin: 0px;
 }
 
 .inputs-container input {
