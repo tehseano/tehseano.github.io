@@ -38,7 +38,7 @@ function createMuseumRow(museum) {
     const tooltipDiv = document.createElement('div');
     
     // Set classes based on museum name
-    if (museum === 'Demon God') {
+     if (museum === 'Demon God') {
         tooltipDiv.className = 'tooltip tooltip-show tooltip-help tooltip-top';
     } else {
         tooltipDiv.className = 'tooltip tooltip-show tooltip-top';
@@ -58,15 +58,20 @@ function createMuseumRow(museum) {
         calculateMuseumTotals();
     });
     
+     // Create tooltip image container
+    const tooltipImgContainer = document.createElement('div');
+    tooltipImgContainer.className = 'tooltip-img-container style4';
+    
     // Create tooltip image
     const tooltipImg = document.createElement('img');
     tooltipImg.src = "images/museum/museum_medals.png";
-    tooltipImg.className = 'tooltip-img tooltip-text style4';
+    tooltipImg.className = 'tooltip-img';
     tooltipImg.alt = 'Museum Medals';
     
     // Assemble tooltip
+    tooltipImgContainer.appendChild(tooltipImg);
     tooltipDiv.appendChild(medalInput);
-    tooltipDiv.appendChild(tooltipImg);
+    tooltipDiv.appendChild(tooltipImgContainer);
     
     const promotionSelect = document.createElement('select');
     promotionSelect.id = `${museum}-promotion`;
