@@ -10,9 +10,9 @@ const promotions = {
     "Orange": { multiplier: 1.30, wtadsCost: 260 }
 };
 const museumItems = [
-    { name: "Curator's Helm", cost: 50000 },
-    { name: "1st Crystal of Will", cost: 100000 },
-    { name: "2nd Crystal of Will", cost: 100000 },
+    { name: "the Curator's Helm", cost: 50000 },
+    { name: "the 1st Crystal of Will", cost: 100000 },
+    { name: "the 2nd Crystal of Will", cost: 100000 },
     { name: "Athena's Delight", cost: 200000 }
 ];
 const museumCalculator = document.getElementById('museum-medal-calculator');
@@ -26,6 +26,18 @@ const resetButton = document.getElementById('reset-button');
 
 let totalDailyMedals = 0;
 
+function formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function updateInputWithCommas(input) {
+    const numericValue = input.value.replace(/,/g, '');
+    if (numericValue !== '') {
+        const formattedValue = formatNumberWithCommas(parseInt(numericValue, 10));
+        input.value = formattedValue;
+    }
+}
+
 function createMuseumRow(museum) {
     const row = document.createElement('div');
     row.className = 'museum-row';
@@ -36,8 +48,11 @@ function createMuseumRow(museum) {
     
     const medalInput = document.createElement('input');
     medalInput.type = 'number';
+    medalInput.placeholder = 'e.g. 123';
     medalInput.min = '0';
-    medalInput.value = getCookie(`${museum}-medals`) || '0';
+    medalInput.inputMode = 'numeric'; // Helps bring up the numeric keypad on mobile
+    medalInput.pattern = '[0-9]*'; // Ensures only numbers can be entered
+    medalInput.value = getCookie(`${museum}-medals`) || '';
     medalInput.id = `${museum}-medals`;
     medalInput.addEventListener('input', () => {
         setCookie(`${museum}-medals`, medalInput.value);
@@ -58,7 +73,9 @@ function createMuseumRow(museum) {
         setCookie(`${museum}-promotion`, promotionSelect.value);
         calculateMuseumTotals();
     });
-    
+  
+    promotionSelect.setAttribute('data-native-menu', 'true');
+  
     row.appendChild(nameSpan);
     row.appendChild(medalInput);
     row.appendChild(promotionSelect);
@@ -73,7 +90,7 @@ function calculateMuseumTotals() {
     let hasPromotion = false;
 
     museums.forEach(museum => {
-        const medals = parseInt(document.getElementById(`${museum}-medals`).value) || 0;
+        const medals = parseInt(document.getElementById(`${museum}-medals`).value) || '';
         const promotion = document.getElementById(`${museum}-promotion`).value;
         totalWithPromotions += medals * promotions[promotion].multiplier;
         totalWithoutPromotions += medals;
@@ -84,13 +101,13 @@ function calculateMuseumTotals() {
     });
 
     totalDailyMedals = totalWithPromotions;
-    museumMedalsTotal.textContent = `Total Daily Medals: ${Math.round(totalDailyMedals)}`;
+    museumMedalsTotal.innerHTML = `<label>Total Daily Medals: ${Math.round(totalDailyMedals)}</label>`;
 
     const extraMedals = totalWithPromotions - totalWithoutPromotions;
     const wtadsCostPerMedal = extraMedals > 0 ? totalWtadsCost / extraMedals : 0;
 
     if (hasPromotion) {
-        museumWtadsCost.textContent = `Wtads Cost/Medal: ${wtadsCostPerMedal.toFixed(2)}`;
+        museumWtadsCost.innerHTML = `<label>Wtads Cost/Medal: ${wtadsCostPerMedal.toFixed(2)}</label>`;
         museumWtadsCost.style.display = 'block';
     } else {
         museumWtadsCost.style.display = 'none';
@@ -135,8 +152,8 @@ function toggleNextCheckbox(checkbox) {
 }
 
 function calculateItemPredictions() {
-    const currentMedals = parseInt(currentMedalsInput.value) || 0;
-    const medalsUsedPerReset = parseInt(medalsUsedPerResetInput.value) || 0;
+    const currentMedals = parseInt(currentMedalsInput.value) || '';
+    const medalsUsedPerReset = parseInt(medalsUsedPerResetInput.value) || '';
     const dailyNetMedals = totalDailyMedals - (medalsUsedPerReset / 3);
 
     itemPredictions.innerHTML = '';
@@ -180,9 +197,9 @@ function getCookie(name) {
 
 function resetAllData() {
     museums.forEach(museum => {
-        document.getElementById(`${museum}-medals`).value = '0';
+        document.getElementById(`${museum}-medals`).value = '';
         document.getElementById(`${museum}-promotion`).value = '';
-        setCookie(`${museum}-medals`, '0');
+        setCookie(`${museum}-medals`, '');
         setCookie(`${museum}-promotion`, '');
     });
 
@@ -195,10 +212,10 @@ function resetAllData() {
         }
     });
 
-    currentMedalsInput.value = '0';
-    medalsUsedPerResetInput.value = '0';
-    setCookie('current-medals', '0');
-    setCookie('medals-used-per-reset', '0');
+    currentMedalsInput.value = '';
+    medalsUsedPerResetInput.value = '';
+    setCookie('current-medals', '');
+    setCookie('medals-used-per-reset', '');
 
     calculateMuseumTotals();
 }
@@ -210,7 +227,7 @@ museums.forEach(museum => {
 createItemCheckboxes();
 
 [currentMedalsInput, medalsUsedPerResetInput].forEach(input => {
-    input.value = getCookie(input.id) || '0';
+    input.value = getCookie(input.id) || '';
     input.addEventListener('input', () => {
         setCookie(input.id, input.value);
         calculateItemPredictions();

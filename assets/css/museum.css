@@ -1,36 +1,67 @@
 /*
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+body {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
 */
-    .museum-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-    .museum-name {
-      width: 100px;
-    }
-    input[type="number"], select {
-      width: 100px;
-      padding: 5px;
-    }
-    #museum-medals-total {
-      font-weight: bold;
-      font-size: 1.2em;
-      margin-top: 20px;
-    }
+.museum {
+  max-width: 600px;
+/*  text-align: center;*/
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-    #museum-wtads-cost {
-      color: #007bff;
-      font-weight: bold;
-    }
-    
-    .results-container {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
+.museum-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.museum-calculator select {
+  max-width: 120px;
+}
+
+.museum-calculator input {
+  max-width: 100px;
+  text-align: center;
+  padding-left: 2px;
+  padding-right: 5px;
+  font-weight: bold;
+}
+
+.museum-name {
+  width: 100px;
+}
+
+#museum-medals-total, #museum-wtads-cost {
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.inputs-container {
+  max-width: 600px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.inputs-container input {
+  text-align: center;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.results-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}

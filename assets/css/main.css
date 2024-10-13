@@ -1899,13 +1899,7 @@ input, select, textarea {
 		text-transform: uppercase;
 	}
 
-	input[type="text"],
-  input[type="number"],
-	input[type="password"],
-	input[type="email"],
-	input[type="tel"],
-	input[type="search"],
-	input[type="url"],
+	input,
 	select,
 	textarea {
 		-moz-appearance: none;
@@ -1923,25 +1917,13 @@ input, select, textarea {
 		width: 100%;
 	}
 
-		input[type="text"]:invalid,
-    input[type="number"]:invalid,
-		input[type="password"]:invalid,
-		input[type="email"]:invalid,
-		input[type="tel"]:invalid,
-		input[type="search"]:invalid,
-		input[type="url"]:invalid,
+		input:invalid,
 		select:invalid,
 		textarea:invalid {
 			box-shadow: none;
 		}
 
-		input[type="text"]:focus,
-    input[type="number"]:focus,
-		input[type="password"]:focus,
-		input[type="email"]:focus,
-		input[type="tel"]:focus,
-		input[type="search"]:focus,
-		input[type="url"]:focus,
+		input:focus,
 		select:focus,
 		textarea:focus {
 			border-color: #9bf1ff;

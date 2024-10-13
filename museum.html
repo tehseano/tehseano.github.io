@@ -12,7 +12,7 @@
 		<!-- Wrapper -->
     <div id="wrapper">
     <!-- Header -->
-      <header id="header" class="alt style1">
+      <header id="header" class="alt style4">
         <a href="index.html" class="logo"><strong>sn</strong><span>ailh</span><strong>elp</strong><span>.com</span></a>
         <nav><a href="#menu">Menu</a></nav>
       </header>
@@ -28,7 +28,7 @@
       </nav>       
       <!-- Banner -->
       <!-- Note: The "styleN" class below should match that of the header element. -->
-      <section id="banner" class="style1">
+      <section id="banner" class="style4">
         <div class="inner">
           <span class="image">
             <img src="images/pic07.jpg" alt="" />
@@ -46,22 +46,31 @@
         <!-- One -->
         <section id="one">
           <div class="inner">
-            <p></p>
-            
-            <div id="museum-medal-calculator"></div>
-            <div id="museum-medals-total"></div>
-            <div id="museum-wtads-cost"></div>
-            <div class="inputs-container">
-                <label for="current-medals">Current Medals:</label>
-                <input type="number" id="current-medals" min="0">
-                <label for="medals-used-per-reset">Medals Used per Reset:</label>
-                <input type="number" id="medals-used-per-reset" min="0">
+            <div class="museum">
+              <p></p>
+              <div id="museum-medal-calculator" class="museum-calculator"></div>
+              <div class="museum-totals">
+                <ul class="actions fit">
+                  <li><div id="museum-medals-total"></div></li>
+                  <li><div id="museum-wtads-cost"></div></li>
+                </ul>
+              </div>
+              <div class="inputs-container">
+                <ul class="actions fit">
+                  <li><label for="current-medals">Current Medals:</label></li>
+                  <li><label for="medals-used-per-reset">Medals Used per Reset:</label></li>
+                </ul>
+                <ul class="actions fit">
+                  <li><input type="number" id="current-medals" min="0" placeholder="e.g. 25123"></li>
+                  <li><input type="number" id="medals-used-per-reset" min="0" placeholder="e.g. 840"></li>
+                </ul>
+              </div>
+              <div id="item-checkboxes"></div>
+              <br>
+              <div id="item-predictions"></div>
+              <br>
+              <button id="reset-button">Reset</button>
             </div>
-            <button id="reset-button">Reset All Data</button>
-            <div id="item-checkboxes"></div>
-            <div id="item-predictions"></div>
-            
-            
           </div>
         </section>
       </div>
