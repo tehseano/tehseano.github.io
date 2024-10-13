@@ -220,7 +220,7 @@
 
 #helpModeToggle {
   background-color: transparent;
-  color: white;
+  z-index: 9999;
   line-height: inherit;
   border: 2px solid;
   width: 2em; 
