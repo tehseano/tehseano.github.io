@@ -3,11 +3,17 @@
   display: inline-block;
 }
 
+.tooltip img{
+  width: 250px;
+  height: auto;
+  margin: 0px;
+}
+
 .tooltip .tooltip-text {
   visibility: hidden; /* Hide the tooltip initially */
   text-align: center;
   border-radius: 6px;
-  width: 200px;
+  width: 250px;
   padding: 5px;
   position: absolute;
   z-index: 1;

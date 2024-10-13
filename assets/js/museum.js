@@ -34,19 +34,39 @@ function createMuseumRow(museum) {
     nameSpan.className = 'museum-name';
     nameSpan.textContent = museum;
     
+    // Create tooltip container
+    const tooltipDiv = document.createElement('div');
+    
+    // Set classes based on museum name
+    if (museum === 'Demon God') {
+        tooltipDiv.className = 'tooltip tooltip-show tooltip-help tooltip-top';
+    } else {
+        tooltipDiv.className = 'tooltip tooltip-show tooltip-top';
+    }
+    
     const medalInput = document.createElement('input');
     medalInput.type = 'number';
     medalInput.className = 'medal-input';
     medalInput.placeholder = 'e.g. 123';
     medalInput.min = '0';
-    medalInput.inputMode = 'numeric'; // Helps bring up the numeric keypad on mobile
-    medalInput.pattern = '[0-9]*'; // Ensures only numbers can be entered
+    medalInput.inputMode = 'numeric';
+    medalInput.pattern = '[0-9]*';
     medalInput.value = getCookie(`${museum}-medals`) || '';
     medalInput.id = `${museum}-medals`;
     medalInput.addEventListener('input', () => {
         setCookie(`${museum}-medals`, medalInput.value);
         calculateMuseumTotals();
     });
+    
+    // Create tooltip image
+    const tooltipImg = document.createElement('img');
+    tooltipImg.src = "images/museum/museum_medals.png";
+    tooltipImg.className = 'tooltip-img tooltip-text style4';
+    tooltipImg.alt = 'Museum Medals';
+    
+    // Assemble tooltip
+    tooltipDiv.appendChild(medalInput);
+    tooltipDiv.appendChild(tooltipImg);
     
     const promotionSelect = document.createElement('select');
     promotionSelect.id = `${museum}-promotion`;
@@ -66,7 +86,7 @@ function createMuseumRow(museum) {
     promotionSelect.setAttribute('data-native-menu', 'true');
     
     row.appendChild(nameSpan);
-    row.appendChild(medalInput);
+    row.appendChild(tooltipDiv);
     row.appendChild(promotionSelect);
     
     return row;
