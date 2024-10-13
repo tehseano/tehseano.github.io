@@ -5,9 +5,9 @@
 
 .tooltip .tooltip-text {
   visibility: hidden;
-  width: 250px;
   text-align: center;
   border-radius: 6px;
+  width: 200px;
   padding: 5px;
   position: absolute;
   z-index: 1;
@@ -35,7 +35,7 @@
 }
 
 .tooltip.tooltip-bottom .tooltip-text {
-  top: 125%;
+  top: 150%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -212,18 +212,20 @@
   background-color: transparent;
   color: white;
   line-height: inherit;
-  border: 2px solid white;
-  width: 1.5em; 
-  height: 1.5em;
+  border: 2px solid;
+  width: 2em; 
+  height: 2em;
   cursor: pointer;
   display: flex; 
   justify-content: center;
   align-items: center;  
-  position: absolute;  /* Changed from relative to absolute */
+  position: fixed;
   text-align: center;
-  right: 175px;  /* Aligns to the right with some padding */
-  top: 50%;  /* Centers vertically */
-  transform: translateY(-50%);  /* Ensures perfect vertical centering */
+  right: 20px;
+  bottom: 20px;
+  border-radius: 50%;  /* This makes the div circular */
+  overflow: hidden;  /* This ensures content doesn't spill outside the circle */
+  background-color: transparent;
 }
 
 #helpModeToggle span {
@@ -231,23 +233,83 @@
   text-align: center;
   top: 50%;  
   left: 50%;  
-  transform: translate(-40%, -50%);
-  font-size: 1em;
+  transform: translate(-50%, -50%);
+  font-size: 1.5em;
   font-weight: bold;
 }
 
-#helpModeToggle:hover {background-color: #FFFFFF;}
-#helpModeToggle.style1:hover span {color: #6fc3df;}
-#helpModeToggle.style2:hover span {color: #8d82c4;}
-#helpModeToggle.style3:hover span {color: #ec8d81;}
-#helpModeToggle.style4:hover span {color: #e7b788;}
-#helpModeToggle.style5:hover span {color: #8ea9e8;}
-#helpModeToggle.style6:hover span {color: #87c5a4;}
 
-#helpModeToggle.active {background-color: #FFFFFF;}
-#helpModeToggle.style1.active span {color: #6fc3df;}
-#helpModeToggle.style2.active span {color: #8d82c4;}
-#helpModeToggle.style3.active span {color: #ec8d81;}
-#helpModeToggle.style4.active span {color: #e7b788;}
-#helpModeToggle.style5.active span {color: #8ea9e8;}
-#helpModeToggle.style6.active span {color: #87c5a4;}
+
+/* Normal */
+
+#helpModeToggle.style1 {
+  color: #6fc3df;
+  border-color: #6fc3df;
+}
+#helpModeToggle.style2 {
+  color: #8d82c4;
+  border-color: #8d82c4;
+}
+#helpModeToggle.style3 {
+  color: #ec8d81;
+  border-color: #ec8d81;
+}
+#helpModeToggle.style4 {
+  color: #e7b788;
+  border-color: #e7b788;
+}
+#helpModeToggle.style5 {
+  color: #8ea9e8;
+  border-color: #8ea9e8;
+}
+#helpModeToggle.style6 {
+  color: #87c5a4;
+  border-color: #87c5a4;
+}
+
+/* Hover */
+
+#helpModeToggle.style1:hover {
+  background-color: #6fc3df;
+  color: transparent;
+}
+#helpModeToggle.style2:hover {
+  background-color: #8d82c4;
+}
+#helpModeToggle.style3:hover {
+  background-color: #ec8d81;
+}
+#helpModeToggle.style4:hover {
+  background-color: #e7b788;
+  color: transparent;
+}
+#helpModeToggle.style5:hover {
+  background-color: #8ea9e8;
+}
+#helpModeToggle.style6:hover {
+  background-color: #87c5a4;
+}
+
+/* Active */
+
+#helpModeToggle.active {
+  background-color: #FFFFFF;
+}
+#helpModeToggle.style1.active span {
+  color: #6fc3df;
+}
+#helpModeToggle.style2.active span {
+  color: #8d82c4;
+}
+#helpModeToggle.style3.active span {
+  color: #ec8d81;
+}
+#helpModeToggle.style4.active span {
+  color: #e7b788;
+}
+#helpModeToggle.style5.active span {
+  color: #8ea9e8;
+}
+#helpModeToggle.style6.active span {
+  color: #87c5a4;
+}

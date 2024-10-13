@@ -8,6 +8,11 @@
   transform: translateX(-50%);
 }
 
+#museum-title-container {
+  text-align: center;
+  font-weight: bold;
+}
+
 .museum-row {
   display: flex;
   justify-content: space-between;
