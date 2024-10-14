@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/talents.css">
+    <link rel="stylesheet" href="assets/css/tooltip.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -16,6 +17,10 @@
         <a href="index.html" class="logo"><strong>sn</strong><span>ailh</span><strong>elp</strong><span>.com</span></a>
         <nav><a href="#menu">Menu</a></nav>
       </header>
+      <!-- Help Toggle -->
+      <div id="helpModeToggle" class="style3">
+        <span>?</span>
+      </div>
       <!-- Menu -->
       <nav id="menu">
         <ul class="links">
@@ -51,9 +56,24 @@
         <!-- Talent Control Buttons -->
         <div class="talent-buttons-container">
           <ul class="actions fit">
-            <li><button id="editMode" class="button fit">Edit</button></li>
-            <li><button id="descriptionMode" class="button fit">Description</button></li>
-            <li><button id="resetButton" class="button fit">Reset</button></li>
+            <li>
+<!--              <div class="tooltip tooltip-help tooltip-bottom">-->
+                <button id="editMode" class="button fit">Edit</button>
+<!--                <span class="tooltip-text style3">Toggle to remove points from talents when clicking them.</span>-->
+<!--              </div>-->
+            </li>
+            <li>
+<!--              <div class="tooltip tooltip-help tooltip-bottom">-->
+                <button id="descriptionMode" class="button fit">Description</button>
+<!--                <span class="tooltip-text style3">View all descriptions for each talent instead of toasts.</span>-->
+<!--              </div>-->
+            </li>
+            <li>
+<!--              <div class="tooltip tooltip-help tooltip-bottom">-->
+                <button id="resetButton" class="button fit">Reset</button>
+<!--                <span class="tooltip-text style3">Reset all talents.</span>-->
+<!--              </div>-->
+            </li>
           </ul>
         </div>
         <!-- Display total points used -->
@@ -1029,6 +1049,7 @@
     </div>
     <!-- Scripts -->
     <script src="assets/js/talents.js"></script>
+    <script src="assets/js/tooltip.js"></script>
     <script src="assets/js/copyright.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>

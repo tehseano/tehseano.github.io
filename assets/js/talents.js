@@ -26,6 +26,7 @@ window.addEventListener('load', () => {
   gridItems.forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       const id = item.getAttribute('data-id');
       toggleValue(id);
     });
