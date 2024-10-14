@@ -265,7 +265,6 @@
 }
 
 #helpModeToggle {
-  background-color: transparent;
   z-index: 9999;
   line-height: inherit;
   border: 2px solid;
@@ -281,7 +280,7 @@
   bottom: 20px;
   border-radius: 50%;  /* This makes the div circular */
   overflow: hidden;  /* This ensures content doesn't spill outside the circle */
-  background-color: transparent;
+  background-color: #2a2f4a;
 }
 
 #helpModeToggle span {
