@@ -45,6 +45,7 @@
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, 0);
+  
 }
 
 /* Arrow styles for both text and image tooltips */
