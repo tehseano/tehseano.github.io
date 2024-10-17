@@ -272,7 +272,7 @@
 }
 
 #helpModeToggle {
-  z-index: 5;
+  z-index: 2000;
   line-height: inherit;
   border: 2px solid;
   width: 2em; 
