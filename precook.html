@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/precook.css">
+    <link rel="stylesheet" href="assets/css/tooltip.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -16,6 +17,10 @@
         <a href="index.html" class="logo"><strong>sn</strong><span>ailh</span><strong>elp</strong><span>.com</span></a>
         <nav><a href="#menu">Menu</a></nav>
       </header>
+      <!-- Help Toggle -->
+      <div id="helpModeToggle" class="style2">
+        <span>?</span>
+      </div>
       <!-- Menu -->
       <nav id="menu">
         <ul class="links">
@@ -50,21 +55,29 @@
             <p>This calculator allows you to input the <b>actual</b> speed of your 8-hour souls and dragon orbs, and how many dragon orbs/mahakala's offerings you plan to submit at the Altar (and assumes your last 5 slots will be filled with 8-hour souls). It will then calulate the date and time you need to begin cooking in preperation for <b>Offering Week</b>.</p>
             <div class="container">
               <form id="precookForm">
-                <div class="tooltip-container">
-                  <label for="soulSpeed">8-Hour Soul Offering Speed</label>
-                  <input type="text" id="soulSpeed" name="soulSpeed" placeholder="ex: 5h36m36s" required>
-                  <div class="tooltip" id="soulSpeedTooltip">
-                    <img src="images/offspd/offspd_soul.png" alt="Soul Speed Example">
-                  </div>
-                </div>
-                <div class="tooltip-container">
-                  <label for="dorbSpeed">Dragon Orb Offering Speed</label>
-                  <input type="text" id="dorbSpeed" name="dorbSpeed" placeholder="ex: 43h7m9s" required>
-                  <div class="tooltip" id="dorbSpeedTooltip">
-                    <img src="images/offspd/offspd_dorb.png" alt="Dragon Orb Speed Example">
-                  </div>
-                </div>
-                <label for="dorbQty">Quantity of Dragon Orbs</label>
+                <ul class="actions fit">
+                  <li>
+                    <div class="tooltip tooltip-show tooltip-help tooltip-top">            
+                      <label>8-Hour Soul Offering Speed</label>
+                      <input type="text" id="soulSpeed" name="soulSpeed" placeholder="ex: 5h36m36s" required>
+                      <div class="tooltip-img-container style2">
+                        <img src="images/offspd/offspd_soul.png" class="tooltip-img">
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <ul class="actions fit">
+                  <li>
+                    <div class="tooltip tooltip-show tooltip-help tooltip-top">            
+                      <label>Dragon Orb Offering Speed</label>
+                      <input type="text" id="dorbSpeed" name="dorbSpeed" placeholder="ex: 43h7m9s" required>
+                      <div class="tooltip-img-container style2">
+                        <img src="images/offspd/offspd_dorb.png" class="tooltip-img">
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <label>Quantity of Dragon Orbs</label>
                 <select id="dorbQty" name="dorbQty" required>
                   <option value="0">0</option>
                   <option value="1">1</option>
@@ -72,7 +85,7 @@
                   <option value="3">3</option>
                   <option value="4">4</option>
                 </select>
-                <label for="mahakalaQty">Quantity of Mahakalas</label>
+                <label>Quantity of Mahakalas</label>
                 <select id="mahakalaQty" name="mahakalaQty" required>
                   <option value="0">0</option>
                   <option value="1">1</option>
@@ -102,6 +115,7 @@
     </div>
     <!-- Scripts -->
     <script src="assets/js/precook.js"></script>
+    <script src="assets/js/tooltip.js"></script>
     <script src="assets/js/copyright.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>

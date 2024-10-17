@@ -5,9 +5,26 @@ document.addEventListener('DOMContentLoaded', function() {
         calculatePrecook();
     });
 
-    // Ensure the result div is hidden initially
+    // Add tooltip functionality
+    addTooltipFunctionality('soulSpeed', 'soulSpeedTooltip');
+    addTooltipFunctionality('dorbSpeed', 'dorbSpeedTooltip');
+
+  // Ensure the result div is hidden initially
     document.getElementById('result').classList.remove('show');
 });
+
+function addTooltipFunctionality(inputId, tooltipId) {
+    const input = document.getElementById(inputId);
+    const tooltip = document.getElementById(tooltipId);
+
+    input.addEventListener('focus', function() {
+        tooltip.style.display = 'block';
+    });
+
+    input.addEventListener('blur', function() {
+        tooltip.style.display = 'none';
+    });
+}
 
 function calculatePrecook() {
   const soulSpeed = document.getElementById('soulSpeed').value;

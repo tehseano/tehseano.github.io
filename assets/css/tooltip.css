@@ -60,7 +60,7 @@
 /* Positioning classes for both text and image tooltips */
 .tooltip.tooltip-top .tooltip-text,
 .tooltip.tooltip-top .tooltip-img-container {
-  bottom: 150%;
+  bottom: 3.5em;
   left: 50%;
   transform: translate(-50%, 20px);
 }
