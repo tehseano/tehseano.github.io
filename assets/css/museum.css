@@ -1,6 +1,5 @@
 .museum {
-  max-width: 600px;
-/*  text-align: center;*/
+  max-width: 800px;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -13,16 +12,19 @@
   font-weight: bold;
   font-size: 1.25em;
 }
+/*
 
 .museum-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
+*/
 
-.museum-calculator select {
-  max-width: 120px;
+.museum-calculator {
+  text-align: center;
 }
+/*
 
 .museum-calculator input {
   max-width: 100px;
@@ -31,10 +33,13 @@
   padding-right: 5px;
   font-weight: bold;
 }
+*/
 
+/*
 .museum-name {
   width: 100px;
 }
+*/
 
 #museum-medals-total, #museum-wtads-cost {
   font-weight: bold;
@@ -55,7 +60,7 @@
   margin: 0px;
 }
 
-.inputs-container input {
+.inputs-container input, .museum-calculator input {
   text-align: center;
   font-weight: bold;
   padding: 5px;
