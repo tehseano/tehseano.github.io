@@ -24,6 +24,10 @@
 .museum-calculator {
   text-align: center;
   justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  padding: 5px 0px;
+  
 }
 /*
 
