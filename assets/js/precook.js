@@ -9,64 +9,84 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('result').classList.remove('show');
 });
 
+// Helper function to parse various time formats into decimal hours
+function parseTimeToDecimalHours(timeStr) {
+    // Remove any whitespace
+    timeStr = timeStr.trim();
+    
+    // Initialize values
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+    
+    // Match different parts of the time string
+    // This regex handles formats like:
+    // 6h30m10s, 6h30min10sec, 6h30m, 6h, 6hours30minutes, etc.
+    const hourMatch = timeStr.match(/(\d+)\s*h(?:ours?)?/);
+    const minuteMatch = timeStr.match(/(\d+)\s*m(?:in(?:utes?)?)?/);
+    const secondMatch = timeStr.match(/(\d+)\s*s(?:ec(?:onds?)?)?/);
+    
+    if (!hourMatch && !minuteMatch && !secondMatch) {
+        throw new Error('Invalid time format');
+    }
+    
+    // Extract values if they exist
+    if (hourMatch) hours = parseInt(hourMatch[1]);
+    if (minuteMatch) minutes = parseInt(minuteMatch[1]);
+    if (secondMatch) seconds = parseInt(secondMatch[1]);
+    
+    // Convert to decimal hours
+    return hours + minutes / 60 + seconds / 3600;
+}
+
 function calculatePrecook() {
-  const soulSpeed = document.getElementById('soulSpeed').value;
-  const dorbSpeed = document.getElementById('dorbSpeed').value;
-  const dorbQty = parseInt(document.getElementById('dorbQty').value);
-  const mahakalaQty = parseInt(document.getElementById('mahakalaQty').value);
-
-  saveFormValues();
-
-  if (dorbQty + mahakalaQty > 4) {
-      alert('Invalid quantity. The combined total of Dragon Orbs and Mahakalas must be between 0 and 4.');
-      return;
-  }
-
-  const soulMatch = soulSpeed.match(/(\d+)h(\d+)m(\d+)s/);
-  const dOrbMatch = dorbSpeed.match(/(\d+)h(\d+)m(\d+)s/);
-
-  if (!soulMatch || !dOrbMatch) {
-      alert('Invalid time format. Please use a format like 5h32m29s.');
-      return;
-  }
-
-  const [, soulHours, soulMinutes, soulSeconds] = soulMatch.map(Number);
-  const [, dOrbHours, dOrbMinutes, dOrbSeconds] = dOrbMatch.map(Number);
-
-  const soulDecimalHours = soulHours + soulMinutes / 60 + soulSeconds / 3600;
-  const dOrbDecimalHours = dOrbHours + dOrbMinutes / 60 + dOrbSeconds / 3600;
-
-  const qtySouls = 9 - (dorbQty + mahakalaQty);
-  const totalHours = (soulDecimalHours * qtySouls) + (dOrbDecimalHours * dorbQty) + (48 * mahakalaQty);
-
-  const initialDate = new Date(2024, 2, 1, 9, 0, 0); // March 1, 2024, 09:00:00 UTC
-  const weeksCycle = 3;
-
-  const now = new Date();
-  const daysDifference = Math.floor((now - initialDate) / (1000 * 60 * 60 * 24));
-  const weeksDifference = Math.floor(daysDifference / 7) + (daysDifference % 7 !== 0 ? 1 : 0);
-
-  const targetDate = new Date(initialDate.getTime() + (Math.floor((weeksDifference + 2) / weeksCycle) * weeksCycle * 7 * 24 * 60 * 60 * 1000));
-  const newDateTime = new Date(targetDate.getTime() - (totalHours * 60 * 60 * 1000));
-
-  const formattedDate = formatDate(newDateTime);
-  const relativeTime = formatRelativeTime(newDateTime);
-
-  const weekType = totalHours > 168 ? 'Lotto' : 'Wish';
-
-  const resultText = `You need to begin pre-cooking by <b>${formattedDate}</b> local time of ${weekType} week. (<b>${relativeTime}</b>)`;
-
-  const resultElement = document.getElementById('result');
-  resultElement.innerHTML = resultText;
-
-  // Reset the animation
-  resultElement.classList.remove('show');
-
-  // Trigger reflow
-  void resultElement.offsetWidth;
-
-  // Start the animation
-  resultElement.classList.add('show');
+    const soulSpeed = document.getElementById('soulSpeed').value;
+    const dorbSpeed = document.getElementById('dorbSpeed').value;
+    const dorbQty = parseInt(document.getElementById('dorbQty').value);
+    const mahakalaQty = parseInt(document.getElementById('mahakalaQty').value);
+    
+    saveFormValues();
+    
+    if (dorbQty + mahakalaQty > 4) {
+        alert('Invalid quantity. The combined total of Dragon Orbs and Mahakalas must be between 0 and 4.');
+        return;
+    }
+    
+    try {
+        const soulDecimalHours = parseTimeToDecimalHours(soulSpeed);
+        const dOrbDecimalHours = parseTimeToDecimalHours(dorbSpeed);
+        
+        const qtySouls = 9 - (dorbQty + mahakalaQty);
+        const totalHours = (soulDecimalHours * qtySouls) + (dOrbDecimalHours * dorbQty) + (48 * mahakalaQty);
+        
+        const initialDate = new Date(2024, 2, 1, 9, 0, 0); // March 1, 2024, 09:00:00 UTC
+        const weeksCycle = 3;
+        
+        // Rest of the calculation remains the same...
+        const now = new Date();
+        const daysDifference = Math.floor((now - initialDate) / (1000 * 60 * 60 * 24));
+        const weeksDifference = Math.floor(daysDifference / 7) + (daysDifference % 7 !== 0 ? 1 : 0);
+        
+        const targetDate = new Date(initialDate.getTime() + (Math.floor((weeksDifference + 2) / weeksCycle) * weeksCycle * 7 * 24 * 60 * 60 * 1000));
+        const newDateTime = new Date(targetDate.getTime() - (totalHours * 60 * 60 * 1000));
+        
+        const formattedDate = formatDate(newDateTime);
+        const relativeTime = formatRelativeTime(newDateTime);
+        
+        const weekType = totalHours > 168 ? 'Lotto' : 'Wish';
+        
+        const resultText = `You need to begin pre-cooking by <b>${formattedDate}</b> local time of ${weekType} week. (<b>${relativeTime}</b>)`;
+        
+        const resultElement = document.getElementById('result');
+        resultElement.innerHTML = resultText;
+        
+        // Reset and show animation
+        resultElement.classList.remove('show');
+        void resultElement.offsetWidth;
+        resultElement.classList.add('show');
+    } catch (error) {
+        alert('Invalid time format. Please use formats like:\n- 6h30m10s\n- 6h30min10sec\n- 6hours30minutes10seconds\n- 6h30m\n- 6h');
+    }
 }
 
 function formatDate(date) {
