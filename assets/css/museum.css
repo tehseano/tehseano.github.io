@@ -12,14 +12,6 @@
   font-weight: bold;
   font-size: 1.25em;
 }
-/*
-
-.museum-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-*/
 
 .museum-calculator {
   text-align: center;
@@ -29,22 +21,6 @@
   padding: 5px 0px;
   
 }
-/*
-
-.museum-calculator input {
-  max-width: 100px;
-  text-align: center;
-  padding-left: 2px;
-  padding-right: 5px;
-  font-weight: bold;
-}
-*/
-
-/*
-.museum-name {
-  width: 100px;
-}
-*/
 
 #museum-medals-total, #museum-wtads-cost {
   font-weight: bold;
@@ -70,6 +46,31 @@
   font-weight: bold;
   padding: 5px;
 }
+
+/*
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.checkbox-container > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin: 0;
+}
+
+.checkbox-container label {
+    margin: 0;
+}
+*/
 
 .results-container {
   display: flex;
