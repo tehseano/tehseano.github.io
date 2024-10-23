@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gear Crafting Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .calculator {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+            margin-right: 10px;
+        }
+        input {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 4px;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .breakdown {
+            margin-top: 15px;
+            font-size: 0.9em;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .aow-chain {
+            margin-left: 20px;
+            border-left: 2px solid #ddd;
+            padding-left: 10px;
+        }
+        .materials-section {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .materials-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .crafting-breakdown {
+            margin-left: 20px;
+            padding: 10px;
+            border-left: 2px solid #4CAF50;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Gear Crafting Calculator</h1>
+        
+        <div class="input-group">
+            <label for="currentLevel">Current Level (+):</label>
+            <input type="number" id="currentLevel" min="0" max="8" value="0">
+        </div>
+
+        <div class="input-group">
+            <label for="targetLevel">Target Level (+):</label>
+            <input type="number" id="targetLevel" min="1" max="9" value="1">
+        </div>
+
+        <div class="materials-section">
+            <h3>Base Materials</h3>
+            <div class="input-group">
+                <label for="glue">Glue:</label>
+                <input type="number" id="glue" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="btads">Btads:</label>
+                <input type="number" id="btads" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="orangeReagent">Orange Reagent:</label>
+                <input type="number" id="orangeReagent" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="eoh">Eye of Horus:</label>
+                <input type="number" id="eoh" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="cow">Crystal of Will:</label>
+                <input type="number" id="cow" min="0" value="0">
+            </div>
+            <div class="input-group">
+                  <label for="heavenWings">Heaven Wings:</label>
+                  <input type="number" id="heavenWings" min="0" value="0">
+              </div>
+              <div class="input-group">
+                  <label for="abyssWings">Abyss Wings:</label>
+                  <input type="number" id="abyssWings" min="0" value="0">
+              </div>
+        </div>
+
+        <div class="materials-section">
+            <h3>Wing Materials</h3>
+            <div class="input-group">
+                <label for="seethingBracelet">Seething Bracelet:</label>
+                <input type="number" id="seethingBracelet" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="icyBracelet">Icy Bracelet:</label>
+                <input type="number" id="icyBracelet" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="heavenAmulet">Heaven Amulet:</label>
+                <input type="number" id="heavenAmulet" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="abyssAmulet">Abyss Amulet:</label>
+                <input type="number" id="abyssAmulet" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="wizardRing">Wizard Ring:</label>
+                <input type="number" id="wizardRing" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="crusaderRing">Crusader Ring:</label>
+                <input type="number" id="crusaderRing" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="rubyBrooch">Ruby Brooch:</label>
+                <input type="number" id="rubyBrooch" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="sapphireBrooch">Sapphire Brooch:</label>
+                <input type="number" id="sapphireBrooch" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="sorcererRing">Sorcerer Ring:</label>
+                <input type="number" id="sorcererRing" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="warriorRing">Warrior Ring:</label>
+                <input type="number" id="warriorRing" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="whitePearl">White Pearl:</label>
+                <input type="number" id="whitePearl" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="blackPearl">Black Pearl:</label>
+                <input type="number" id="blackPearl" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="flowerCrown">Flower Crown:</label>
+                <input type="number" id="flowerCrown" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="woodenRing">Wooden Ring:</label>
+                <input type="number" id="woodenRing" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="ironRing">Iron Ring:</label>
+                <input type="number" id="ironRing" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="beastFang">Beast Fang:</label>
+                <input type="number" id="beastFang" min="0" value="0">
+            </div>
+        </div>
+
+        <button onclick="calculate()">Calculate</button>
+        <div class="results" id="results"></div>
+    </div>
+
+    <script type="application/javascript" src="assets/js/gear.js"></script>
+</body>
+</html>
