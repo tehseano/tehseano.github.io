@@ -1,21 +1,16 @@
-#gear-container {
+#gear-container label, #gear-container input {
   text-align: center;
+  padding: 5px 0px;  
+  font-weight: bold;
+}
+#gear-container label {
   justify-content: center;
   vertical-align: middle;
-  align-items: center;
-  padding: 5px 0px;  
+  align-items: center;  
 }
-
-#gear-container input {
-  text-align: center;
-  font-weight: bold;
-  padding: 5px;
-}
-
 .results {
     margin-top: 20px;
     padding: 15px;
-/*    background-color: #f8f8f8;*/
     border-radius: 4px;
 }
 .error {
@@ -26,8 +21,6 @@
     margin-top: 15px;
     font-size: 0.9em;
     padding: 10px;
-/*    background-color: #fff;*/
-    border: 1px solid #ddd;
     border-radius: 4px;
 }
 .aow-chain {
@@ -36,7 +29,7 @@
     padding-left: 10px;
 }
 .crafting-breakdown {
-    margin-left: 20px;
+    margin-left: 40px;
     padding: 10px;
     border-left: 2px solid #4CAF50;
     margin-top: 10px;

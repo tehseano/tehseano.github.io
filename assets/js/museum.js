@@ -1,6 +1,6 @@
 const museums = [
     "Demon God", "Koryeo", "Yamato", "Cathay", "Murika", 
-    "Britland", "Kemet", "Hellas", "Bhrata", "Time Rift"
+    "Britland", "Kemet", "Hellas", "Bharata", "Time Rift"
 ];
 const promotions = {
     "": { multiplier: 1, wtadsCost: 0 },
