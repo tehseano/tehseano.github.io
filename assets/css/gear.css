@@ -1,0 +1,43 @@
+#gear-container {
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  padding: 5px 0px;  
+}
+
+#gear-container input {
+  text-align: center;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.results {
+    margin-top: 20px;
+    padding: 15px;
+/*    background-color: #f8f8f8;*/
+    border-radius: 4px;
+}
+.error {
+    color: red;
+    margin-top: 10px;
+}
+.breakdown {
+    margin-top: 15px;
+    font-size: 0.9em;
+    padding: 10px;
+/*    background-color: #fff;*/
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.aow-chain {
+    margin-left: 20px;
+    border-left: 2px solid #ddd;
+    padding-left: 10px;
+}
+.crafting-breakdown {
+    margin-left: 20px;
+    padding: 10px;
+    border-left: 2px solid #4CAF50;
+    margin-top: 10px;
+}
